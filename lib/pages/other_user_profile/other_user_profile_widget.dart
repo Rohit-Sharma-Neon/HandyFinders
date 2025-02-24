@@ -5,6 +5,7 @@ import '/flutter_flow/flutter_flow_theme.dart';
 import '/flutter_flow/flutter_flow_util.dart';
 import '/custom_code/widgets/index.dart' as custom_widgets;
 import '/flutter_flow/custom_functions.dart' as functions;
+import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/scheduler.dart';
 import 'package:flutter_rating_bar/flutter_rating_bar.dart';
@@ -146,8 +147,13 @@ class _OtherUserProfileWidgetState extends State<OtherUserProfileWidget> {
                                   children: [
                                     ClipRRect(
                                       borderRadius: BorderRadius.circular(18.0),
-                                      child: Image.network(
-                                        '${FFAppConstants.baseImageUrl}${getJsonField(
+                                      child: CachedNetworkImage(
+                                        fadeInDuration:
+                                            Duration(milliseconds: 0),
+                                        fadeOutDuration:
+                                            Duration(milliseconds: 0),
+                                        imageUrl:
+                                            '${FFAppConstants.baseImageUrl}${getJsonField(
                                           HandyFindersAPIsGroup
                                               .userReviewDetailCall
                                               .apiUserDetails(
@@ -160,7 +166,7 @@ class _OtherUserProfileWidgetState extends State<OtherUserProfileWidget> {
                                         width: 80.0,
                                         height: 80.0,
                                         fit: BoxFit.cover,
-                                        errorBuilder:
+                                        errorWidget:
                                             (context, error, stackTrace) =>
                                                 Image.asset(
                                           'assets/images/error_image.png',
@@ -353,15 +359,24 @@ class _OtherUserProfileWidgetState extends State<OtherUserProfileWidget> {
                                                                     .circular(
                                                                         99.0),
                                                             child:
-                                                                Image.network(
-                                                              '${FFAppConstants.baseImageUrl}${getJsonField(
+                                                                CachedNetworkImage(
+                                                              fadeInDuration:
+                                                                  Duration(
+                                                                      milliseconds:
+                                                                          0),
+                                                              fadeOutDuration:
+                                                                  Duration(
+                                                                      milliseconds:
+                                                                          0),
+                                                              imageUrl:
+                                                                  '${FFAppConstants.baseImageUrl}${getJsonField(
                                                                 itemsItem,
                                                                 r'''$.reviewer.profile_picture''',
                                                               ).toString()}',
                                                               width: 50.0,
                                                               height: 50.0,
                                                               fit: BoxFit.cover,
-                                                              errorBuilder: (context,
+                                                              errorWidget: (context,
                                                                       error,
                                                                       stackTrace) =>
                                                                   Image.asset(
@@ -511,8 +526,17 @@ class _OtherUserProfileWidgetState extends State<OtherUserProfileWidget> {
                                                                       .circular(
                                                                           12.0),
                                                               child:
-                                                                  Image.network(
-                                                                '${FFAppConstants.baseImageUrl}${getJsonField(
+                                                                  CachedNetworkImage(
+                                                                fadeInDuration:
+                                                                    Duration(
+                                                                        milliseconds:
+                                                                            0),
+                                                                fadeOutDuration:
+                                                                    Duration(
+                                                                        milliseconds:
+                                                                            0),
+                                                                imageUrl:
+                                                                    '${FFAppConstants.baseImageUrl}${getJsonField(
                                                                   itemsItem,
                                                                   r'''$.service_detail.images[0].image''',
                                                                 ).toString()}',
@@ -520,7 +544,7 @@ class _OtherUserProfileWidgetState extends State<OtherUserProfileWidget> {
                                                                 height: 60.0,
                                                                 fit: BoxFit
                                                                     .cover,
-                                                                errorBuilder: (context,
+                                                                errorWidget: (context,
                                                                         error,
                                                                         stackTrace) =>
                                                                     Image.asset(

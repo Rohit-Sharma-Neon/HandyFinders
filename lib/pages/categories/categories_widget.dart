@@ -4,6 +4,7 @@ import '/components/ic_back_title_widget.dart';
 import '/flutter_flow/flutter_flow_theme.dart';
 import '/flutter_flow/flutter_flow_util.dart';
 import '/index.dart';
+import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/scheduler.dart';
 import 'package:provider/provider.dart';
@@ -260,13 +261,22 @@ class _CategoriesWidgetState extends State<CategoriesWidget> {
                                                       borderRadius:
                                                           BorderRadius.circular(
                                                               4.0),
-                                                      child: Image.network(
-                                                        '${FFAppConstants.baseImageUrl}${getJsonField(
+                                                      child: CachedNetworkImage(
+                                                        fadeInDuration:
+                                                            Duration(
+                                                                milliseconds:
+                                                                    0),
+                                                        fadeOutDuration:
+                                                            Duration(
+                                                                milliseconds:
+                                                                    0),
+                                                        imageUrl:
+                                                            '${FFAppConstants.baseImageUrl}${getJsonField(
                                                           localApiCategoriesItem,
                                                           r'''$.image''',
                                                         ).toString()}',
                                                         fit: BoxFit.fitHeight,
-                                                        errorBuilder: (context,
+                                                        errorWidget: (context,
                                                                 error,
                                                                 stackTrace) =>
                                                             Image.asset(

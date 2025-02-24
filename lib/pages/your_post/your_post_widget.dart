@@ -13,6 +13,7 @@ import '/custom_code/actions/index.dart' as actions;
 import '/flutter_flow/custom_functions.dart' as functions;
 import '/index.dart';
 import 'package:aligned_dialog/aligned_dialog.dart';
+import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/scheduler.dart';
 import 'package:flutter_animate/flutter_animate.dart';
@@ -923,9 +924,18 @@ class _YourPostWidgetState extends State<YourPostWidget>
                                                                     BorderRadius
                                                                         .circular(
                                                                             8.0),
-                                                                child: Image
-                                                                    .network(
-                                                                  '${FFAppConstants.baseImageUrl}${getJsonField(
+                                                                child:
+                                                                    CachedNetworkImage(
+                                                                  fadeInDuration:
+                                                                      Duration(
+                                                                          milliseconds:
+                                                                              0),
+                                                                  fadeOutDuration:
+                                                                      Duration(
+                                                                          milliseconds:
+                                                                              0),
+                                                                  imageUrl:
+                                                                      '${FFAppConstants.baseImageUrl}${getJsonField(
                                                                     localPostListItem,
                                                                     r'''$.images[0].image''',
                                                                   ).toString()}',
@@ -934,6 +944,19 @@ class _YourPostWidgetState extends State<YourPostWidget>
                                                                   height: 150.0,
                                                                   fit: BoxFit
                                                                       .fill,
+                                                                  errorWidget: (context,
+                                                                          error,
+                                                                          stackTrace) =>
+                                                                      Image
+                                                                          .asset(
+                                                                    'assets/images/error_image.png',
+                                                                    width: double
+                                                                        .infinity,
+                                                                    height:
+                                                                        150.0,
+                                                                    fit: BoxFit
+                                                                        .fill,
+                                                                  ),
                                                                 ),
                                                               ),
                                                             ),
@@ -2078,9 +2101,18 @@ class _YourPostWidgetState extends State<YourPostWidget>
                                                                     BorderRadius
                                                                         .circular(
                                                                             8.0),
-                                                                child: Image
-                                                                    .network(
-                                                                  '${FFAppConstants.baseImageUrl}${getJsonField(
+                                                                child:
+                                                                    CachedNetworkImage(
+                                                                  fadeInDuration:
+                                                                      Duration(
+                                                                          milliseconds:
+                                                                              0),
+                                                                  fadeOutDuration:
+                                                                      Duration(
+                                                                          milliseconds:
+                                                                              0),
+                                                                  imageUrl:
+                                                                      '${FFAppConstants.baseImageUrl}${getJsonField(
                                                                     pageStateTipListItem,
                                                                     r'''$.images[0].image''',
                                                                   ).toString()}',
@@ -2089,6 +2121,19 @@ class _YourPostWidgetState extends State<YourPostWidget>
                                                                   height: 150.0,
                                                                   fit: BoxFit
                                                                       .fill,
+                                                                  errorWidget: (context,
+                                                                          error,
+                                                                          stackTrace) =>
+                                                                      Image
+                                                                          .asset(
+                                                                    'assets/images/error_image.png',
+                                                                    width: double
+                                                                        .infinity,
+                                                                    height:
+                                                                        150.0,
+                                                                    fit: BoxFit
+                                                                        .fill,
+                                                                  ),
                                                                 ),
                                                               ),
                                                             ),

@@ -43,11 +43,13 @@
 	<true/>
 
 	<key>NSCameraUsageDescription</key>
-    <string>In order to take a picture or video, this app requires permission to access the camera.</string>
+    <string>This App need to access camera permission to upload photo from camera.</string>
 	<key>NSPhotoLibraryUsageDescription</key>
-    <string>In order to upload data, this app requires permission to access the photo library.</string>
+    <string>This App need to access photos permission to upload photos from gallery.</string>
 	<key>NSLocationWhenInUseUsageDescription</key>
-    <string>We need location permission to give user better experience.</string>
+    <string>This app needs location permission to show post according to current location.</string>
+	<key>PermissionGroupNotification</key>
+    <string>This app needs notification permission to show all important updates.</string>
 
 
 	<key>UILaunchStoryboardName</key>

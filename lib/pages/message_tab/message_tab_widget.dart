@@ -1,6 +1,7 @@
 import '/flutter_flow/flutter_flow_theme.dart';
 import '/flutter_flow/flutter_flow_util.dart';
 import '/flutter_flow/random_data_util.dart' as random_data;
+import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'message_tab_model.dart';
@@ -177,8 +178,11 @@ class _MessageTabWidgetState extends State<MessageTabWidget> {
                             children: [
                               ClipRRect(
                                 borderRadius: BorderRadius.circular(99.0),
-                                child: Image.network(
-                                  'https://images.unsplash.com/flagged/photo-1595514191830-3e96a518989b?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w0NTYyMDF8MHwxfHNlYXJjaHw5fHxwcm9maWxlJTIwcGhvdG98ZW58MHx8fHwxNzM3NzA5Mzc3fDA&ixlib=rb-4.0.3&q=80&w=1080',
+                                child: CachedNetworkImage(
+                                  fadeInDuration: Duration(milliseconds: 0),
+                                  fadeOutDuration: Duration(milliseconds: 0),
+                                  imageUrl:
+                                      'https://images.unsplash.com/flagged/photo-1595514191830-3e96a518989b?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w0NTYyMDF8MHwxfHNlYXJjaHw5fHxwcm9maWxlJTIwcGhvdG98ZW58MHx8fHwxNzM3NzA5Mzc3fDA&ixlib=rb-4.0.3&q=80&w=1080',
                                   width: 50.0,
                                   height: 50.0,
                                   fit: BoxFit.cover,

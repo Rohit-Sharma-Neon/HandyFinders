@@ -10,6 +10,7 @@ import 'dart:async';
 import '/custom_code/actions/index.dart' as actions;
 import '/custom_code/widgets/index.dart' as custom_widgets;
 import 'package:aligned_dialog/aligned_dialog.dart';
+import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/scheduler.dart';
 import 'package:flutter_rating_bar/flutter_rating_bar.dart';
@@ -579,8 +580,17 @@ class _ReviewAndRatingsWidgetState extends State<ReviewAndRatingsWidget> {
                                                                       .circular(
                                                                           99.0),
                                                               child:
-                                                                  Image.network(
-                                                                '${FFAppConstants.baseImageUrl}${getJsonField(
+                                                                  CachedNetworkImage(
+                                                                fadeInDuration:
+                                                                    Duration(
+                                                                        milliseconds:
+                                                                            0),
+                                                                fadeOutDuration:
+                                                                    Duration(
+                                                                        milliseconds:
+                                                                            0),
+                                                                imageUrl:
+                                                                    '${FFAppConstants.baseImageUrl}${getJsonField(
                                                                   reviewsItem,
                                                                   r'''$.reviewer.profile_picture''',
                                                                 ).toString()}',
@@ -588,7 +598,7 @@ class _ReviewAndRatingsWidgetState extends State<ReviewAndRatingsWidget> {
                                                                 height: 50.0,
                                                                 fit: BoxFit
                                                                     .cover,
-                                                                errorBuilder: (context,
+                                                                errorWidget: (context,
                                                                         error,
                                                                         stackTrace) =>
                                                                     Image.asset(
@@ -897,13 +907,37 @@ class _ReviewAndRatingsWidgetState extends State<ReviewAndRatingsWidget> {
                                                                     BorderRadius
                                                                         .circular(
                                                                             12.0),
-                                                                child: Image
-                                                                    .network(
-                                                                  'https://picsum.photos/seed/259/600',
+                                                                child:
+                                                                    CachedNetworkImage(
+                                                                  fadeInDuration:
+                                                                      Duration(
+                                                                          milliseconds:
+                                                                              0),
+                                                                  fadeOutDuration:
+                                                                      Duration(
+                                                                          milliseconds:
+                                                                              0),
+                                                                  imageUrl:
+                                                                      '${FFAppConstants.baseImageUrl}${getJsonField(
+                                                                    reviewsItem,
+                                                                    r'''$.service_detail.images[0].image''',
+                                                                  ).toString()}',
                                                                   width: 60.0,
                                                                   height: 60.0,
                                                                   fit: BoxFit
                                                                       .cover,
+                                                                  errorWidget: (context,
+                                                                          error,
+                                                                          stackTrace) =>
+                                                                      Image
+                                                                          .asset(
+                                                                    'assets/images/error_image.png',
+                                                                    width: 60.0,
+                                                                    height:
+                                                                        60.0,
+                                                                    fit: BoxFit
+                                                                        .cover,
+                                                                  ),
                                                                 ),
                                                               ),
                                                               Padding(

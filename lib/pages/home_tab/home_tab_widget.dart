@@ -184,12 +184,15 @@ class _HomeTabWidgetState extends State<HomeTabWidget> {
                         },
                         child: ClipRRect(
                           borderRadius: BorderRadius.circular(99.0),
-                          child: Image.network(
-                            '${FFAppConstants.baseImageUrl}${FFAppState().userProfileImageUrl}',
+                          child: CachedNetworkImage(
+                            fadeInDuration: Duration(milliseconds: 500),
+                            fadeOutDuration: Duration(milliseconds: 500),
+                            imageUrl:
+                                '${FFAppConstants.baseImageUrl}${FFAppState().userProfileImageUrl}',
                             width: 55.0,
                             height: 55.0,
                             fit: BoxFit.fill,
-                            errorBuilder: (context, error, stackTrace) =>
+                            errorWidget: (context, error, stackTrace) =>
                                 Image.asset(
                               'assets/images/error_image.png',
                               width: 55.0,
@@ -807,17 +810,17 @@ class _HomeTabWidgetState extends State<HomeTabWidget> {
                                                       child: ClipRRect(
                                                         borderRadius:
                                                             BorderRadius
-                                                                .circular(4.0),
+                                                                .circular(6.0),
                                                         child:
                                                             CachedNetworkImage(
                                                           fadeInDuration:
                                                               Duration(
                                                                   milliseconds:
-                                                                      500),
+                                                                      0),
                                                           fadeOutDuration:
                                                               Duration(
                                                                   milliseconds:
-                                                                      500),
+                                                                      0),
                                                           imageUrl:
                                                               '${FFAppConstants.baseImageUrl}${getJsonField(
                                                             categoriesLocalVariableItem,
@@ -973,9 +976,14 @@ class _HomeTabWidgetState extends State<HomeTabWidget> {
                                                                       ClipRRect(
                                                                         borderRadius:
                                                                             BorderRadius.circular(99.0),
-                                                                        child: Image
-                                                                            .network(
-                                                                          '${FFAppConstants.baseImageUrl}${getJsonField(
+                                                                        child:
+                                                                            CachedNetworkImage(
+                                                                          fadeInDuration:
+                                                                              Duration(milliseconds: 500),
+                                                                          fadeOutDuration:
+                                                                              Duration(milliseconds: 500),
+                                                                          imageUrl:
+                                                                              '${FFAppConstants.baseImageUrl}${getJsonField(
                                                                             homePostListItem,
                                                                             r'''$.user_detail.profile_picture''',
                                                                           ).toString()}',
@@ -985,7 +993,7 @@ class _HomeTabWidgetState extends State<HomeTabWidget> {
                                                                               42.0,
                                                                           fit: BoxFit
                                                                               .cover,
-                                                                          errorBuilder: (context, error, stackTrace) =>
+                                                                          errorWidget: (context, error, stackTrace) =>
                                                                               Image.asset(
                                                                             'assets/images/error_image.png',
                                                                             width:
@@ -1293,6 +1301,7 @@ class _HomeTabWidgetState extends State<HomeTabWidget> {
                                                                       homePostListItem,
                                                                       r'''$.category_id''',
                                                                     ).toString(),
+                                                                    maxLines: 1,
                                                                     style: FlutterFlowTheme.of(
                                                                             context)
                                                                         .bodyMedium
@@ -1310,61 +1319,74 @@ class _HomeTabWidgetState extends State<HomeTabWidget> {
                                                                 ),
                                                               ),
                                                               Expanded(
-                                                                child: Padding(
-                                                                  padding: EdgeInsetsDirectional
-                                                                      .fromSTEB(
-                                                                          8.0,
-                                                                          0.0,
-                                                                          0.0,
-                                                                          0.0),
-                                                                  child:
-                                                                      RichText(
-                                                                    textScaler:
-                                                                        MediaQuery.of(context)
-                                                                            .textScaler,
-                                                                    text:
-                                                                        TextSpan(
-                                                                      children: [
-                                                                        TextSpan(
+                                                                child: Builder(
+                                                                  builder:
+                                                                      (context) {
+                                                                    if ((String
+                                                                        type) {
+                                                                      return type
+                                                                          .toLowerCase()
+                                                                          .contains(
+                                                                              "request");
+                                                                    }(getJsonField(
+                                                                      homePostListItem,
+                                                                      r'''$.type''',
+                                                                    ).toString())) {
+                                                                      return Padding(
+                                                                        padding: EdgeInsetsDirectional.fromSTEB(
+                                                                            8.0,
+                                                                            0.0,
+                                                                            0.0,
+                                                                            0.0),
+                                                                        child:
+                                                                            RichText(
+                                                                          textScaler:
+                                                                              MediaQuery.of(context).textScaler,
                                                                           text:
-                                                                              '\$',
-                                                                          style: FlutterFlowTheme.of(context)
-                                                                              .bodyMedium
-                                                                              .override(
-                                                                                fontFamily: 'Inter',
-                                                                                color: FlutterFlowTheme.of(context).primary,
-                                                                                fontSize: 16.0,
-                                                                                letterSpacing: 0.0,
-                                                                                fontWeight: FontWeight.w500,
+                                                                              TextSpan(
+                                                                            children: [
+                                                                              TextSpan(
+                                                                                text: '\$',
+                                                                                style: FlutterFlowTheme.of(context).bodyMedium.override(
+                                                                                      fontFamily: 'Inter',
+                                                                                      color: FlutterFlowTheme.of(context).primary,
+                                                                                      fontSize: 16.0,
+                                                                                      letterSpacing: 0.0,
+                                                                                      fontWeight: FontWeight.w500,
+                                                                                    ),
                                                                               ),
-                                                                        ),
-                                                                        TextSpan(
-                                                                          text:
-                                                                              getJsonField(
-                                                                            homePostListItem,
-                                                                            r'''$.cost''',
-                                                                          ).toString(),
-                                                                          style:
-                                                                              TextStyle(),
-                                                                        )
-                                                                      ],
-                                                                      style: FlutterFlowTheme.of(
-                                                                              context)
-                                                                          .bodyMedium
-                                                                          .override(
-                                                                            fontFamily:
-                                                                                'Inter',
-                                                                            color:
-                                                                                FlutterFlowTheme.of(context).primary,
-                                                                            fontSize:
-                                                                                16.0,
-                                                                            letterSpacing:
-                                                                                0.0,
-                                                                            fontWeight:
-                                                                                FontWeight.w500,
+                                                                              TextSpan(
+                                                                                text: getJsonField(
+                                                                                  homePostListItem,
+                                                                                  r'''$.cost''',
+                                                                                ).toString(),
+                                                                                style: TextStyle(),
+                                                                              )
+                                                                            ],
+                                                                            style: FlutterFlowTheme.of(context).bodyMedium.override(
+                                                                                  fontFamily: 'Inter',
+                                                                                  color: FlutterFlowTheme.of(context).primary,
+                                                                                  fontSize: 16.0,
+                                                                                  letterSpacing: 0.0,
+                                                                                  fontWeight: FontWeight.w500,
+                                                                                ),
                                                                           ),
-                                                                    ),
-                                                                  ),
+                                                                        ),
+                                                                      );
+                                                                    } else {
+                                                                      return Text(
+                                                                        '',
+                                                                        style: FlutterFlowTheme.of(context)
+                                                                            .bodyMedium
+                                                                            .override(
+                                                                              fontFamily: 'Comfortaa',
+                                                                              color: Color(0x0014181B),
+                                                                              fontSize: 0.1,
+                                                                              letterSpacing: 0.0,
+                                                                            ),
+                                                                      );
+                                                                    }
+                                                                  },
                                                                 ),
                                                               ),
                                                               Container(
@@ -1517,6 +1539,67 @@ class _HomeTabWidgetState extends State<HomeTabWidget> {
                                                                 ),
                                                           ),
                                                         ),
+                                                        if (getJsonField(
+                                                              homePostListItem,
+                                                              r'''$.images''',
+                                                            ) !=
+                                                            null)
+                                                          Padding(
+                                                            padding: EdgeInsetsDirectional
+                                                                .fromSTEB(
+                                                                    valueOrDefault<
+                                                                        double>(
+                                                                      FFAppConstants
+                                                                          .scaffoldHorizontalPadding,
+                                                                      0.0,
+                                                                    ),
+                                                                    10.0,
+                                                                    valueOrDefault<
+                                                                        double>(
+                                                                      FFAppConstants
+                                                                          .scaffoldHorizontalPadding,
+                                                                      0.0,
+                                                                    ),
+                                                                    0.0),
+                                                            child: ClipRRect(
+                                                              borderRadius:
+                                                                  BorderRadius
+                                                                      .circular(
+                                                                          8.0),
+                                                              child:
+                                                                  CachedNetworkImage(
+                                                                fadeInDuration:
+                                                                    Duration(
+                                                                        milliseconds:
+                                                                            0),
+                                                                fadeOutDuration:
+                                                                    Duration(
+                                                                        milliseconds:
+                                                                            0),
+                                                                imageUrl:
+                                                                    '${FFAppConstants.baseImageUrl}${getJsonField(
+                                                                  homePostListItem,
+                                                                  r'''$.images[0].image''',
+                                                                ).toString()}',
+                                                                width: double
+                                                                    .infinity,
+                                                                height: 200.0,
+                                                                fit: BoxFit
+                                                                    .cover,
+                                                                errorWidget: (context,
+                                                                        error,
+                                                                        stackTrace) =>
+                                                                    Image.asset(
+                                                                  'assets/images/error_image.png',
+                                                                  width: double
+                                                                      .infinity,
+                                                                  height: 200.0,
+                                                                  fit: BoxFit
+                                                                      .cover,
+                                                                ),
+                                                              ),
+                                                            ),
+                                                          ),
                                                         Padding(
                                                           padding: EdgeInsetsDirectional
                                                               .fromSTEB(

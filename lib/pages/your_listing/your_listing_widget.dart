@@ -11,6 +11,7 @@ import 'dart:async';
 import '/custom_code/actions/index.dart' as actions;
 import '/index.dart';
 import 'package:aligned_dialog/aligned_dialog.dart';
+import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/scheduler.dart';
 import 'package:flutter_animate/flutter_animate.dart';
@@ -549,8 +550,18 @@ class _YourListingWidgetState extends State<YourListingWidget>
                                                                 Radius.circular(
                                                                     8.0),
                                                           ),
-                                                          child: Image.network(
-                                                            '${FFAppConstants.baseImageUrl}${getJsonField(
+                                                          child:
+                                                              CachedNetworkImage(
+                                                            fadeInDuration:
+                                                                Duration(
+                                                                    milliseconds:
+                                                                        0),
+                                                            fadeOutDuration:
+                                                                Duration(
+                                                                    milliseconds:
+                                                                        0),
+                                                            imageUrl:
+                                                                '${FFAppConstants.baseImageUrl}${getJsonField(
                                                               localItemListingItem,
                                                               r'''$.item_images.image''',
                                                             ).toString()}',
@@ -558,7 +569,7 @@ class _YourListingWidgetState extends State<YourListingWidget>
                                                                 double.infinity,
                                                             height: 180.0,
                                                             fit: BoxFit.cover,
-                                                            errorBuilder: (context,
+                                                            errorWidget: (context,
                                                                     error,
                                                                     stackTrace) =>
                                                                 Image.asset(
@@ -1389,8 +1400,17 @@ class _YourListingWidgetState extends State<YourListingWidget>
                                                                 Radius.circular(
                                                                     8.0),
                                                           ),
-                                                          child: Image.network(
-                                                            getJsonField(
+                                                          child:
+                                                              CachedNetworkImage(
+                                                            fadeInDuration:
+                                                                Duration(
+                                                                    milliseconds:
+                                                                        0),
+                                                            fadeOutDuration:
+                                                                Duration(
+                                                                    milliseconds:
+                                                                        0),
+                                                            imageUrl: getJsonField(
                                                                       localServiceListingItem,
                                                                       r'''$.item_images''',
                                                                     ) !=
@@ -1404,7 +1424,7 @@ class _YourListingWidgetState extends State<YourListingWidget>
                                                                 double.infinity,
                                                             height: 180.0,
                                                             fit: BoxFit.cover,
-                                                            errorBuilder: (context,
+                                                            errorWidget: (context,
                                                                     error,
                                                                     stackTrace) =>
                                                                 Image.asset(

@@ -25,12 +25,6 @@ class ForSaleTabModel extends FlutterFlowModel<ForSaleTabWidget> {
   late IcBackTitleModel icBackTitleModel;
   // Stores action output result for [Backend Call - API (For Free List)] action in Container widget.
   ApiCallResponse? initialSecondaryApiResponse;
-  // State field(s) for TextField widget.
-  FocusNode? textFieldFocusNode;
-  TextEditingController? textController;
-  String? Function(BuildContext, String?)? textControllerValidator;
-  // Stores action output result for [Backend Call - API (Home Post List)] action in Container widget.
-  ApiCallResponse? filterResultCopy;
   // State field(s) for PageView widget.
   PageController? pageViewController;
 
@@ -41,6 +35,10 @@ class ForSaleTabModel extends FlutterFlowModel<ForSaleTabWidget> {
       : 0;
   // Model for BaseLoaderComponent component.
   late BaseLoaderComponentModel baseLoaderComponentModel1;
+  // State field(s) for TextField widget.
+  FocusNode? textFieldFocusNode1;
+  TextEditingController? textController1;
+  String? Function(BuildContext, String?)? textController1Validator;
   // Stores action output result for [Backend Call - API (For Sale List)] action in Column widget.
   ApiCallResponse? refreshedPrimaryApiResponse;
   // Stores action output result for [Backend Call - API (Bookmark Item)] action in Container widget.
@@ -53,6 +51,10 @@ class ForSaleTabModel extends FlutterFlowModel<ForSaleTabWidget> {
   dynamic returnedBookmarkResponseCopy;
   // Model for BaseLoaderComponent component.
   late BaseLoaderComponentModel baseLoaderComponentModel2;
+  // State field(s) for TextField widget.
+  FocusNode? textFieldFocusNode2;
+  TextEditingController? textController2;
+  String? Function(BuildContext, String?)? textController2Validator;
   // Stores action output result for [Backend Call - API (For Free List)] action in Column widget.
   ApiCallResponse? refreshedSecondaryApiResponse;
   // Stores action output result for [Backend Call - API (Bookmark Item)] action in Container widget.
@@ -72,10 +74,12 @@ class ForSaleTabModel extends FlutterFlowModel<ForSaleTabWidget> {
   @override
   void dispose() {
     icBackTitleModel.dispose();
-    textFieldFocusNode?.dispose();
-    textController?.dispose();
-
     baseLoaderComponentModel1.dispose();
+    textFieldFocusNode1?.dispose();
+    textController1?.dispose();
+
     baseLoaderComponentModel2.dispose();
+    textFieldFocusNode2?.dispose();
+    textController2?.dispose();
   }
 }

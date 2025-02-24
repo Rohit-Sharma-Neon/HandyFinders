@@ -10,7 +10,9 @@ import '/flutter_flow/form_field_controller.dart';
 import '/flutter_flow/upload_data.dart';
 import 'dart:async';
 import '/custom_code/actions/index.dart' as actions;
+import '/flutter_flow/permissions_util.dart';
 import '/index.dart';
+import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/scheduler.dart';
 import 'package:flutter/services.dart';
@@ -259,6 +261,7 @@ class _CreateUpdateProfileWidgetState extends State<CreateUpdateProfileWidget> {
           return;
         }
       } else {
+        await requestPermission(notificationsPermission);
         return;
       }
     });
@@ -529,8 +532,18 @@ class _CreateUpdateProfileWidgetState extends State<CreateUpdateProfileWidget> {
                                                               BorderRadius
                                                                   .circular(
                                                                       99.0),
-                                                          child: Image.network(
-                                                            '${FFAppConstants.baseImageUrl}${HandyFindersAPIsGroup.getProfileCall.apiProfilePictureUrl(
+                                                          child:
+                                                              CachedNetworkImage(
+                                                            fadeInDuration:
+                                                                Duration(
+                                                                    milliseconds:
+                                                                        0),
+                                                            fadeOutDuration:
+                                                                Duration(
+                                                                    milliseconds:
+                                                                        0),
+                                                            imageUrl:
+                                                                '${FFAppConstants.baseImageUrl}${HandyFindersAPIsGroup.getProfileCall.apiProfilePictureUrl(
                                                               (_model.getProfileApiStatus
                                                                       ?.jsonBody ??
                                                                   ''),

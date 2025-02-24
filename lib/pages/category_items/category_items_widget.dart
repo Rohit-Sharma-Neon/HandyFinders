@@ -3,6 +3,7 @@ import '/components/ic_back_title_widget.dart';
 import '/flutter_flow/flutter_flow_theme.dart';
 import '/flutter_flow/flutter_flow_util.dart';
 import '/index.dart';
+import 'package:cached_network_image/cached_network_image.dart';
 import 'package:easy_debounce/easy_debounce.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/scheduler.dart';
@@ -457,8 +458,17 @@ class _CategoryItemsWidgetState extends State<CategoryItemsWidget> {
                                                             Radius.circular(
                                                                 10.0),
                                                       ),
-                                                      child: Image.network(
-                                                        '${FFAppConstants.baseImageUrl}${getJsonField(
+                                                      child: CachedNetworkImage(
+                                                        fadeInDuration:
+                                                            Duration(
+                                                                milliseconds:
+                                                                    0),
+                                                        fadeOutDuration:
+                                                            Duration(
+                                                                milliseconds:
+                                                                    0),
+                                                        imageUrl:
+                                                            '${FFAppConstants.baseImageUrl}${getJsonField(
                                                           itemsItem,
                                                           r'''$.item_images[0].image''',
                                                         ).toString()}',
@@ -469,7 +479,7 @@ class _CategoryItemsWidgetState extends State<CategoryItemsWidget> {
                                                                 0.6,
                                                         height: 150.0,
                                                         fit: BoxFit.fill,
-                                                        errorBuilder: (context,
+                                                        errorWidget: (context,
                                                                 error,
                                                                 stackTrace) =>
                                                             Image.asset(

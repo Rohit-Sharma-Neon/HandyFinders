@@ -7,6 +7,7 @@ import '/pages/custom_confirmation_dialog/custom_confirmation_dialog_widget.dart
 import 'dart:async';
 import '/custom_code/actions/index.dart' as actions;
 import '/index.dart';
+import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/scheduler.dart';
 import 'package:flutter_svg/flutter_svg.dart';
@@ -136,14 +137,16 @@ class _ProfileTabWidgetState extends State<ProfileTabWidget> {
                           children: [
                             ClipRRect(
                               borderRadius: BorderRadius.circular(8.0),
-                              child: Image.network(
-                                FFAppState().userProfileImageUrl != ''
+                              child: CachedNetworkImage(
+                                fadeInDuration: Duration(milliseconds: 0),
+                                fadeOutDuration: Duration(milliseconds: 0),
+                                imageUrl: FFAppState().userProfileImageUrl != ''
                                     ? '${FFAppConstants.baseImageUrl}${FFAppState().userProfileImageUrl}'
                                     : '',
                                 width: 65.0,
                                 height: 65.0,
                                 fit: BoxFit.cover,
-                                errorBuilder: (context, error, stackTrace) =>
+                                errorWidget: (context, error, stackTrace) =>
                                     Image.asset(
                                   'assets/images/error_image.png',
                                   width: 65.0,

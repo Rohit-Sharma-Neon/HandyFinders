@@ -32,10 +32,6 @@ class RequestTabModel extends FlutterFlowModel<RequestTabWidget> {
   late IcBackTitleModel icBackTitleModel;
   // Stores action output result for [Backend Call - API (Request Bottom Tab)] action in Container widget.
   ApiCallResponse? initialSecondaryApiResponse;
-  // State field(s) for TextField widget.
-  FocusNode? textFieldFocusNode;
-  TextEditingController? textController;
-  String? Function(BuildContext, String?)? textControllerValidator;
   // State field(s) for PageView widget.
   PageController? pageViewController;
 
@@ -46,6 +42,10 @@ class RequestTabModel extends FlutterFlowModel<RequestTabWidget> {
       : 0;
   // Model for BaseLoaderComponent component.
   late BaseLoaderComponentModel baseLoaderComponentModel1;
+  // State field(s) for TextField widget.
+  FocusNode? textFieldFocusNode1;
+  TextEditingController? textController1;
+  String? Function(BuildContext, String?)? textController1Validator;
   // Stores action output result for [Backend Call - API (Request Bottom Tab)] action in Column widget.
   ApiCallResponse? refreshedPrimaryApiResponse;
   // Stores action output result for [Backend Call - API (Remove Request)] action in Container widget.
@@ -66,6 +66,10 @@ class RequestTabModel extends FlutterFlowModel<RequestTabWidget> {
   List<dynamic>? returnedPrimaryList;
   // Model for BaseLoaderComponent component.
   late BaseLoaderComponentModel baseLoaderComponentModel2;
+  // State field(s) for TextField widget.
+  FocusNode? textFieldFocusNode2;
+  TextEditingController? textController2;
+  String? Function(BuildContext, String?)? textController2Validator;
   // Stores action output result for [Backend Call - API (Request Bottom Tab)] action in Column widget.
   ApiCallResponse? refreshedSecondaryApiResponse;
   // Stores action output result for [Backend Call - API (Remove Request)] action in Container widget.
@@ -101,12 +105,15 @@ class RequestTabModel extends FlutterFlowModel<RequestTabWidget> {
   @override
   void dispose() {
     icBackTitleModel.dispose();
-    textFieldFocusNode?.dispose();
-    textController?.dispose();
-
     baseLoaderComponentModel1.dispose();
+    textFieldFocusNode1?.dispose();
+    textController1?.dispose();
+
     baseButtonComponentModel1.dispose();
     baseLoaderComponentModel2.dispose();
+    textFieldFocusNode2?.dispose();
+    textController2?.dispose();
+
     baseButtonComponentModel2.dispose();
   }
 }

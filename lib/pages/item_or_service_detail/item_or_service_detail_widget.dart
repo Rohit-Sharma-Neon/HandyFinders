@@ -6,6 +6,7 @@ import '/flutter_flow/flutter_flow_util.dart';
 import '/flutter_flow/custom_functions.dart' as functions;
 import '/index.dart';
 import 'package:carousel_slider/carousel_slider.dart';
+import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/scheduler.dart';
 import 'package:provider/provider.dart';
@@ -223,15 +224,20 @@ class _ItemOrServiceDetailWidgetState extends State<ItemOrServiceDetailWidget> {
                                               return ClipRRect(
                                                 borderRadius:
                                                     BorderRadius.circular(8.0),
-                                                child: Image.network(
-                                                  '${FFAppConstants.baseImageUrl}${getJsonField(
+                                                child: CachedNetworkImage(
+                                                  fadeInDuration:
+                                                      Duration(milliseconds: 0),
+                                                  fadeOutDuration:
+                                                      Duration(milliseconds: 0),
+                                                  imageUrl:
+                                                      '${FFAppConstants.baseImageUrl}${getJsonField(
                                                     carouselListItem,
                                                     r'''$.image''',
                                                   ).toString()}',
                                                   width: 200.0,
                                                   height: 200.0,
                                                   fit: BoxFit.cover,
-                                                  errorBuilder: (context, error,
+                                                  errorWidget: (context, error,
                                                           stackTrace) =>
                                                       Image.asset(
                                                     'assets/images/error_image.png',
@@ -429,43 +435,53 @@ class _ItemOrServiceDetailWidgetState extends State<ItemOrServiceDetailWidget> {
                                     }
                                   },
                                 ),
-                                Padding(
-                                  padding: EdgeInsetsDirectional.fromSTEB(
-                                      0.0, 7.0, 0.0, 8.0),
-                                  child: Container(
-                                    decoration: BoxDecoration(
-                                      color: Color(0x331AB34D),
-                                      borderRadius: BorderRadius.circular(99.0),
-                                    ),
-                                    child: Padding(
-                                      padding: EdgeInsetsDirectional.fromSTEB(
-                                          10.0, 5.0, 10.0, 5.0),
-                                      child: Text(
-                                        getJsonField(
-                                                  HandyFindersAPIsGroup
-                                                      .serviceOrItemDetailsCall
-                                                      .apiJsonData(
-                                                    (_model.apiResponse
-                                                            ?.jsonBody ??
-                                                        ''),
-                                                  ),
-                                                  r'''$.is_negotiable''',
-                                                ) ==
-                                                1
-                                            ? 'Price is Negotiable'
-                                            : 'Price is not Negotiable',
-                                        style: FlutterFlowTheme.of(context)
-                                            .bodyMedium
-                                            .override(
-                                              fontFamily: 'Comfortaa',
-                                              color: Color(0xFF1AB34D),
-                                              fontSize: 12.0,
-                                              letterSpacing: 0.0,
-                                            ),
+                                if (getJsonField(
+                                      HandyFindersAPIsGroup
+                                          .serviceOrItemDetailsCall
+                                          .apiJsonData(
+                                        (_model.apiResponse?.jsonBody ?? ''),
+                                      ),
+                                      r'''$.is_free''',
+                                    ) ==
+                                    0)
+                                  Padding(
+                                    padding: EdgeInsetsDirectional.fromSTEB(
+                                        0.0, 7.0, 0.0, 8.0),
+                                    child: Container(
+                                      decoration: BoxDecoration(
+                                        color: Color(0x331AB34D),
+                                        borderRadius:
+                                            BorderRadius.circular(99.0),
+                                      ),
+                                      child: Padding(
+                                        padding: EdgeInsetsDirectional.fromSTEB(
+                                            10.0, 5.0, 10.0, 5.0),
+                                        child: Text(
+                                          getJsonField(
+                                                    HandyFindersAPIsGroup
+                                                        .serviceOrItemDetailsCall
+                                                        .apiJsonData(
+                                                      (_model.apiResponse
+                                                              ?.jsonBody ??
+                                                          ''),
+                                                    ),
+                                                    r'''$.is_negotiable''',
+                                                  ) ==
+                                                  1
+                                              ? 'Price is Negotiable'
+                                              : 'Price is not Negotiable',
+                                          style: FlutterFlowTheme.of(context)
+                                              .bodyMedium
+                                              .override(
+                                                fontFamily: 'Comfortaa',
+                                                color: Color(0xFF1AB34D),
+                                                fontSize: 12.0,
+                                                letterSpacing: 0.0,
+                                              ),
+                                        ),
                                       ),
                                     ),
                                   ),
-                                ),
                                 Divider(
                                   thickness: 1.0,
                                   color: FlutterFlowTheme.of(context).alternate,
@@ -745,8 +761,13 @@ class _ItemOrServiceDetailWidgetState extends State<ItemOrServiceDetailWidget> {
                                             ClipRRect(
                                               borderRadius:
                                                   BorderRadius.circular(99.0),
-                                              child: Image.network(
-                                                '${FFAppConstants.baseImageUrl}${getJsonField(
+                                              child: CachedNetworkImage(
+                                                fadeInDuration:
+                                                    Duration(milliseconds: 0),
+                                                fadeOutDuration:
+                                                    Duration(milliseconds: 0),
+                                                imageUrl:
+                                                    '${FFAppConstants.baseImageUrl}${getJsonField(
                                                   HandyFindersAPIsGroup
                                                       .serviceOrItemDetailsCall
                                                       .apiJsonData(
@@ -759,7 +780,7 @@ class _ItemOrServiceDetailWidgetState extends State<ItemOrServiceDetailWidget> {
                                                 width: 45.0,
                                                 height: 45.0,
                                                 fit: BoxFit.cover,
-                                                errorBuilder: (context, error,
+                                                errorWidget: (context, error,
                                                         stackTrace) =>
                                                     Image.asset(
                                                   'assets/images/error_image.png',
