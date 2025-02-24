@@ -473,920 +473,840 @@ class _RequestTabWidgetState extends State<RequestTabWidget>
                             return Column(
                               mainAxisSize: MainAxisSize.min,
                               children: [
-                                Builder(
-                                  builder: (context) {
-                                    if (FFAppState()
-                                        .requestTabCurrentList
-                                        .isNotEmpty) {
-                                      return Column(
-                                        mainAxisSize: MainAxisSize.min,
-                                        children: [
-                                          Padding(
-                                            padding:
-                                                EdgeInsetsDirectional.fromSTEB(
-                                                    0.0, 0.0, 0.0, 15.0),
-                                            child: Container(
-                                              height: 45.0,
-                                              decoration: BoxDecoration(
-                                                color: Color(0x00F1F4F8),
-                                                borderRadius:
-                                                    BorderRadius.circular(10.0),
-                                                border: Border.all(
-                                                  color: FlutterFlowTheme.of(
-                                                          context)
-                                                      .primary,
+                                Expanded(
+                                  child: Builder(
+                                    builder: (context) {
+                                      if (FFAppState()
+                                          .requestTabCurrentList
+                                          .isNotEmpty) {
+                                        return Column(
+                                          mainAxisSize: MainAxisSize.min,
+                                          children: [
+                                            Padding(
+                                              padding: EdgeInsetsDirectional
+                                                  .fromSTEB(
+                                                      0.0, 0.0, 0.0, 15.0),
+                                              child: Container(
+                                                height: 45.0,
+                                                decoration: BoxDecoration(
+                                                  color: Color(0x00F1F4F8),
+                                                  borderRadius:
+                                                      BorderRadius.circular(
+                                                          10.0),
+                                                  border: Border.all(
+                                                    color: FlutterFlowTheme.of(
+                                                            context)
+                                                        .primary,
+                                                  ),
+                                                ),
+                                                child: Row(
+                                                  mainAxisSize:
+                                                      MainAxisSize.max,
+                                                  children: [
+                                                    Padding(
+                                                      padding:
+                                                          EdgeInsetsDirectional
+                                                              .fromSTEB(
+                                                                  13.0,
+                                                                  0.0,
+                                                                  0.0,
+                                                                  0.0),
+                                                      child: ClipRRect(
+                                                        borderRadius:
+                                                            BorderRadius
+                                                                .circular(0.0),
+                                                        child: Image.asset(
+                                                          'assets/images/icSearchBlue.png',
+                                                          height: 25.0,
+                                                          fit: BoxFit.fitHeight,
+                                                        ),
+                                                      ),
+                                                    ),
+                                                    Container(
+                                                      width: MediaQuery.sizeOf(
+                                                                  context)
+                                                              .width *
+                                                          0.77,
+                                                      child: TextFormField(
+                                                        controller: _model
+                                                            .textController1,
+                                                        focusNode: _model
+                                                            .textFieldFocusNode1,
+                                                        autofocus: false,
+                                                        obscureText: false,
+                                                        decoration:
+                                                            InputDecoration(
+                                                          isDense: true,
+                                                          labelStyle:
+                                                              FlutterFlowTheme.of(
+                                                                      context)
+                                                                  .labelMedium
+                                                                  .override(
+                                                                    fontFamily:
+                                                                        'Inter',
+                                                                    letterSpacing:
+                                                                        0.0,
+                                                                  ),
+                                                          hintText: 'Search...',
+                                                          hintStyle:
+                                                              FlutterFlowTheme.of(
+                                                                      context)
+                                                                  .labelMedium
+                                                                  .override(
+                                                                    fontFamily:
+                                                                        'Inter',
+                                                                    letterSpacing:
+                                                                        0.0,
+                                                                  ),
+                                                          enabledBorder:
+                                                              OutlineInputBorder(
+                                                            borderSide:
+                                                                BorderSide(
+                                                              color: Color(
+                                                                  0x00000000),
+                                                              width: 1.0,
+                                                            ),
+                                                            borderRadius:
+                                                                BorderRadius
+                                                                    .circular(
+                                                                        0.0),
+                                                          ),
+                                                          focusedBorder:
+                                                              OutlineInputBorder(
+                                                            borderSide:
+                                                                BorderSide(
+                                                              color: Color(
+                                                                  0x00000000),
+                                                              width: 1.0,
+                                                            ),
+                                                            borderRadius:
+                                                                BorderRadius
+                                                                    .circular(
+                                                                        0.0),
+                                                          ),
+                                                          errorBorder:
+                                                              OutlineInputBorder(
+                                                            borderSide:
+                                                                BorderSide(
+                                                              color: FlutterFlowTheme
+                                                                      .of(context)
+                                                                  .error,
+                                                              width: 1.0,
+                                                            ),
+                                                            borderRadius:
+                                                                BorderRadius
+                                                                    .circular(
+                                                                        0.0),
+                                                          ),
+                                                          focusedErrorBorder:
+                                                              OutlineInputBorder(
+                                                            borderSide:
+                                                                BorderSide(
+                                                              color: FlutterFlowTheme
+                                                                      .of(context)
+                                                                  .error,
+                                                              width: 1.0,
+                                                            ),
+                                                            borderRadius:
+                                                                BorderRadius
+                                                                    .circular(
+                                                                        0.0),
+                                                          ),
+                                                          contentPadding:
+                                                              EdgeInsetsDirectional
+                                                                  .fromSTEB(
+                                                                      10.0,
+                                                                      18.0,
+                                                                      10.0,
+                                                                      18.0),
+                                                        ),
+                                                        style:
+                                                            FlutterFlowTheme.of(
+                                                                    context)
+                                                                .bodyMedium
+                                                                .override(
+                                                                  fontFamily:
+                                                                      'Inter',
+                                                                  letterSpacing:
+                                                                      0.0,
+                                                                ),
+                                                        cursorColor:
+                                                            FlutterFlowTheme.of(
+                                                                    context)
+                                                                .primaryText,
+                                                        validator: _model
+                                                            .textController1Validator
+                                                            .asValidator(
+                                                                context),
+                                                      ),
+                                                    ),
+                                                  ],
                                                 ),
                                               ),
-                                              child: Row(
-                                                mainAxisSize: MainAxisSize.max,
-                                                children: [
-                                                  Padding(
-                                                    padding:
-                                                        EdgeInsetsDirectional
-                                                            .fromSTEB(13.0, 0.0,
-                                                                0.0, 0.0),
-                                                    child: ClipRRect(
-                                                      borderRadius:
-                                                          BorderRadius.circular(
-                                                              0.0),
-                                                      child: Image.asset(
-                                                        'assets/images/icSearchBlue.png',
-                                                        height: 25.0,
-                                                        fit: BoxFit.fitHeight,
-                                                      ),
-                                                    ),
-                                                  ),
-                                                  Container(
-                                                    width: MediaQuery.sizeOf(
-                                                                context)
-                                                            .width *
-                                                        0.77,
-                                                    child: TextFormField(
-                                                      controller: _model
-                                                          .textController1,
-                                                      focusNode: _model
-                                                          .textFieldFocusNode1,
-                                                      autofocus: false,
-                                                      obscureText: false,
-                                                      decoration:
-                                                          InputDecoration(
-                                                        isDense: true,
-                                                        labelStyle:
-                                                            FlutterFlowTheme.of(
-                                                                    context)
-                                                                .labelMedium
-                                                                .override(
-                                                                  fontFamily:
-                                                                      'Inter',
-                                                                  letterSpacing:
-                                                                      0.0,
-                                                                ),
-                                                        hintText: 'Search...',
-                                                        hintStyle:
-                                                            FlutterFlowTheme.of(
-                                                                    context)
-                                                                .labelMedium
-                                                                .override(
-                                                                  fontFamily:
-                                                                      'Inter',
-                                                                  letterSpacing:
-                                                                      0.0,
-                                                                ),
-                                                        enabledBorder:
-                                                            OutlineInputBorder(
-                                                          borderSide:
-                                                              BorderSide(
-                                                            color: Color(
-                                                                0x00000000),
-                                                            width: 1.0,
-                                                          ),
-                                                          borderRadius:
-                                                              BorderRadius
-                                                                  .circular(
-                                                                      0.0),
-                                                        ),
-                                                        focusedBorder:
-                                                            OutlineInputBorder(
-                                                          borderSide:
-                                                              BorderSide(
-                                                            color: Color(
-                                                                0x00000000),
-                                                            width: 1.0,
-                                                          ),
-                                                          borderRadius:
-                                                              BorderRadius
-                                                                  .circular(
-                                                                      0.0),
-                                                        ),
-                                                        errorBorder:
-                                                            OutlineInputBorder(
-                                                          borderSide:
-                                                              BorderSide(
-                                                            color: FlutterFlowTheme
-                                                                    .of(context)
-                                                                .error,
-                                                            width: 1.0,
-                                                          ),
-                                                          borderRadius:
-                                                              BorderRadius
-                                                                  .circular(
-                                                                      0.0),
-                                                        ),
-                                                        focusedErrorBorder:
-                                                            OutlineInputBorder(
-                                                          borderSide:
-                                                              BorderSide(
-                                                            color: FlutterFlowTheme
-                                                                    .of(context)
-                                                                .error,
-                                                            width: 1.0,
-                                                          ),
-                                                          borderRadius:
-                                                              BorderRadius
-                                                                  .circular(
-                                                                      0.0),
-                                                        ),
-                                                        contentPadding:
-                                                            EdgeInsetsDirectional
-                                                                .fromSTEB(
-                                                                    10.0,
-                                                                    18.0,
-                                                                    10.0,
-                                                                    18.0),
-                                                      ),
-                                                      style: FlutterFlowTheme
-                                                              .of(context)
-                                                          .bodyMedium
-                                                          .override(
-                                                            fontFamily: 'Inter',
-                                                            letterSpacing: 0.0,
-                                                          ),
-                                                      cursorColor:
-                                                          FlutterFlowTheme.of(
-                                                                  context)
-                                                              .primaryText,
-                                                      validator: _model
-                                                          .textController1Validator
-                                                          .asValidator(context),
-                                                    ),
-                                                  ),
-                                                ],
-                                              ),
                                             ),
-                                          ),
-                                          Expanded(
-                                            child: RefreshIndicator(
-                                              key: Key(
-                                                  'RefreshIndicator_qpbni06u'),
-                                              onRefresh: () async {
-                                                _model.isPrimaryApiFetching =
-                                                    true;
-                                                safeSetState(() {});
-                                                _model.refreshedPrimaryApiResponse =
-                                                    await HandyFindersAPIsGroup
-                                                        .requestBottomTabCall
-                                                        .call(
-                                                  authToken:
-                                                      FFAppState().authToken,
-                                                  type: 'current',
-                                                  page: 1,
-                                                );
-
-                                                _model.isPrimaryApiFetching =
-                                                    false;
-                                                safeSetState(() {});
-                                                if (HandyFindersAPIsGroup
-                                                    .requestBottomTabCall
-                                                    .apiStatus(
-                                                  (_model.refreshedPrimaryApiResponse
-                                                          ?.jsonBody ??
-                                                      ''),
-                                                )!) {
-                                                  FFAppState()
-                                                          .requestTabCurrentList =
-                                                      HandyFindersAPIsGroup
+                                            Expanded(
+                                              child: RefreshIndicator(
+                                                key: Key(
+                                                    'RefreshIndicator_qpbni06u'),
+                                                onRefresh: () async {
+                                                  _model.isPrimaryApiFetching =
+                                                      true;
+                                                  safeSetState(() {});
+                                                  _model.refreshedPrimaryApiResponse =
+                                                      await HandyFindersAPIsGroup
                                                           .requestBottomTabCall
-                                                          .apiList(
+                                                          .call(
+                                                    authToken:
+                                                        FFAppState().authToken,
+                                                    type: 'current',
+                                                    page: 1,
+                                                  );
+
+                                                  _model.isPrimaryApiFetching =
+                                                      false;
+                                                  safeSetState(() {});
+                                                  if (HandyFindersAPIsGroup
+                                                      .requestBottomTabCall
+                                                      .apiStatus(
+                                                    (_model.refreshedPrimaryApiResponse
+                                                            ?.jsonBody ??
+                                                        ''),
+                                                  )!) {
+                                                    FFAppState()
+                                                            .requestTabCurrentList =
+                                                        HandyFindersAPIsGroup
+                                                            .requestBottomTabCall
+                                                            .apiList(
+                                                              (_model.refreshedPrimaryApiResponse
+                                                                      ?.jsonBody ??
+                                                                  ''),
+                                                            )!
+                                                            .toList()
+                                                            .cast<dynamic>();
+                                                    FFAppState()
+                                                        .requestTabPrimaryPageIndex = 2;
+                                                    safeSetState(() {});
+                                                    return;
+                                                  } else {
+                                                    ScaffoldMessenger.of(
+                                                            context)
+                                                        .clearSnackBars();
+                                                    ScaffoldMessenger.of(
+                                                            context)
+                                                        .showSnackBar(
+                                                      SnackBar(
+                                                        content: Text(
+                                                          HandyFindersAPIsGroup
+                                                              .requestBottomTabCall
+                                                              .apiMessage(
                                                             (_model.refreshedPrimaryApiResponse
                                                                     ?.jsonBody ??
                                                                 ''),
-                                                          )!
-                                                          .toList()
-                                                          .cast<dynamic>();
-                                                  FFAppState()
-                                                      .requestTabPrimaryPageIndex = 2;
-                                                  safeSetState(() {});
-                                                  return;
-                                                } else {
-                                                  ScaffoldMessenger.of(context)
-                                                      .clearSnackBars();
-                                                  ScaffoldMessenger.of(context)
-                                                      .showSnackBar(
-                                                    SnackBar(
-                                                      content: Text(
-                                                        HandyFindersAPIsGroup
-                                                            .requestBottomTabCall
-                                                            .apiMessage(
-                                                          (_model.refreshedPrimaryApiResponse
-                                                                  ?.jsonBody ??
-                                                              ''),
-                                                        )!,
-                                                        style: TextStyle(
-                                                          color: FlutterFlowTheme
-                                                                  .of(context)
-                                                              .primaryText,
+                                                          )!,
+                                                          style: TextStyle(
+                                                            color: FlutterFlowTheme
+                                                                    .of(context)
+                                                                .primaryText,
+                                                          ),
                                                         ),
+                                                        duration: Duration(
+                                                            milliseconds: 3000),
+                                                        backgroundColor:
+                                                            FlutterFlowTheme.of(
+                                                                    context)
+                                                                .secondary,
                                                       ),
-                                                      duration: Duration(
-                                                          milliseconds: 3000),
-                                                      backgroundColor:
-                                                          FlutterFlowTheme.of(
-                                                                  context)
-                                                              .secondary,
-                                                    ),
-                                                  );
-                                                  return;
-                                                }
-                                              },
-                                              child: SingleChildScrollView(
-                                                physics:
-                                                    const AlwaysScrollableScrollPhysics(),
-                                                child: Column(
-                                                  mainAxisSize:
-                                                      MainAxisSize.min,
-                                                  children: [
-                                                    Builder(
-                                                      builder: (context) {
-                                                        final primaryTabList =
-                                                            FFAppState()
-                                                                .requestTabCurrentList
-                                                                .toList();
+                                                    );
+                                                    return;
+                                                  }
+                                                },
+                                                child: SingleChildScrollView(
+                                                  physics:
+                                                      const AlwaysScrollableScrollPhysics(),
+                                                  child: Column(
+                                                    mainAxisSize:
+                                                        MainAxisSize.min,
+                                                    children: [
+                                                      Builder(
+                                                        builder: (context) {
+                                                          final primaryTabList =
+                                                              FFAppState()
+                                                                  .requestTabCurrentList
+                                                                  .toList();
 
-                                                        return Column(
-                                                          mainAxisSize:
-                                                              MainAxisSize.max,
-                                                          children: List.generate(
-                                                                  primaryTabList
-                                                                      .length,
-                                                                  (primaryTabListIndex) {
-                                                            final primaryTabListItem =
-                                                                primaryTabList[
-                                                                    primaryTabListIndex];
-                                                            return Container(
-                                                              width: double
-                                                                  .infinity,
-                                                              decoration:
-                                                                  BoxDecoration(
-                                                                color: FlutterFlowTheme.of(
-                                                                        context)
-                                                                    .secondaryBackground,
-                                                                borderRadius:
-                                                                    BorderRadius
-                                                                        .circular(
-                                                                            12.0),
-                                                                border:
-                                                                    Border.all(
-                                                                  color: Color(
-                                                                      0xFFD5E1E9),
-                                                                  width: 1.0,
+                                                          return Column(
+                                                            mainAxisSize:
+                                                                MainAxisSize
+                                                                    .min,
+                                                            children: List.generate(
+                                                                    primaryTabList
+                                                                        .length,
+                                                                    (primaryTabListIndex) {
+                                                              final primaryTabListItem =
+                                                                  primaryTabList[
+                                                                      primaryTabListIndex];
+                                                              return Container(
+                                                                width: double
+                                                                    .infinity,
+                                                                decoration:
+                                                                    BoxDecoration(
+                                                                  color: FlutterFlowTheme.of(
+                                                                          context)
+                                                                      .secondaryBackground,
+                                                                  borderRadius:
+                                                                      BorderRadius
+                                                                          .circular(
+                                                                              12.0),
+                                                                  border: Border
+                                                                      .all(
+                                                                    color: Color(
+                                                                        0xFFD5E1E9),
+                                                                    width: 1.0,
+                                                                  ),
                                                                 ),
-                                                              ),
-                                                              child: Padding(
-                                                                padding:
-                                                                    EdgeInsets
-                                                                        .all(
-                                                                            11.0),
-                                                                child: Column(
-                                                                  mainAxisSize:
-                                                                      MainAxisSize
-                                                                          .max,
-                                                                  crossAxisAlignment:
-                                                                      CrossAxisAlignment
-                                                                          .start,
-                                                                  children: [
-                                                                    Row(
-                                                                      mainAxisSize:
-                                                                          MainAxisSize
-                                                                              .max,
-                                                                      children: [
-                                                                        Container(
-                                                                          decoration:
-                                                                              BoxDecoration(
-                                                                            color:
-                                                                                Color(0xFFE6F1F9),
-                                                                            borderRadius:
-                                                                                BorderRadius.circular(99.0),
-                                                                          ),
-                                                                          child:
-                                                                              Align(
-                                                                            alignment:
-                                                                                AlignmentDirectional(0.0, 0.0),
-                                                                            child:
-                                                                                Padding(
-                                                                              padding: EdgeInsetsDirectional.fromSTEB(11.0, 6.0, 11.0, 6.0),
-                                                                              child: Text(
-                                                                                getJsonField(
-                                                                                  primaryTabListItem,
-                                                                                  r'''$.category_id''',
-                                                                                ).toString(),
-                                                                                textAlign: TextAlign.center,
-                                                                                style: FlutterFlowTheme.of(context).bodyMedium.override(
-                                                                                      fontFamily: 'Comfortaa',
-                                                                                      color: FlutterFlowTheme.of(context).primary,
-                                                                                      fontSize: 12.5,
-                                                                                      letterSpacing: 0.0,
-                                                                                      fontWeight: FontWeight.w600,
-                                                                                    ),
-                                                                              ),
-                                                                            ),
-                                                                          ),
-                                                                        ),
-                                                                        if (_model.selectedTabIndex ==
-                                                                            0)
-                                                                          Padding(
-                                                                            padding: EdgeInsetsDirectional.fromSTEB(
-                                                                                11.0,
-                                                                                0.0,
-                                                                                0.0,
-                                                                                0.0),
-                                                                            child:
-                                                                                RichText(
-                                                                              textScaler: MediaQuery.of(context).textScaler,
-                                                                              text: TextSpan(
-                                                                                children: [
-                                                                                  TextSpan(
-                                                                                    text: '\$ ',
-                                                                                    style: FlutterFlowTheme.of(context).bodyMedium.override(
-                                                                                          fontFamily: 'Comfortaa',
-                                                                                          color: FlutterFlowTheme.of(context).primary,
-                                                                                          letterSpacing: 0.0,
-                                                                                          fontWeight: FontWeight.w800,
-                                                                                        ),
-                                                                                  ),
-                                                                                  TextSpan(
-                                                                                    text: getJsonField(
-                                                                                      primaryTabListItem,
-                                                                                      r'''$.cost''',
-                                                                                    ).toString(),
-                                                                                    style: TextStyle(),
-                                                                                  )
-                                                                                ],
-                                                                                style: FlutterFlowTheme.of(context).bodyMedium.override(
-                                                                                      fontFamily: 'Comfortaa',
-                                                                                      color: FlutterFlowTheme.of(context).primary,
-                                                                                      letterSpacing: 0.0,
-                                                                                      fontWeight: FontWeight.w800,
-                                                                                    ),
-                                                                              ),
-                                                                            ),
-                                                                          ),
-                                                                        Expanded(
-                                                                          child:
-                                                                              Align(
-                                                                            alignment:
-                                                                                AlignmentDirectional(1.0, 0.0),
-                                                                            child:
-                                                                                Builder(
-                                                                              builder: (context) => InkWell(
-                                                                                splashColor: Colors.transparent,
-                                                                                focusColor: Colors.transparent,
-                                                                                hoverColor: Colors.transparent,
-                                                                                highlightColor: Colors.transparent,
-                                                                                onTap: () async {
-                                                                                  await showAlignedDialog(
-                                                                                    barrierColor: Color(0x00FFFFFF),
-                                                                                    context: context,
-                                                                                    isGlobal: false,
-                                                                                    avoidOverflow: false,
-                                                                                    targetAnchor: AlignmentDirectional(-1.9, 3.8).resolve(Directionality.of(context)),
-                                                                                    followerAnchor: AlignmentDirectional(0.0, 0.0).resolve(Directionality.of(context)),
-                                                                                    builder: (dialogContext) {
-                                                                                      return Material(
-                                                                                        color: Colors.transparent,
-                                                                                        child: WebViewAware(
-                                                                                          child: GestureDetector(
-                                                                                            onTap: () {
-                                                                                              FocusScope.of(dialogContext).unfocus();
-                                                                                              FocusManager.instance.primaryFocus?.unfocus();
-                                                                                            },
-                                                                                            child: EditRemoveMenuPopUpWidget(
-                                                                                              onEdit: () async {
-                                                                                                Navigator.pop(context);
-
-                                                                                                context.pushNamed(
-                                                                                                  PostRequestForumWidget.routeName,
-                                                                                                  queryParameters: {
-                                                                                                    'isUpdating': serializeParam(
-                                                                                                      true,
-                                                                                                      ParamType.bool,
-                                                                                                    ),
-                                                                                                    'jsonData': serializeParam(
-                                                                                                      primaryTabListItem,
-                                                                                                      ParamType.JSON,
-                                                                                                    ),
-                                                                                                    'itemIndex': serializeParam(
-                                                                                                      primaryTabListIndex,
-                                                                                                      ParamType.int,
-                                                                                                    ),
-                                                                                                  }.withoutNulls,
-                                                                                                );
-                                                                                              },
-                                                                                              onRemove: () async {
-                                                                                                Navigator.pop(context);
-                                                                                                await showDialog(
-                                                                                                  context: context,
-                                                                                                  builder: (dialogContext) {
-                                                                                                    return Dialog(
-                                                                                                      elevation: 0,
-                                                                                                      insetPadding: EdgeInsets.zero,
-                                                                                                      backgroundColor: Colors.transparent,
-                                                                                                      alignment: AlignmentDirectional(0.0, 0.0).resolve(Directionality.of(context)),
-                                                                                                      child: WebViewAware(
-                                                                                                        child: GestureDetector(
-                                                                                                          onTap: () {
-                                                                                                            FocusScope.of(dialogContext).unfocus();
-                                                                                                            FocusManager.instance.primaryFocus?.unfocus();
-                                                                                                          },
-                                                                                                          child: CustomConfirmationDialogWidget(
-                                                                                                            title: 'Are you sure you want to remove this comment ?',
-                                                                                                            onYesTap: () async {
-                                                                                                              var _shouldSetState = false;
-                                                                                                              context.safePop();
-                                                                                                              unawaited(
-                                                                                                                () async {
-                                                                                                                  await actions.showBaseLoader(
-                                                                                                                    context,
-                                                                                                                  );
-                                                                                                                }(),
-                                                                                                              );
-                                                                                                              _model.removePostResponse = await HandyFindersAPIsGroup.removeRequestCall.call(
-                                                                                                                authToken: FFAppState().authToken,
-                                                                                                                postId: getJsonField(
-                                                                                                                  primaryTabListItem,
-                                                                                                                  r'''$.id''',
-                                                                                                                ).toString(),
-                                                                                                              );
-
-                                                                                                              _shouldSetState = true;
-                                                                                                              context.safePop();
-                                                                                                              if (HandyFindersAPIsGroup.removeRequestCall.apiStatus(
-                                                                                                                (_model.removePostResponse?.jsonBody ?? ''),
-                                                                                                              )!) {
-                                                                                                                ScaffoldMessenger.of(context).clearSnackBars();
-                                                                                                                ScaffoldMessenger.of(context).showSnackBar(
-                                                                                                                  SnackBar(
-                                                                                                                    content: Text(
-                                                                                                                      HandyFindersAPIsGroup.removeRequestCall.apiMessage(
-                                                                                                                        (_model.removePostResponse?.jsonBody ?? ''),
-                                                                                                                      )!,
-                                                                                                                      style: TextStyle(
-                                                                                                                        color: FlutterFlowTheme.of(context).primaryText,
-                                                                                                                      ),
-                                                                                                                    ),
-                                                                                                                    duration: Duration(milliseconds: 4000),
-                                                                                                                    backgroundColor: FlutterFlowTheme.of(context).secondary,
-                                                                                                                  ),
-                                                                                                                );
-                                                                                                                FFAppState().removeAtIndexFromRequestTabCurrentList(primaryTabListIndex);
-                                                                                                                safeSetState(() {});
-                                                                                                                return;
-                                                                                                              } else {
-                                                                                                                ScaffoldMessenger.of(context).clearSnackBars();
-                                                                                                                ScaffoldMessenger.of(context).showSnackBar(
-                                                                                                                  SnackBar(
-                                                                                                                    content: Text(
-                                                                                                                      HandyFindersAPIsGroup.removeRequestCall.apiMessage(
-                                                                                                                        (_model.removePostResponse?.jsonBody ?? ''),
-                                                                                                                      )!,
-                                                                                                                      style: TextStyle(
-                                                                                                                        color: FlutterFlowTheme.of(context).primaryText,
-                                                                                                                      ),
-                                                                                                                    ),
-                                                                                                                    duration: Duration(milliseconds: 4000),
-                                                                                                                    backgroundColor: FlutterFlowTheme.of(context).secondary,
-                                                                                                                  ),
-                                                                                                                );
-                                                                                                                return;
-                                                                                                              }
-                                                                                                            },
-                                                                                                          ),
-                                                                                                        ),
-                                                                                                      ),
-                                                                                                    );
-                                                                                                  },
-                                                                                                );
-                                                                                              },
-                                                                                            ),
-                                                                                          ),
-                                                                                        ),
-                                                                                      );
-                                                                                    },
-                                                                                  );
-
-                                                                                  safeSetState(() {});
-                                                                                },
-                                                                                child: Container(
-                                                                                  width: 35.0,
-                                                                                  height: 35.0,
-                                                                                  decoration: BoxDecoration(
-                                                                                    color: Color(0xFFE8E8E8),
-                                                                                    shape: BoxShape.circle,
-                                                                                  ),
-                                                                                  child: Icon(
-                                                                                    Icons.more_vert,
-                                                                                    color: FlutterFlowTheme.of(context).primaryText,
-                                                                                    size: 24.0,
-                                                                                  ),
-                                                                                ),
-                                                                              ),
-                                                                            ),
-                                                                          ),
-                                                                        ),
-                                                                      ],
-                                                                    ),
-                                                                    Padding(
-                                                                      padding: EdgeInsetsDirectional.fromSTEB(
-                                                                          0.0,
-                                                                          13.0,
-                                                                          0.0,
-                                                                          0.0),
-                                                                      child:
-                                                                          Text(
-                                                                        getJsonField(
-                                                                          primaryTabListItem,
-                                                                          r'''$.title''',
-                                                                        ).toString(),
-                                                                        style: FlutterFlowTheme.of(context)
-                                                                            .bodyMedium
-                                                                            .override(
-                                                                              fontFamily: 'Inter',
-                                                                              fontSize: 18.0,
-                                                                              letterSpacing: 0.0,
-                                                                              fontWeight: FontWeight.w500,
-                                                                            ),
-                                                                      ),
-                                                                    ),
-                                                                    Padding(
-                                                                      padding: EdgeInsetsDirectional.fromSTEB(
-                                                                          0.0,
-                                                                          5.0,
-                                                                          0.0,
-                                                                          0.0),
-                                                                      child:
-                                                                          Text(
-                                                                        functions.primaryDateFormate(
-                                                                            getJsonField(
-                                                                              primaryTabListItem,
-                                                                              r'''$.updated_at''',
-                                                                            ).toString(),
-                                                                            'MMMM dd, yyyy'),
-                                                                        style: FlutterFlowTheme.of(context)
-                                                                            .bodyMedium
-                                                                            .override(
-                                                                              fontFamily: 'Inter',
-                                                                              fontSize: 13.0,
-                                                                              letterSpacing: 0.0,
-                                                                              fontWeight: FontWeight.normal,
-                                                                            ),
-                                                                      ),
-                                                                    ),
-                                                                    Padding(
-                                                                      padding: EdgeInsetsDirectional.fromSTEB(
-                                                                          0.0,
-                                                                          6.5,
-                                                                          0.0,
-                                                                          0.0),
-                                                                      child:
-                                                                          Text(
-                                                                        getJsonField(
-                                                                          primaryTabListItem,
-                                                                          r'''$.description''',
-                                                                        ).toString(),
-                                                                        style: FlutterFlowTheme.of(context)
-                                                                            .bodyMedium
-                                                                            .override(
-                                                                              fontFamily: 'Inter',
-                                                                              letterSpacing: 0.0,
-                                                                            ),
-                                                                      ),
-                                                                    ),
-                                                                    if (getJsonField(
-                                                                              primaryTabListItem,
-                                                                              r'''$.images[0].image''',
-                                                                            ) !=
-                                                                            null
-                                                                        ? true
-                                                                        : false)
-                                                                      Padding(
-                                                                        padding: EdgeInsetsDirectional.fromSTEB(
-                                                                            0.0,
-                                                                            10.0,
-                                                                            0.0,
-                                                                            0.0),
-                                                                        child:
-                                                                            ClipRRect(
-                                                                          borderRadius:
-                                                                              BorderRadius.circular(8.0),
-                                                                          child:
-                                                                              CachedNetworkImage(
-                                                                            fadeInDuration:
-                                                                                Duration(milliseconds: 0),
-                                                                            fadeOutDuration:
-                                                                                Duration(milliseconds: 0),
-                                                                            imageUrl:
-                                                                                '${FFAppConstants.baseImageUrl}${getJsonField(
-                                                                              primaryTabListItem,
-                                                                              r'''$.images[0].image''',
-                                                                            ).toString()}',
-                                                                            width:
-                                                                                double.infinity,
-                                                                            height:
-                                                                                150.0,
-                                                                            fit:
-                                                                                BoxFit.fill,
-                                                                            errorWidget: (context, error, stackTrace) =>
-                                                                                Image.asset(
-                                                                              'assets/images/error_image.png',
-                                                                              width: double.infinity,
-                                                                              height: 150.0,
-                                                                              fit: BoxFit.fill,
-                                                                            ),
-                                                                          ),
-                                                                        ),
-                                                                      ),
-                                                                    Padding(
-                                                                      padding: EdgeInsetsDirectional.fromSTEB(
-                                                                          0.0,
-                                                                          12.0,
-                                                                          0.0,
-                                                                          0.0),
-                                                                      child:
-                                                                          Row(
+                                                                child: Padding(
+                                                                  padding:
+                                                                      EdgeInsets
+                                                                          .all(
+                                                                              11.0),
+                                                                  child: Column(
+                                                                    mainAxisSize:
+                                                                        MainAxisSize
+                                                                            .max,
+                                                                    crossAxisAlignment:
+                                                                        CrossAxisAlignment
+                                                                            .start,
+                                                                    children: [
+                                                                      Row(
                                                                         mainAxisSize:
                                                                             MainAxisSize.max,
-                                                                        crossAxisAlignment:
-                                                                            CrossAxisAlignment.center,
                                                                         children: [
-                                                                          Row(
-                                                                            mainAxisSize:
-                                                                                MainAxisSize.max,
-                                                                            children: [
-                                                                              Builder(
-                                                                                builder: (context) {
-                                                                                  if (getJsonField(
-                                                                                        primaryTabListItem,
-                                                                                        r'''$.is_liked''',
-                                                                                      ) ==
-                                                                                      1) {
-                                                                                    return InkWell(
-                                                                                      splashColor: Colors.transparent,
-                                                                                      focusColor: Colors.transparent,
-                                                                                      hoverColor: Colors.transparent,
-                                                                                      highlightColor: Colors.transparent,
-                                                                                      onTap: () async {
-                                                                                        var _shouldSetState = false;
-                                                                                        unawaited(
-                                                                                          () async {
-                                                                                            await actions.showBaseLoader(
-                                                                                              context,
-                                                                                            );
-                                                                                          }(),
-                                                                                        );
-                                                                                        _model.primaryDislikeResponse = await HandyFindersAPIsGroup.likeDislikeCall.call(
-                                                                                          authToken: FFAppState().authToken,
-                                                                                          postId: getJsonField(
-                                                                                            primaryTabListItem,
-                                                                                            r'''$.id''',
-                                                                                          ),
-                                                                                          statusKey: 0,
-                                                                                        );
-
-                                                                                        _shouldSetState = true;
-                                                                                        context.safePop();
-                                                                                        if (HandyFindersAPIsGroup.likeDislikeCall.apiStatus(
-                                                                                          (_model.primaryDislikeResponse?.jsonBody ?? ''),
-                                                                                        )!) {
-                                                                                          ScaffoldMessenger.of(context).clearSnackBars();
-                                                                                          ScaffoldMessenger.of(context).showSnackBar(
-                                                                                            SnackBar(
-                                                                                              content: Text(
-                                                                                                HandyFindersAPIsGroup.likeDislikeCall.apiMessage(
-                                                                                                  (_model.primaryDislikeResponse?.jsonBody ?? ''),
-                                                                                                )!,
-                                                                                                style: TextStyle(
-                                                                                                  color: FlutterFlowTheme.of(context).primaryText,
-                                                                                                ),
-                                                                                              ),
-                                                                                              duration: Duration(milliseconds: 3000),
-                                                                                              backgroundColor: FlutterFlowTheme.of(context).secondary,
-                                                                                            ),
-                                                                                          );
-                                                                                          _model.returnedPrimaryDislikeJson = await actions.updateLikeStatusKeyValue(
-                                                                                            primaryTabListItem,
-                                                                                            false,
-                                                                                          );
-                                                                                          _shouldSetState = true;
-                                                                                          FFAppState().updateRequestTabCurrentListAtIndex(
-                                                                                            primaryTabListIndex,
-                                                                                            (_) => _model.returnedPrimaryDislikeJson!,
-                                                                                          );
-                                                                                          safeSetState(() {});
-                                                                                          if (_shouldSetState) safeSetState(() {});
-                                                                                          return;
-                                                                                        } else {
-                                                                                          ScaffoldMessenger.of(context).clearSnackBars();
-                                                                                          ScaffoldMessenger.of(context).showSnackBar(
-                                                                                            SnackBar(
-                                                                                              content: Text(
-                                                                                                HandyFindersAPIsGroup.likeDislikeCall.apiMessage(
-                                                                                                  (_model.primaryDislikeResponse?.jsonBody ?? ''),
-                                                                                                )!,
-                                                                                                style: TextStyle(
-                                                                                                  color: FlutterFlowTheme.of(context).primaryText,
-                                                                                                ),
-                                                                                              ),
-                                                                                              duration: Duration(milliseconds: 3000),
-                                                                                              backgroundColor: FlutterFlowTheme.of(context).secondary,
-                                                                                            ),
-                                                                                          );
-                                                                                          if (_shouldSetState) safeSetState(() {});
-                                                                                          return;
-                                                                                        }
-
-                                                                                        if (_shouldSetState) safeSetState(() {});
-                                                                                      },
-                                                                                      child: Icon(
-                                                                                        Icons.favorite_rounded,
-                                                                                        color: Color(0xFFFF0000),
-                                                                                        size: 25.0,
-                                                                                      ),
-                                                                                    );
-                                                                                  } else {
-                                                                                    return InkWell(
-                                                                                      splashColor: Colors.transparent,
-                                                                                      focusColor: Colors.transparent,
-                                                                                      hoverColor: Colors.transparent,
-                                                                                      highlightColor: Colors.transparent,
-                                                                                      onTap: () async {
-                                                                                        var _shouldSetState = false;
-                                                                                        unawaited(
-                                                                                          () async {
-                                                                                            await actions.showBaseLoader(
-                                                                                              context,
-                                                                                            );
-                                                                                          }(),
-                                                                                        );
-                                                                                        _model.primaryLikeResponse = await HandyFindersAPIsGroup.likeDislikeCall.call(
-                                                                                          authToken: FFAppState().authToken,
-                                                                                          postId: getJsonField(
-                                                                                            primaryTabListItem,
-                                                                                            r'''$.id''',
-                                                                                          ),
-                                                                                          statusKey: 1,
-                                                                                        );
-
-                                                                                        _shouldSetState = true;
-                                                                                        context.safePop();
-                                                                                        if (HandyFindersAPIsGroup.likeDislikeCall.apiStatus(
-                                                                                          (_model.primaryLikeResponse?.jsonBody ?? ''),
-                                                                                        )!) {
-                                                                                          ScaffoldMessenger.of(context).clearSnackBars();
-                                                                                          ScaffoldMessenger.of(context).showSnackBar(
-                                                                                            SnackBar(
-                                                                                              content: Text(
-                                                                                                HandyFindersAPIsGroup.likeDislikeCall.apiMessage(
-                                                                                                  (_model.primaryLikeResponse?.jsonBody ?? ''),
-                                                                                                )!,
-                                                                                                style: TextStyle(
-                                                                                                  color: FlutterFlowTheme.of(context).primaryText,
-                                                                                                ),
-                                                                                              ),
-                                                                                              duration: Duration(milliseconds: 3000),
-                                                                                              backgroundColor: FlutterFlowTheme.of(context).secondary,
-                                                                                            ),
-                                                                                          );
-                                                                                          _model.returnedPrimaryJson = await actions.updateLikeStatusKeyValue(
-                                                                                            primaryTabListItem,
-                                                                                            true,
-                                                                                          );
-                                                                                          _shouldSetState = true;
-                                                                                          FFAppState().updateHomeTabPostListAtIndex(
-                                                                                            primaryTabListIndex,
-                                                                                            (_) => _model.returnedPrimaryJson!,
-                                                                                          );
-                                                                                          safeSetState(() {});
-                                                                                          if (_shouldSetState) safeSetState(() {});
-                                                                                          return;
-                                                                                        } else {
-                                                                                          ScaffoldMessenger.of(context).clearSnackBars();
-                                                                                          ScaffoldMessenger.of(context).showSnackBar(
-                                                                                            SnackBar(
-                                                                                              content: Text(
-                                                                                                HandyFindersAPIsGroup.likeDislikeCall.apiMessage(
-                                                                                                  (_model.primaryLikeResponse?.jsonBody ?? ''),
-                                                                                                )!,
-                                                                                                style: TextStyle(
-                                                                                                  color: FlutterFlowTheme.of(context).primaryText,
-                                                                                                ),
-                                                                                              ),
-                                                                                              duration: Duration(milliseconds: 3000),
-                                                                                              backgroundColor: FlutterFlowTheme.of(context).secondary,
-                                                                                            ),
-                                                                                          );
-                                                                                          if (_shouldSetState) safeSetState(() {});
-                                                                                          return;
-                                                                                        }
-
-                                                                                        if (_shouldSetState) safeSetState(() {});
-                                                                                      },
-                                                                                      child: Icon(
-                                                                                        Icons.favorite_border_rounded,
-                                                                                        color: FlutterFlowTheme.of(context).primaryText,
-                                                                                        size: 25.0,
-                                                                                      ),
-                                                                                    );
-                                                                                  }
-                                                                                },
-                                                                              ),
-                                                                              Padding(
-                                                                                padding: EdgeInsetsDirectional.fromSTEB(4.0, 0.0, 0.0, 0.0),
+                                                                          Container(
+                                                                            decoration:
+                                                                                BoxDecoration(
+                                                                              color: Color(0xFFE6F1F9),
+                                                                              borderRadius: BorderRadius.circular(99.0),
+                                                                            ),
+                                                                            child:
+                                                                                Align(
+                                                                              alignment: AlignmentDirectional(0.0, 0.0),
+                                                                              child: Padding(
+                                                                                padding: EdgeInsetsDirectional.fromSTEB(11.0, 6.0, 11.0, 6.0),
                                                                                 child: Text(
                                                                                   getJsonField(
                                                                                     primaryTabListItem,
-                                                                                    r'''$.total_liked''',
+                                                                                    r'''$.category_id''',
                                                                                   ).toString(),
+                                                                                  textAlign: TextAlign.center,
                                                                                   style: FlutterFlowTheme.of(context).bodyMedium.override(
                                                                                         fontFamily: 'Comfortaa',
-                                                                                        fontSize: 13.0,
+                                                                                        color: FlutterFlowTheme.of(context).primary,
+                                                                                        fontSize: 12.5,
                                                                                         letterSpacing: 0.0,
+                                                                                        fontWeight: FontWeight.w600,
                                                                                       ),
                                                                                 ),
                                                                               ),
-                                                                            ],
+                                                                            ),
                                                                           ),
-                                                                          InkWell(
-                                                                            splashColor:
-                                                                                Colors.transparent,
-                                                                            focusColor:
-                                                                                Colors.transparent,
-                                                                            hoverColor:
-                                                                                Colors.transparent,
-                                                                            highlightColor:
-                                                                                Colors.transparent,
-                                                                            onTap:
-                                                                                () async {
-                                                                              await showModalBottomSheet(
-                                                                                isScrollControlled: true,
-                                                                                backgroundColor: Colors.transparent,
-                                                                                useSafeArea: true,
-                                                                                context: context,
-                                                                                builder: (context) {
-                                                                                  return WebViewAware(
-                                                                                    child: GestureDetector(
-                                                                                      onTap: () {
-                                                                                        FocusScope.of(context).unfocus();
-                                                                                        FocusManager.instance.primaryFocus?.unfocus();
+                                                                          if (_model.selectedTabIndex ==
+                                                                              0)
+                                                                            Padding(
+                                                                              padding: EdgeInsetsDirectional.fromSTEB(11.0, 0.0, 0.0, 0.0),
+                                                                              child: RichText(
+                                                                                textScaler: MediaQuery.of(context).textScaler,
+                                                                                text: TextSpan(
+                                                                                  children: [
+                                                                                    TextSpan(
+                                                                                      text: '\$ ',
+                                                                                      style: FlutterFlowTheme.of(context).bodyMedium.override(
+                                                                                            fontFamily: 'Comfortaa',
+                                                                                            color: FlutterFlowTheme.of(context).primary,
+                                                                                            letterSpacing: 0.0,
+                                                                                            fontWeight: FontWeight.w800,
+                                                                                          ),
+                                                                                    ),
+                                                                                    TextSpan(
+                                                                                      text: getJsonField(
+                                                                                        primaryTabListItem,
+                                                                                        r'''$.cost''',
+                                                                                      ).toString(),
+                                                                                      style: TextStyle(),
+                                                                                    )
+                                                                                  ],
+                                                                                  style: FlutterFlowTheme.of(context).bodyMedium.override(
+                                                                                        fontFamily: 'Comfortaa',
+                                                                                        color: FlutterFlowTheme.of(context).primary,
+                                                                                        letterSpacing: 0.0,
+                                                                                        fontWeight: FontWeight.w800,
+                                                                                      ),
+                                                                                ),
+                                                                              ),
+                                                                            ),
+                                                                          Expanded(
+                                                                            child:
+                                                                                Align(
+                                                                              alignment: AlignmentDirectional(1.0, 0.0),
+                                                                              child: Builder(
+                                                                                builder: (context) => InkWell(
+                                                                                  splashColor: Colors.transparent,
+                                                                                  focusColor: Colors.transparent,
+                                                                                  hoverColor: Colors.transparent,
+                                                                                  highlightColor: Colors.transparent,
+                                                                                  onTap: () async {
+                                                                                    await showAlignedDialog(
+                                                                                      barrierColor: Color(0x00FFFFFF),
+                                                                                      context: context,
+                                                                                      isGlobal: false,
+                                                                                      avoidOverflow: false,
+                                                                                      targetAnchor: AlignmentDirectional(-1.9, 3.8).resolve(Directionality.of(context)),
+                                                                                      followerAnchor: AlignmentDirectional(0.0, 0.0).resolve(Directionality.of(context)),
+                                                                                      builder: (dialogContext) {
+                                                                                        return Material(
+                                                                                          color: Colors.transparent,
+                                                                                          child: WebViewAware(
+                                                                                            child: GestureDetector(
+                                                                                              onTap: () {
+                                                                                                FocusScope.of(dialogContext).unfocus();
+                                                                                                FocusManager.instance.primaryFocus?.unfocus();
+                                                                                              },
+                                                                                              child: EditRemoveMenuPopUpWidget(
+                                                                                                onEdit: () async {
+                                                                                                  Navigator.pop(context);
+
+                                                                                                  context.pushNamed(
+                                                                                                    PostRequestForumWidget.routeName,
+                                                                                                    queryParameters: {
+                                                                                                      'isUpdating': serializeParam(
+                                                                                                        true,
+                                                                                                        ParamType.bool,
+                                                                                                      ),
+                                                                                                      'jsonData': serializeParam(
+                                                                                                        primaryTabListItem,
+                                                                                                        ParamType.JSON,
+                                                                                                      ),
+                                                                                                      'itemIndex': serializeParam(
+                                                                                                        primaryTabListIndex,
+                                                                                                        ParamType.int,
+                                                                                                      ),
+                                                                                                    }.withoutNulls,
+                                                                                                  );
+                                                                                                },
+                                                                                                onRemove: () async {
+                                                                                                  Navigator.pop(context);
+                                                                                                  await showDialog(
+                                                                                                    context: context,
+                                                                                                    builder: (dialogContext) {
+                                                                                                      return Dialog(
+                                                                                                        elevation: 0,
+                                                                                                        insetPadding: EdgeInsets.zero,
+                                                                                                        backgroundColor: Colors.transparent,
+                                                                                                        alignment: AlignmentDirectional(0.0, 0.0).resolve(Directionality.of(context)),
+                                                                                                        child: WebViewAware(
+                                                                                                          child: GestureDetector(
+                                                                                                            onTap: () {
+                                                                                                              FocusScope.of(dialogContext).unfocus();
+                                                                                                              FocusManager.instance.primaryFocus?.unfocus();
+                                                                                                            },
+                                                                                                            child: CustomConfirmationDialogWidget(
+                                                                                                              title: 'Are you sure you want to remove this comment ?',
+                                                                                                              onYesTap: () async {
+                                                                                                                var _shouldSetState = false;
+                                                                                                                context.safePop();
+                                                                                                                unawaited(
+                                                                                                                  () async {
+                                                                                                                    await actions.showBaseLoader(
+                                                                                                                      context,
+                                                                                                                    );
+                                                                                                                  }(),
+                                                                                                                );
+                                                                                                                _model.removePostResponse = await HandyFindersAPIsGroup.removeRequestCall.call(
+                                                                                                                  authToken: FFAppState().authToken,
+                                                                                                                  postId: getJsonField(
+                                                                                                                    primaryTabListItem,
+                                                                                                                    r'''$.id''',
+                                                                                                                  ).toString(),
+                                                                                                                );
+
+                                                                                                                _shouldSetState = true;
+                                                                                                                context.safePop();
+                                                                                                                if (HandyFindersAPIsGroup.removeRequestCall.apiStatus(
+                                                                                                                  (_model.removePostResponse?.jsonBody ?? ''),
+                                                                                                                )!) {
+                                                                                                                  ScaffoldMessenger.of(context).clearSnackBars();
+                                                                                                                  ScaffoldMessenger.of(context).showSnackBar(
+                                                                                                                    SnackBar(
+                                                                                                                      content: Text(
+                                                                                                                        HandyFindersAPIsGroup.removeRequestCall.apiMessage(
+                                                                                                                          (_model.removePostResponse?.jsonBody ?? ''),
+                                                                                                                        )!,
+                                                                                                                        style: TextStyle(
+                                                                                                                          color: FlutterFlowTheme.of(context).primaryText,
+                                                                                                                        ),
+                                                                                                                      ),
+                                                                                                                      duration: Duration(milliseconds: 4000),
+                                                                                                                      backgroundColor: FlutterFlowTheme.of(context).secondary,
+                                                                                                                    ),
+                                                                                                                  );
+                                                                                                                  FFAppState().removeAtIndexFromRequestTabCurrentList(primaryTabListIndex);
+                                                                                                                  safeSetState(() {});
+                                                                                                                  return;
+                                                                                                                } else {
+                                                                                                                  ScaffoldMessenger.of(context).clearSnackBars();
+                                                                                                                  ScaffoldMessenger.of(context).showSnackBar(
+                                                                                                                    SnackBar(
+                                                                                                                      content: Text(
+                                                                                                                        HandyFindersAPIsGroup.removeRequestCall.apiMessage(
+                                                                                                                          (_model.removePostResponse?.jsonBody ?? ''),
+                                                                                                                        )!,
+                                                                                                                        style: TextStyle(
+                                                                                                                          color: FlutterFlowTheme.of(context).primaryText,
+                                                                                                                        ),
+                                                                                                                      ),
+                                                                                                                      duration: Duration(milliseconds: 4000),
+                                                                                                                      backgroundColor: FlutterFlowTheme.of(context).secondary,
+                                                                                                                    ),
+                                                                                                                  );
+                                                                                                                  return;
+                                                                                                                }
+                                                                                                              },
+                                                                                                            ),
+                                                                                                          ),
+                                                                                                        ),
+                                                                                                      );
+                                                                                                    },
+                                                                                                  );
+                                                                                                },
+                                                                                              ),
+                                                                                            ),
+                                                                                          ),
+                                                                                        );
                                                                                       },
-                                                                                      child: Padding(
-                                                                                        padding: MediaQuery.viewInsetsOf(context),
-                                                                                        child: Container(
-                                                                                          height: MediaQuery.sizeOf(context).height * 0.7,
-                                                                                          child: CommentsBottomSheetWidget(
-                                                                                            id: getJsonField(
+                                                                                    );
+
+                                                                                    safeSetState(() {});
+                                                                                  },
+                                                                                  child: Container(
+                                                                                    width: 35.0,
+                                                                                    height: 35.0,
+                                                                                    decoration: BoxDecoration(
+                                                                                      color: Color(0xFFE8E8E8),
+                                                                                      shape: BoxShape.circle,
+                                                                                    ),
+                                                                                    child: Icon(
+                                                                                      Icons.more_vert,
+                                                                                      color: FlutterFlowTheme.of(context).primaryText,
+                                                                                      size: 24.0,
+                                                                                    ),
+                                                                                  ),
+                                                                                ),
+                                                                              ),
+                                                                            ),
+                                                                          ),
+                                                                        ],
+                                                                      ),
+                                                                      Padding(
+                                                                        padding: EdgeInsetsDirectional.fromSTEB(
+                                                                            0.0,
+                                                                            13.0,
+                                                                            0.0,
+                                                                            0.0),
+                                                                        child:
+                                                                            Text(
+                                                                          getJsonField(
+                                                                            primaryTabListItem,
+                                                                            r'''$.title''',
+                                                                          ).toString(),
+                                                                          style: FlutterFlowTheme.of(context)
+                                                                              .bodyMedium
+                                                                              .override(
+                                                                                fontFamily: 'Inter',
+                                                                                fontSize: 18.0,
+                                                                                letterSpacing: 0.0,
+                                                                                fontWeight: FontWeight.w500,
+                                                                              ),
+                                                                        ),
+                                                                      ),
+                                                                      Padding(
+                                                                        padding: EdgeInsetsDirectional.fromSTEB(
+                                                                            0.0,
+                                                                            5.0,
+                                                                            0.0,
+                                                                            0.0),
+                                                                        child:
+                                                                            Text(
+                                                                          functions.primaryDateFormate(
+                                                                              getJsonField(
+                                                                                primaryTabListItem,
+                                                                                r'''$.updated_at''',
+                                                                              ).toString(),
+                                                                              'MMMM dd, yyyy'),
+                                                                          style: FlutterFlowTheme.of(context)
+                                                                              .bodyMedium
+                                                                              .override(
+                                                                                fontFamily: 'Inter',
+                                                                                fontSize: 13.0,
+                                                                                letterSpacing: 0.0,
+                                                                                fontWeight: FontWeight.normal,
+                                                                              ),
+                                                                        ),
+                                                                      ),
+                                                                      Padding(
+                                                                        padding: EdgeInsetsDirectional.fromSTEB(
+                                                                            0.0,
+                                                                            6.5,
+                                                                            0.0,
+                                                                            0.0),
+                                                                        child:
+                                                                            Text(
+                                                                          getJsonField(
+                                                                            primaryTabListItem,
+                                                                            r'''$.description''',
+                                                                          ).toString(),
+                                                                          style: FlutterFlowTheme.of(context)
+                                                                              .bodyMedium
+                                                                              .override(
+                                                                                fontFamily: 'Inter',
+                                                                                letterSpacing: 0.0,
+                                                                              ),
+                                                                        ),
+                                                                      ),
+                                                                      if (getJsonField(
+                                                                                primaryTabListItem,
+                                                                                r'''$.images[0].image''',
+                                                                              ) !=
+                                                                              null
+                                                                          ? true
+                                                                          : false)
+                                                                        Padding(
+                                                                          padding: EdgeInsetsDirectional.fromSTEB(
+                                                                              0.0,
+                                                                              10.0,
+                                                                              0.0,
+                                                                              0.0),
+                                                                          child:
+                                                                              ClipRRect(
+                                                                            borderRadius:
+                                                                                BorderRadius.circular(8.0),
+                                                                            child:
+                                                                                CachedNetworkImage(
+                                                                              fadeInDuration: Duration(milliseconds: 0),
+                                                                              fadeOutDuration: Duration(milliseconds: 0),
+                                                                              imageUrl: '${FFAppConstants.baseImageUrl}${getJsonField(
+                                                                                primaryTabListItem,
+                                                                                r'''$.images[0].image''',
+                                                                              ).toString()}',
+                                                                              width: double.infinity,
+                                                                              height: 150.0,
+                                                                              fit: BoxFit.fill,
+                                                                              errorWidget: (context, error, stackTrace) => Image.asset(
+                                                                                'assets/images/error_image.png',
+                                                                                width: double.infinity,
+                                                                                height: 150.0,
+                                                                                fit: BoxFit.fill,
+                                                                              ),
+                                                                            ),
+                                                                          ),
+                                                                        ),
+                                                                      Padding(
+                                                                        padding: EdgeInsetsDirectional.fromSTEB(
+                                                                            0.0,
+                                                                            12.0,
+                                                                            0.0,
+                                                                            0.0),
+                                                                        child:
+                                                                            Row(
+                                                                          mainAxisSize:
+                                                                              MainAxisSize.max,
+                                                                          crossAxisAlignment:
+                                                                              CrossAxisAlignment.center,
+                                                                          children: [
+                                                                            Row(
+                                                                              mainAxisSize: MainAxisSize.max,
+                                                                              children: [
+                                                                                Builder(
+                                                                                  builder: (context) {
+                                                                                    if (getJsonField(
+                                                                                          primaryTabListItem,
+                                                                                          r'''$.is_liked''',
+                                                                                        ) ==
+                                                                                        1) {
+                                                                                      return InkWell(
+                                                                                        splashColor: Colors.transparent,
+                                                                                        focusColor: Colors.transparent,
+                                                                                        hoverColor: Colors.transparent,
+                                                                                        highlightColor: Colors.transparent,
+                                                                                        onTap: () async {
+                                                                                          var _shouldSetState = false;
+                                                                                          unawaited(
+                                                                                            () async {
+                                                                                              await actions.showBaseLoader(
+                                                                                                context,
+                                                                                              );
+                                                                                            }(),
+                                                                                          );
+                                                                                          _model.primaryDislikeResponse = await HandyFindersAPIsGroup.likeDislikeCall.call(
+                                                                                            authToken: FFAppState().authToken,
+                                                                                            postId: getJsonField(
                                                                                               primaryTabListItem,
                                                                                               r'''$.id''',
                                                                                             ),
-                                                                                            index: primaryTabListIndex,
-                                                                                          ),
+                                                                                            statusKey: 0,
+                                                                                          );
+
+                                                                                          _shouldSetState = true;
+                                                                                          context.safePop();
+                                                                                          if (HandyFindersAPIsGroup.likeDislikeCall.apiStatus(
+                                                                                            (_model.primaryDislikeResponse?.jsonBody ?? ''),
+                                                                                          )!) {
+                                                                                            ScaffoldMessenger.of(context).clearSnackBars();
+                                                                                            ScaffoldMessenger.of(context).showSnackBar(
+                                                                                              SnackBar(
+                                                                                                content: Text(
+                                                                                                  HandyFindersAPIsGroup.likeDislikeCall.apiMessage(
+                                                                                                    (_model.primaryDislikeResponse?.jsonBody ?? ''),
+                                                                                                  )!,
+                                                                                                  style: TextStyle(
+                                                                                                    color: FlutterFlowTheme.of(context).primaryText,
+                                                                                                  ),
+                                                                                                ),
+                                                                                                duration: Duration(milliseconds: 3000),
+                                                                                                backgroundColor: FlutterFlowTheme.of(context).secondary,
+                                                                                              ),
+                                                                                            );
+                                                                                            _model.returnedPrimaryDislikeJson = await actions.updateLikeStatusKeyValue(
+                                                                                              primaryTabListItem,
+                                                                                              false,
+                                                                                            );
+                                                                                            _shouldSetState = true;
+                                                                                            FFAppState().updateRequestTabCurrentListAtIndex(
+                                                                                              primaryTabListIndex,
+                                                                                              (_) => _model.returnedPrimaryDislikeJson!,
+                                                                                            );
+                                                                                            safeSetState(() {});
+                                                                                            if (_shouldSetState) safeSetState(() {});
+                                                                                            return;
+                                                                                          } else {
+                                                                                            ScaffoldMessenger.of(context).clearSnackBars();
+                                                                                            ScaffoldMessenger.of(context).showSnackBar(
+                                                                                              SnackBar(
+                                                                                                content: Text(
+                                                                                                  HandyFindersAPIsGroup.likeDislikeCall.apiMessage(
+                                                                                                    (_model.primaryDislikeResponse?.jsonBody ?? ''),
+                                                                                                  )!,
+                                                                                                  style: TextStyle(
+                                                                                                    color: FlutterFlowTheme.of(context).primaryText,
+                                                                                                  ),
+                                                                                                ),
+                                                                                                duration: Duration(milliseconds: 3000),
+                                                                                                backgroundColor: FlutterFlowTheme.of(context).secondary,
+                                                                                              ),
+                                                                                            );
+                                                                                            if (_shouldSetState) safeSetState(() {});
+                                                                                            return;
+                                                                                          }
+
+                                                                                          if (_shouldSetState) safeSetState(() {});
+                                                                                        },
+                                                                                        child: Icon(
+                                                                                          Icons.favorite_rounded,
+                                                                                          color: Color(0xFFFF0000),
+                                                                                          size: 25.0,
                                                                                         ),
-                                                                                      ),
-                                                                                    ),
-                                                                                  );
-                                                                                },
-                                                                              ).then((value) => safeSetState(() {}));
-                                                                            },
-                                                                            child:
-                                                                                Row(
-                                                                              mainAxisSize: MainAxisSize.min,
-                                                                              children: [
-                                                                                Padding(
-                                                                                  padding: EdgeInsetsDirectional.fromSTEB(20.0, 0.0, 0.0, 0.0),
-                                                                                  child: ClipRRect(
-                                                                                    borderRadius: BorderRadius.circular(0.0),
-                                                                                    child: Image.asset(
-                                                                                      'assets/images/icMessage.png',
-                                                                                      width: 25.0,
-                                                                                      height: 25.0,
-                                                                                      fit: BoxFit.cover,
-                                                                                    ),
-                                                                                  ),
+                                                                                      );
+                                                                                    } else {
+                                                                                      return InkWell(
+                                                                                        splashColor: Colors.transparent,
+                                                                                        focusColor: Colors.transparent,
+                                                                                        hoverColor: Colors.transparent,
+                                                                                        highlightColor: Colors.transparent,
+                                                                                        onTap: () async {
+                                                                                          var _shouldSetState = false;
+                                                                                          unawaited(
+                                                                                            () async {
+                                                                                              await actions.showBaseLoader(
+                                                                                                context,
+                                                                                              );
+                                                                                            }(),
+                                                                                          );
+                                                                                          _model.primaryLikeResponse = await HandyFindersAPIsGroup.likeDislikeCall.call(
+                                                                                            authToken: FFAppState().authToken,
+                                                                                            postId: getJsonField(
+                                                                                              primaryTabListItem,
+                                                                                              r'''$.id''',
+                                                                                            ),
+                                                                                            statusKey: 1,
+                                                                                          );
+
+                                                                                          _shouldSetState = true;
+                                                                                          context.safePop();
+                                                                                          if (HandyFindersAPIsGroup.likeDislikeCall.apiStatus(
+                                                                                            (_model.primaryLikeResponse?.jsonBody ?? ''),
+                                                                                          )!) {
+                                                                                            ScaffoldMessenger.of(context).clearSnackBars();
+                                                                                            ScaffoldMessenger.of(context).showSnackBar(
+                                                                                              SnackBar(
+                                                                                                content: Text(
+                                                                                                  HandyFindersAPIsGroup.likeDislikeCall.apiMessage(
+                                                                                                    (_model.primaryLikeResponse?.jsonBody ?? ''),
+                                                                                                  )!,
+                                                                                                  style: TextStyle(
+                                                                                                    color: FlutterFlowTheme.of(context).primaryText,
+                                                                                                  ),
+                                                                                                ),
+                                                                                                duration: Duration(milliseconds: 3000),
+                                                                                                backgroundColor: FlutterFlowTheme.of(context).secondary,
+                                                                                              ),
+                                                                                            );
+                                                                                            _model.returnedPrimaryJson = await actions.updateLikeStatusKeyValue(
+                                                                                              primaryTabListItem,
+                                                                                              true,
+                                                                                            );
+                                                                                            _shouldSetState = true;
+                                                                                            FFAppState().updateHomeTabPostListAtIndex(
+                                                                                              primaryTabListIndex,
+                                                                                              (_) => _model.returnedPrimaryJson!,
+                                                                                            );
+                                                                                            safeSetState(() {});
+                                                                                            if (_shouldSetState) safeSetState(() {});
+                                                                                            return;
+                                                                                          } else {
+                                                                                            ScaffoldMessenger.of(context).clearSnackBars();
+                                                                                            ScaffoldMessenger.of(context).showSnackBar(
+                                                                                              SnackBar(
+                                                                                                content: Text(
+                                                                                                  HandyFindersAPIsGroup.likeDislikeCall.apiMessage(
+                                                                                                    (_model.primaryLikeResponse?.jsonBody ?? ''),
+                                                                                                  )!,
+                                                                                                  style: TextStyle(
+                                                                                                    color: FlutterFlowTheme.of(context).primaryText,
+                                                                                                  ),
+                                                                                                ),
+                                                                                                duration: Duration(milliseconds: 3000),
+                                                                                                backgroundColor: FlutterFlowTheme.of(context).secondary,
+                                                                                              ),
+                                                                                            );
+                                                                                            if (_shouldSetState) safeSetState(() {});
+                                                                                            return;
+                                                                                          }
+
+                                                                                          if (_shouldSetState) safeSetState(() {});
+                                                                                        },
+                                                                                        child: Icon(
+                                                                                          Icons.favorite_border_rounded,
+                                                                                          color: FlutterFlowTheme.of(context).primaryText,
+                                                                                          size: 25.0,
+                                                                                        ),
+                                                                                      );
+                                                                                    }
+                                                                                  },
                                                                                 ),
                                                                                 Padding(
                                                                                   padding: EdgeInsetsDirectional.fromSTEB(4.0, 0.0, 0.0, 0.0),
                                                                                   child: Text(
                                                                                     getJsonField(
                                                                                       primaryTabListItem,
-                                                                                      r'''$.total_comment''',
+                                                                                      r'''$.total_liked''',
                                                                                     ).toString(),
                                                                                     style: FlutterFlowTheme.of(context).bodyMedium.override(
                                                                                           fontFamily: 'Comfortaa',
@@ -1397,357 +1317,410 @@ class _RequestTabWidgetState extends State<RequestTabWidget>
                                                                                 ),
                                                                               ],
                                                                             ),
-                                                                          ),
-                                                                          Builder(
-                                                                            builder: (context) =>
-                                                                                InkWell(
+                                                                            InkWell(
                                                                               splashColor: Colors.transparent,
                                                                               focusColor: Colors.transparent,
                                                                               hoverColor: Colors.transparent,
                                                                               highlightColor: Colors.transparent,
                                                                               onTap: () async {
-                                                                                await Share.share(
-                                                                                  'Post Share',
-                                                                                  sharePositionOrigin: getWidgetBoundingBox(context),
-                                                                                );
+                                                                                await showModalBottomSheet(
+                                                                                  isScrollControlled: true,
+                                                                                  backgroundColor: Colors.transparent,
+                                                                                  useSafeArea: true,
+                                                                                  context: context,
+                                                                                  builder: (context) {
+                                                                                    return WebViewAware(
+                                                                                      child: GestureDetector(
+                                                                                        onTap: () {
+                                                                                          FocusScope.of(context).unfocus();
+                                                                                          FocusManager.instance.primaryFocus?.unfocus();
+                                                                                        },
+                                                                                        child: Padding(
+                                                                                          padding: MediaQuery.viewInsetsOf(context),
+                                                                                          child: Container(
+                                                                                            height: MediaQuery.sizeOf(context).height * 0.7,
+                                                                                            child: CommentsBottomSheetWidget(
+                                                                                              id: getJsonField(
+                                                                                                primaryTabListItem,
+                                                                                                r'''$.id''',
+                                                                                              ),
+                                                                                              index: primaryTabListIndex,
+                                                                                            ),
+                                                                                          ),
+                                                                                        ),
+                                                                                      ),
+                                                                                    );
+                                                                                  },
+                                                                                ).then((value) => safeSetState(() {}));
                                                                               },
                                                                               child: Row(
-                                                                                mainAxisSize: MainAxisSize.max,
+                                                                                mainAxisSize: MainAxisSize.min,
                                                                                 children: [
                                                                                   Padding(
                                                                                     padding: EdgeInsetsDirectional.fromSTEB(20.0, 0.0, 0.0, 0.0),
                                                                                     child: ClipRRect(
                                                                                       borderRadius: BorderRadius.circular(0.0),
                                                                                       child: Image.asset(
-                                                                                        'assets/images/icShare.png',
+                                                                                        'assets/images/icMessage.png',
                                                                                         width: 25.0,
                                                                                         height: 25.0,
                                                                                         fit: BoxFit.cover,
                                                                                       ),
                                                                                     ),
                                                                                   ),
-                                                                                  if (false)
-                                                                                    Padding(
-                                                                                      padding: EdgeInsetsDirectional.fromSTEB(4.0, 0.0, 0.0, 0.0),
-                                                                                      child: Text(
-                                                                                        getJsonField(
-                                                                                          primaryTabListItem,
-                                                                                          r'''$.total_share''',
-                                                                                        ).toString(),
-                                                                                        style: FlutterFlowTheme.of(context).bodyMedium.override(
-                                                                                              fontFamily: 'Comfortaa',
-                                                                                              fontSize: 13.0,
-                                                                                              letterSpacing: 0.0,
-                                                                                            ),
-                                                                                      ),
+                                                                                  Padding(
+                                                                                    padding: EdgeInsetsDirectional.fromSTEB(4.0, 0.0, 0.0, 0.0),
+                                                                                    child: Text(
+                                                                                      getJsonField(
+                                                                                        primaryTabListItem,
+                                                                                        r'''$.total_comment''',
+                                                                                      ).toString(),
+                                                                                      style: FlutterFlowTheme.of(context).bodyMedium.override(
+                                                                                            fontFamily: 'Comfortaa',
+                                                                                            fontSize: 13.0,
+                                                                                            letterSpacing: 0.0,
+                                                                                          ),
                                                                                     ),
+                                                                                  ),
                                                                                 ],
                                                                               ),
                                                                             ),
-                                                                          ),
-                                                                        ],
-                                                                      ),
-                                                                    ),
-                                                                    Builder(
-                                                                      builder:
-                                                                          (context) =>
-                                                                              Padding(
-                                                                        padding: EdgeInsetsDirectional.fromSTEB(
-                                                                            0.0,
-                                                                            13.0,
-                                                                            0.0,
-                                                                            0.0),
-                                                                        child:
-                                                                            InkWell(
-                                                                          splashColor:
-                                                                              Colors.transparent,
-                                                                          focusColor:
-                                                                              Colors.transparent,
-                                                                          hoverColor:
-                                                                              Colors.transparent,
-                                                                          highlightColor:
-                                                                              Colors.transparent,
-                                                                          onTap:
-                                                                              () async {
-                                                                            await showDialog(
-                                                                              context: context,
-                                                                              builder: (dialogContext) {
-                                                                                return Dialog(
-                                                                                  elevation: 0,
-                                                                                  insetPadding: EdgeInsets.zero,
-                                                                                  backgroundColor: Colors.transparent,
-                                                                                  alignment: AlignmentDirectional(0.0, 0.0).resolve(Directionality.of(context)),
-                                                                                  child: WebViewAware(
-                                                                                    child: GestureDetector(
-                                                                                      onTap: () {
-                                                                                        FocusScope.of(dialogContext).unfocus();
-                                                                                        FocusManager.instance.primaryFocus?.unfocus();
-                                                                                      },
-                                                                                      child: SelectUserDialogWidget(
-                                                                                        requestId: getJsonField(
-                                                                                          primaryTabListItem,
-                                                                                          r'''$.id''',
+                                                                            Builder(
+                                                                              builder: (context) => InkWell(
+                                                                                splashColor: Colors.transparent,
+                                                                                focusColor: Colors.transparent,
+                                                                                hoverColor: Colors.transparent,
+                                                                                highlightColor: Colors.transparent,
+                                                                                onTap: () async {
+                                                                                  await Share.share(
+                                                                                    'Post Share',
+                                                                                    sharePositionOrigin: getWidgetBoundingBox(context),
+                                                                                  );
+                                                                                },
+                                                                                child: Row(
+                                                                                  mainAxisSize: MainAxisSize.max,
+                                                                                  children: [
+                                                                                    Padding(
+                                                                                      padding: EdgeInsetsDirectional.fromSTEB(20.0, 0.0, 0.0, 0.0),
+                                                                                      child: ClipRRect(
+                                                                                        borderRadius: BorderRadius.circular(0.0),
+                                                                                        child: Image.asset(
+                                                                                          'assets/images/icShare.png',
+                                                                                          width: 25.0,
+                                                                                          height: 25.0,
+                                                                                          fit: BoxFit.cover,
                                                                                         ),
-                                                                                        itemIndex: primaryTabListIndex,
                                                                                       ),
                                                                                     ),
-                                                                                  ),
-                                                                                );
-                                                                              },
-                                                                            );
-                                                                          },
-                                                                          child:
-                                                                              Container(
-                                                                            width:
-                                                                                double.infinity,
-                                                                            height:
-                                                                                45.0,
-                                                                            decoration:
-                                                                                BoxDecoration(
-                                                                              color: Color(0xFF24272E),
-                                                                              borderRadius: BorderRadius.circular(99.0),
+                                                                                    if (false)
+                                                                                      Padding(
+                                                                                        padding: EdgeInsetsDirectional.fromSTEB(4.0, 0.0, 0.0, 0.0),
+                                                                                        child: Text(
+                                                                                          getJsonField(
+                                                                                            primaryTabListItem,
+                                                                                            r'''$.total_share''',
+                                                                                          ).toString(),
+                                                                                          style: FlutterFlowTheme.of(context).bodyMedium.override(
+                                                                                                fontFamily: 'Comfortaa',
+                                                                                                fontSize: 13.0,
+                                                                                                letterSpacing: 0.0,
+                                                                                              ),
+                                                                                        ),
+                                                                                      ),
+                                                                                  ],
+                                                                                ),
+                                                                              ),
                                                                             ),
-                                                                            alignment:
-                                                                                AlignmentDirectional(0.0, 0.0),
+                                                                          ],
+                                                                        ),
+                                                                      ),
+                                                                      Builder(
+                                                                        builder:
+                                                                            (context) =>
+                                                                                Padding(
+                                                                          padding: EdgeInsetsDirectional.fromSTEB(
+                                                                              0.0,
+                                                                              13.0,
+                                                                              0.0,
+                                                                              0.0),
+                                                                          child:
+                                                                              InkWell(
+                                                                            splashColor:
+                                                                                Colors.transparent,
+                                                                            focusColor:
+                                                                                Colors.transparent,
+                                                                            hoverColor:
+                                                                                Colors.transparent,
+                                                                            highlightColor:
+                                                                                Colors.transparent,
+                                                                            onTap:
+                                                                                () async {
+                                                                              await showDialog(
+                                                                                context: context,
+                                                                                builder: (dialogContext) {
+                                                                                  return Dialog(
+                                                                                    elevation: 0,
+                                                                                    insetPadding: EdgeInsets.zero,
+                                                                                    backgroundColor: Colors.transparent,
+                                                                                    alignment: AlignmentDirectional(0.0, 0.0).resolve(Directionality.of(context)),
+                                                                                    child: WebViewAware(
+                                                                                      child: GestureDetector(
+                                                                                        onTap: () {
+                                                                                          FocusScope.of(dialogContext).unfocus();
+                                                                                          FocusManager.instance.primaryFocus?.unfocus();
+                                                                                        },
+                                                                                        child: SelectUserDialogWidget(
+                                                                                          requestId: getJsonField(
+                                                                                            primaryTabListItem,
+                                                                                            r'''$.id''',
+                                                                                          ),
+                                                                                          itemIndex: primaryTabListIndex,
+                                                                                        ),
+                                                                                      ),
+                                                                                    ),
+                                                                                  );
+                                                                                },
+                                                                              );
+                                                                            },
                                                                             child:
-                                                                                Text(
-                                                                              'Mark as Complete',
-                                                                              style: FlutterFlowTheme.of(context).bodyMedium.override(
-                                                                                    fontFamily: 'Inter',
-                                                                                    color: Color(0xBEFFFFFF),
-                                                                                    letterSpacing: 0.0,
-                                                                                  ),
+                                                                                Container(
+                                                                              width: double.infinity,
+                                                                              height: 45.0,
+                                                                              decoration: BoxDecoration(
+                                                                                color: Color(0xFF24272E),
+                                                                                borderRadius: BorderRadius.circular(99.0),
+                                                                              ),
+                                                                              alignment: AlignmentDirectional(0.0, 0.0),
+                                                                              child: Text(
+                                                                                'Mark as Complete',
+                                                                                style: FlutterFlowTheme.of(context).bodyMedium.override(
+                                                                                      fontFamily: 'Inter',
+                                                                                      color: Color(0xBEFFFFFF),
+                                                                                      letterSpacing: 0.0,
+                                                                                    ),
+                                                                              ),
                                                                             ),
                                                                           ),
                                                                         ),
                                                                       ),
-                                                                    ),
-                                                                  ],
+                                                                    ],
+                                                                  ),
                                                                 ),
-                                                              ),
-                                                            );
-                                                          })
-                                                              .divide(SizedBox(
-                                                                  height: 16.0))
-                                                              .addToEnd(SizedBox(
-                                                                  height: FFAppState()
-                                                                              .requestTabPrimaryLastPage >
-                                                                          1
-                                                                      ? 0.0
-                                                                      : 20.0)),
-                                                        );
-                                                      },
-                                                    ),
-                                                    if (FFAppState()
-                                                            .requestTabPrimaryLastPage >
-                                                        1)
-                                                      Builder(
-                                                        builder: (context) {
-                                                          if (FFAppState()
-                                                                  .requestTabPrimaryPageIndex <=
-                                                              FFAppState()
-                                                                  .requestTabPrimaryLastPage) {
-                                                            return Padding(
-                                                              padding:
-                                                                  EdgeInsetsDirectional
-                                                                      .fromSTEB(
-                                                                          0.0,
-                                                                          0.0,
-                                                                          0.0,
-                                                                          5.0),
-                                                              child:
-                                                                  wrapWithModel(
-                                                                model: _model
-                                                                    .baseButtonComponentModel1,
-                                                                updateCallback: () =>
-                                                                    safeSetState(
-                                                                        () {}),
+                                                              );
+                                                            })
+                                                                .divide(SizedBox(
+                                                                    height:
+                                                                        16.0))
+                                                                .addToEnd(SizedBox(
+                                                                    height: FFAppState().requestTabPrimaryLastPage >
+                                                                            1
+                                                                        ? 0.0
+                                                                        : 20.0)),
+                                                          );
+                                                        },
+                                                      ),
+                                                      if (FFAppState()
+                                                              .requestTabPrimaryLastPage >
+                                                          1)
+                                                        Builder(
+                                                          builder: (context) {
+                                                            if (FFAppState()
+                                                                    .requestTabPrimaryPageIndex <=
+                                                                FFAppState()
+                                                                    .requestTabPrimaryLastPage) {
+                                                              return Padding(
+                                                                padding:
+                                                                    EdgeInsetsDirectional
+                                                                        .fromSTEB(
+                                                                            0.0,
+                                                                            0.0,
+                                                                            0.0,
+                                                                            5.0),
                                                                 child:
-                                                                    BaseButtonComponentWidget(
-                                                                  title:
-                                                                      'Load More',
-                                                                  buttonColor:
-                                                                      Color(
-                                                                          0x00FFFFFF),
-                                                                  textColor: Color(
-                                                                      0xFF6E6E6E),
-                                                                  isLoading: _model
-                                                                      .isPrimaryLoadingMore,
-                                                                  removeScaffoldPadding:
-                                                                      true,
-                                                                  passOnTapCallback:
-                                                                      () async {
-                                                                    var _shouldSetState =
-                                                                        false;
-                                                                    if (FFAppState()
-                                                                            .requestTabPrimaryPageIndex <=
-                                                                        FFAppState()
-                                                                            .requestTabPrimaryLastPage) {
-                                                                      _model.isPrimaryLoadingMore =
-                                                                          true;
+                                                                    wrapWithModel(
+                                                                  model: _model
+                                                                      .baseButtonComponentModel1,
+                                                                  updateCallback: () =>
                                                                       safeSetState(
-                                                                          () {});
-                                                                      _model.primaryLoadMoreResponse = await HandyFindersAPIsGroup
-                                                                          .requestBottomTabCall
-                                                                          .call(
-                                                                        authToken:
-                                                                            FFAppState().authToken,
-                                                                        type:
-                                                                            'current',
-                                                                        page: FFAppState()
-                                                                            .requestTabPrimaryPageIndex,
-                                                                      );
-
-                                                                      _shouldSetState =
-                                                                          true;
-                                                                      if (HandyFindersAPIsGroup
-                                                                          .requestBottomTabCall
-                                                                          .apiStatus(
-                                                                        (_model.primaryLoadMoreResponse?.jsonBody ??
-                                                                            ''),
-                                                                      )!) {
-                                                                        _model.returnedPrimaryList =
-                                                                            await actions.addJsonList(
+                                                                          () {}),
+                                                                  child:
+                                                                      BaseButtonComponentWidget(
+                                                                    title:
+                                                                        'Load More',
+                                                                    buttonColor:
+                                                                        Color(
+                                                                            0x00FFFFFF),
+                                                                    textColor:
+                                                                        Color(
+                                                                            0xFF6E6E6E),
+                                                                    isLoading:
+                                                                        _model
+                                                                            .isPrimaryLoadingMore,
+                                                                    removeScaffoldPadding:
+                                                                        true,
+                                                                    passOnTapCallback:
+                                                                        () async {
+                                                                      var _shouldSetState =
+                                                                          false;
+                                                                      if (FFAppState()
+                                                                              .requestTabPrimaryPageIndex <=
                                                                           FFAppState()
-                                                                              .requestTabCurrentList
-                                                                              .toList(),
-                                                                          HandyFindersAPIsGroup
-                                                                              .requestBottomTabCall
-                                                                              .apiList(
-                                                                                (_model.primaryLoadMoreResponse?.jsonBody ?? ''),
-                                                                              )!
-                                                                              .toList(),
-                                                                        );
-                                                                        _shouldSetState =
-                                                                            true;
+                                                                              .requestTabPrimaryLastPage) {
                                                                         _model.isPrimaryLoadingMore =
-                                                                            false;
-                                                                        FFAppState().requestTabCurrentList = _model
-                                                                            .returnedPrimaryList!
-                                                                            .toList()
-                                                                            .cast<dynamic>();
-                                                                        FFAppState()
-                                                                            .requestTabPrimaryPageIndex = FFAppState()
-                                                                                .requestTabPrimaryPageIndex +
-                                                                            1;
+                                                                            true;
                                                                         safeSetState(
                                                                             () {});
-                                                                        if (_shouldSetState)
+                                                                        _model.primaryLoadMoreResponse = await HandyFindersAPIsGroup
+                                                                            .requestBottomTabCall
+                                                                            .call(
+                                                                          authToken:
+                                                                              FFAppState().authToken,
+                                                                          type:
+                                                                              'current',
+                                                                          page:
+                                                                              FFAppState().requestTabPrimaryPageIndex,
+                                                                        );
+
+                                                                        _shouldSetState =
+                                                                            true;
+                                                                        if (HandyFindersAPIsGroup
+                                                                            .requestBottomTabCall
+                                                                            .apiStatus(
+                                                                          (_model.primaryLoadMoreResponse?.jsonBody ??
+                                                                              ''),
+                                                                        )!) {
+                                                                          _model.returnedPrimaryList =
+                                                                              await actions.addJsonList(
+                                                                            FFAppState().requestTabCurrentList.toList(),
+                                                                            HandyFindersAPIsGroup.requestBottomTabCall
+                                                                                .apiList(
+                                                                                  (_model.primaryLoadMoreResponse?.jsonBody ?? ''),
+                                                                                )!
+                                                                                .toList(),
+                                                                          );
+                                                                          _shouldSetState =
+                                                                              true;
+                                                                          _model.isPrimaryLoadingMore =
+                                                                              false;
+                                                                          FFAppState().requestTabCurrentList = _model
+                                                                              .returnedPrimaryList!
+                                                                              .toList()
+                                                                              .cast<dynamic>();
+                                                                          FFAppState().requestTabPrimaryPageIndex =
+                                                                              FFAppState().requestTabPrimaryPageIndex + 1;
                                                                           safeSetState(
                                                                               () {});
-                                                                        return;
-                                                                      } else {
-                                                                        ScaffoldMessenger.of(context)
-                                                                            .clearSnackBars();
-                                                                        ScaffoldMessenger.of(context)
-                                                                            .showSnackBar(
-                                                                          SnackBar(
-                                                                            content:
-                                                                                Text(
-                                                                              HandyFindersAPIsGroup.requestBottomTabCall.apiMessage(
-                                                                                (_model.primaryLoadMoreResponse?.jsonBody ?? ''),
-                                                                              )!,
-                                                                              style: TextStyle(
-                                                                                color: FlutterFlowTheme.of(context).primaryText,
+                                                                          if (_shouldSetState)
+                                                                            safeSetState(() {});
+                                                                          return;
+                                                                        } else {
+                                                                          ScaffoldMessenger.of(context)
+                                                                              .clearSnackBars();
+                                                                          ScaffoldMessenger.of(context)
+                                                                              .showSnackBar(
+                                                                            SnackBar(
+                                                                              content: Text(
+                                                                                HandyFindersAPIsGroup.requestBottomTabCall.apiMessage(
+                                                                                  (_model.primaryLoadMoreResponse?.jsonBody ?? ''),
+                                                                                )!,
+                                                                                style: TextStyle(
+                                                                                  color: FlutterFlowTheme.of(context).primaryText,
+                                                                                ),
                                                                               ),
+                                                                              duration: Duration(milliseconds: 4000),
+                                                                              backgroundColor: FlutterFlowTheme.of(context).secondary,
                                                                             ),
-                                                                            duration:
-                                                                                Duration(milliseconds: 4000),
-                                                                            backgroundColor:
-                                                                                FlutterFlowTheme.of(context).secondary,
-                                                                          ),
-                                                                        );
+                                                                          );
+                                                                          if (_shouldSetState)
+                                                                            safeSetState(() {});
+                                                                          return;
+                                                                        }
+                                                                      } else {
                                                                         if (_shouldSetState)
                                                                           safeSetState(
                                                                               () {});
                                                                         return;
                                                                       }
-                                                                    } else {
+
                                                                       if (_shouldSetState)
                                                                         safeSetState(
                                                                             () {});
-                                                                      return;
-                                                                    }
-
-                                                                    if (_shouldSetState)
-                                                                      safeSetState(
-                                                                          () {});
-                                                                  },
+                                                                    },
+                                                                  ),
                                                                 ),
-                                                              ),
-                                                            );
-                                                          } else {
-                                                            return Padding(
-                                                              padding:
-                                                                  EdgeInsetsDirectional
-                                                                      .fromSTEB(
-                                                                          0.0,
-                                                                          25.0,
-                                                                          0.0,
-                                                                          25.0),
-                                                              child: Text(
-                                                                'No More Data!',
-                                                                style: FlutterFlowTheme.of(
-                                                                        context)
-                                                                    .bodyMedium
-                                                                    .override(
-                                                                      fontFamily:
-                                                                          'Comfortaa',
-                                                                      color: FlutterFlowTheme.of(
-                                                                              context)
-                                                                          .hintTextColor,
-                                                                      fontSize:
-                                                                          13.0,
-                                                                      letterSpacing:
-                                                                          0.0,
-                                                                      fontWeight:
-                                                                          FontWeight
-                                                                              .normal,
-                                                                    ),
-                                                              ),
-                                                            );
-                                                          }
-                                                        },
-                                                      ),
-                                                  ],
+                                                              );
+                                                            } else {
+                                                              return Padding(
+                                                                padding: EdgeInsetsDirectional
+                                                                    .fromSTEB(
+                                                                        0.0,
+                                                                        25.0,
+                                                                        0.0,
+                                                                        25.0),
+                                                                child: Text(
+                                                                  'No More Data!',
+                                                                  style: FlutterFlowTheme.of(
+                                                                          context)
+                                                                      .bodyMedium
+                                                                      .override(
+                                                                        fontFamily:
+                                                                            'Comfortaa',
+                                                                        color: FlutterFlowTheme.of(context)
+                                                                            .hintTextColor,
+                                                                        fontSize:
+                                                                            13.0,
+                                                                        letterSpacing:
+                                                                            0.0,
+                                                                        fontWeight:
+                                                                            FontWeight.normal,
+                                                                      ),
+                                                                ),
+                                                              );
+                                                            }
+                                                          },
+                                                        ),
+                                                    ],
+                                                  ),
                                                 ),
                                               ),
                                             ),
-                                          ),
-                                        ],
-                                      );
-                                    } else {
-                                      return Align(
-                                        alignment:
-                                            AlignmentDirectional(0.0, 0.0),
-                                        child: Padding(
-                                          padding:
-                                              EdgeInsetsDirectional.fromSTEB(
-                                                  0.0,
-                                                  valueOrDefault<double>(
-                                                    MediaQuery.sizeOf(context)
-                                                            .height *
-                                                        0.33,
+                                          ],
+                                        );
+                                      } else {
+                                        return Align(
+                                          alignment:
+                                              AlignmentDirectional(0.0, 0.0),
+                                          child: Padding(
+                                            padding:
+                                                EdgeInsetsDirectional.fromSTEB(
                                                     0.0,
-                                                  ),
-                                                  0.0,
-                                                  0.0),
-                                          child: Text(
-                                            'No Request Found!',
-                                            style: FlutterFlowTheme.of(context)
-                                                .bodyMedium
-                                                .override(
-                                                  fontFamily: 'Comfortaa',
-                                                  color: FlutterFlowTheme.of(
-                                                          context)
-                                                      .hintTextColor,
-                                                  letterSpacing: 0.0,
-                                                ),
+                                                    valueOrDefault<double>(
+                                                      MediaQuery.sizeOf(context)
+                                                              .height *
+                                                          0.33,
+                                                      0.0,
+                                                    ),
+                                                    0.0,
+                                                    0.0),
+                                            child: Text(
+                                              'No Request Found!',
+                                              style:
+                                                  FlutterFlowTheme.of(context)
+                                                      .bodyMedium
+                                                      .override(
+                                                        fontFamily: 'Comfortaa',
+                                                        color:
+                                                            FlutterFlowTheme.of(
+                                                                    context)
+                                                                .hintTextColor,
+                                                        letterSpacing: 0.0,
+                                                      ),
+                                            ),
                                           ),
-                                        ),
-                                      );
-                                    }
-                                  },
+                                        );
+                                      }
+                                    },
+                                  ),
                                 ),
                               ],
                             );
@@ -1765,11 +1738,11 @@ class _RequestTabWidgetState extends State<RequestTabWidget>
                               ),
                             );
                           } else {
-                            return SingleChildScrollView(
-                              child: Column(
-                                mainAxisSize: MainAxisSize.max,
-                                children: [
-                                  Builder(
+                            return Column(
+                              mainAxisSize: MainAxisSize.min,
+                              children: [
+                                Expanded(
+                                  child: Builder(
                                     builder: (context) {
                                       if (FFAppState()
                                           .requestTabCompletedList
@@ -2020,7 +1993,7 @@ class _RequestTabWidgetState extends State<RequestTabWidget>
                                                       const AlwaysScrollableScrollPhysics(),
                                                   child: Column(
                                                     mainAxisSize:
-                                                        MainAxisSize.min,
+                                                        MainAxisSize.max,
                                                     children: [
                                                       Builder(
                                                         builder: (context) {
@@ -3071,8 +3044,8 @@ class _RequestTabWidgetState extends State<RequestTabWidget>
                                       }
                                     },
                                   ),
-                                ],
-                              ),
+                                ),
+                              ],
                             );
                           }
                         },
