@@ -8,6 +8,10 @@ import 'post_request_forum_widget.dart' show PostRequestForumWidget;
 import 'package:flutter/material.dart';
 
 class PostRequestForumModel extends FlutterFlowModel<PostRequestForumWidget> {
+  ///  Local state fields for this page.
+
+  dynamic pageData;
+
   ///  State fields for stateful widgets in this page.
 
   final formKey = GlobalKey<FormState>();
@@ -68,6 +72,8 @@ class PostRequestForumModel extends FlutterFlowModel<PostRequestForumWidget> {
   FFUploadedFile uploadedLocalFile1 =
       FFUploadedFile(bytes: Uint8List.fromList([]));
 
+  // Stores action output result for [Custom Action - removeImagesFromList] action in Container widget.
+  dynamic returnedValue;
   bool isDataUploading2 = false;
   FFUploadedFile uploadedLocalFile2 =
       FFUploadedFile(bytes: Uint8List.fromList([]));

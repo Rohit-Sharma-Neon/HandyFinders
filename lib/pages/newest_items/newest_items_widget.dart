@@ -6,6 +6,7 @@ import '/flutter_flow/flutter_flow_theme.dart';
 import '/flutter_flow/flutter_flow_util.dart';
 import 'dart:async';
 import '/custom_code/actions/index.dart' as actions;
+import '/flutter_flow/custom_functions.dart' as functions;
 import '/index.dart';
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
@@ -318,32 +319,70 @@ class _NewestItemsWidgetState extends State<NewestItemsWidget> {
                                                         ),
                                                       ),
                                                     ),
-                                                    Padding(
-                                                      padding:
-                                                          EdgeInsetsDirectional
-                                                              .fromSTEB(
-                                                                  8.0,
-                                                                  8.0,
-                                                                  8.0,
-                                                                  0.0),
-                                                      child: Text(
-                                                        getJsonField(
-                                                          newestItemsItem,
-                                                          r'''$.category_id''',
-                                                        ).toString(),
-                                                        style: FlutterFlowTheme
-                                                                .of(context)
-                                                            .bodyMedium
-                                                            .override(
-                                                              fontFamily:
-                                                                  'Inter',
-                                                              color: Color(
-                                                                  0xFF8798AD),
-                                                              fontSize: 11.0,
-                                                              letterSpacing:
-                                                                  0.0,
+                                                    Row(
+                                                      mainAxisSize:
+                                                          MainAxisSize.max,
+                                                      children: [
+                                                        Padding(
+                                                          padding:
+                                                              EdgeInsetsDirectional
+                                                                  .fromSTEB(
+                                                                      8.0,
+                                                                      8.0,
+                                                                      3.0,
+                                                                      0.0),
+                                                          child: Text(
+                                                            getJsonField(
+                                                              newestItemsItem,
+                                                              r'''$.category_id''',
+                                                            ).toString(),
+                                                            style: FlutterFlowTheme
+                                                                    .of(context)
+                                                                .bodyMedium
+                                                                .override(
+                                                                  fontFamily:
+                                                                      'Inter',
+                                                                  color: Color(
+                                                                      0xFF8798AD),
+                                                                  fontSize:
+                                                                      11.0,
+                                                                  letterSpacing:
+                                                                      0.0,
+                                                                ),
+                                                          ),
+                                                        ),
+                                                        if (false)
+                                                          Padding(
+                                                            padding:
+                                                                EdgeInsetsDirectional
+                                                                    .fromSTEB(
+                                                                        8.0,
+                                                                        8.0,
+                                                                        8.0,
+                                                                        0.0),
+                                                            child: Text(
+                                                              functions.primaryDateFormate(
+                                                                  getJsonField(
+                                                                    newestItemsItem,
+                                                                    r'''$.updated_at''',
+                                                                  ).toString(),
+                                                                  'MMMM dd, yyyy'),
+                                                              style: FlutterFlowTheme
+                                                                      .of(context)
+                                                                  .bodyMedium
+                                                                  .override(
+                                                                    fontFamily:
+                                                                        'Inter',
+                                                                    color: Color(
+                                                                        0xFF8798AD),
+                                                                    fontSize:
+                                                                        11.0,
+                                                                    letterSpacing:
+                                                                        0.0,
+                                                                  ),
                                                             ),
-                                                      ),
+                                                          ),
+                                                      ],
                                                     ),
                                                     Padding(
                                                       padding:

@@ -27,6 +27,16 @@ class ReviewAndRatingsModel extends FlutterFlowModel<ReviewAndRatingsWidget> {
 
   int totalReviews = 0;
 
+  double fiveStarPercentage = 0.0;
+
+  double fourStarPercentage = 0.0;
+
+  double threeStarPercentage = 0.0;
+
+  double twoStarPercentage = 0.0;
+
+  double oneStarPercentage = 0.0;
+
   ///  State fields for stateful widgets in this page.
 
   // Stores action output result for [Backend Call - API (User Review Detail)] action in ReviewAndRatings widget.

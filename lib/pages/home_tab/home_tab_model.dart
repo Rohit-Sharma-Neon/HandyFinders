@@ -1,4 +1,5 @@
 import '/backend/api_requests/api_calls.dart';
+import '/components/base_button_component_widget.dart';
 import '/components/base_loader_component_widget.dart';
 import '/components/gradient_background_widget.dart';
 import '/flutter_flow/flutter_flow_util.dart';
@@ -45,6 +46,12 @@ class HomeTabModel extends FlutterFlowModel<HomeTabWidget> {
   ApiCallResponse? likeResponse;
   // Stores action output result for [Custom Action - updateLikeStatusKeyValue] action in Icon widget.
   dynamic returnedJson;
+  // Model for BaseButtonComponent component.
+  late BaseButtonComponentModel baseButtonComponentModel;
+  // Stores action output result for [Backend Call - API (Home Post List)] action in BaseButtonComponent widget.
+  ApiCallResponse? loadMoreResponse;
+  // Stores action output result for [Custom Action - addJsonList] action in BaseButtonComponent widget.
+  List<dynamic>? returnedPrimaryList;
 
   @override
   void initState(BuildContext context) {
@@ -52,6 +59,8 @@ class HomeTabModel extends FlutterFlowModel<HomeTabWidget> {
         createModel(context, () => GradientBackgroundModel());
     baseLoaderComponentModel =
         createModel(context, () => BaseLoaderComponentModel());
+    baseButtonComponentModel =
+        createModel(context, () => BaseButtonComponentModel());
   }
 
   @override
@@ -61,5 +70,6 @@ class HomeTabModel extends FlutterFlowModel<HomeTabWidget> {
     textController?.dispose();
 
     baseLoaderComponentModel.dispose();
+    baseButtonComponentModel.dispose();
   }
 }

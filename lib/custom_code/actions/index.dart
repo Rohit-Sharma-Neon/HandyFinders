@@ -9,3 +9,4 @@ export 'update_like_status_key_value.dart' show updateLikeStatusKeyValue;
 export 'update_comments_count.dart' show updateCommentsCount;
 export 'update_item_bookmark_status_key_value.dart'
     show updateItemBookmarkStatusKeyValue;
+export 'remove_images_from_list.dart' show removeImagesFromList;

@@ -4,33 +4,23 @@ import '/flutter_flow/flutter_flow_theme.dart';
 import '/flutter_flow/flutter_flow_util.dart';
 import 'dart:async';
 import '/custom_code/actions/index.dart' as actions;
-import 'package:cached_network_image/cached_network_image.dart';
+import '/index.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
-import 'package:flutter_rating_bar/flutter_rating_bar.dart';
 import 'package:provider/provider.dart';
-import 'leave_review_dialog_model.dart';
-export 'leave_review_dialog_model.dart';
+import 'update_email_dialog_model.dart';
+export 'update_email_dialog_model.dart';
 
-class LeaveReviewDialogWidget extends StatefulWidget {
-  const LeaveReviewDialogWidget({
-    super.key,
-    required this.otherUserId,
-    required this.requestId,
-    required this.profilePhotoUrl,
-  });
-
-  final int? otherUserId;
-  final int? requestId;
-  final String? profilePhotoUrl;
+class UpdateEmailDialogWidget extends StatefulWidget {
+  const UpdateEmailDialogWidget({super.key});
 
   @override
-  State<LeaveReviewDialogWidget> createState() =>
-      _LeaveReviewDialogWidgetState();
+  State<UpdateEmailDialogWidget> createState() =>
+      _UpdateEmailDialogWidgetState();
 }
 
-class _LeaveReviewDialogWidgetState extends State<LeaveReviewDialogWidget> {
-  late LeaveReviewDialogModel _model;
+class _UpdateEmailDialogWidgetState extends State<UpdateEmailDialogWidget> {
+  late UpdateEmailDialogModel _model;
 
   @override
   void setState(VoidCallback callback) {
@@ -41,10 +31,10 @@ class _LeaveReviewDialogWidgetState extends State<LeaveReviewDialogWidget> {
   @override
   void initState() {
     super.initState();
-    _model = createModel(context, () => LeaveReviewDialogModel());
+    _model = createModel(context, () => UpdateEmailDialogModel());
 
-    _model.textController ??= TextEditingController();
-    _model.textFieldFocusNode ??= FocusNode();
+    _model.dialogEmailTextController ??= TextEditingController();
+    _model.dialogEmailFocusNode ??= FocusNode();
   }
 
   @override
@@ -59,7 +49,7 @@ class _LeaveReviewDialogWidgetState extends State<LeaveReviewDialogWidget> {
     context.watch<FFAppState>();
 
     return Padding(
-      padding: EdgeInsetsDirectional.fromSTEB(20.0, 0.0, 20.0, 0.0),
+      padding: EdgeInsetsDirectional.fromSTEB(20.0, 2.0, 20.0, 0.0),
       child: Container(
         width: double.infinity,
         decoration: BoxDecoration(
@@ -77,12 +67,12 @@ class _LeaveReviewDialogWidgetState extends State<LeaveReviewDialogWidget> {
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [
                   Text(
-                    'Leave a Review',
+                    'Update Email',
                     style: FlutterFlowTheme.of(context).bodyMedium.override(
                           fontFamily: 'Comfortaa',
                           fontSize: 15.0,
                           letterSpacing: 0.0,
-                          fontWeight: FontWeight.w500,
+                          fontWeight: FontWeight.bold,
                         ),
                   ),
                   InkWell(
@@ -97,7 +87,7 @@ class _LeaveReviewDialogWidgetState extends State<LeaveReviewDialogWidget> {
                       decoration: BoxDecoration(),
                       child: Padding(
                         padding:
-                            EdgeInsetsDirectional.fromSTEB(8.0, 8.0, 2.0, 8.0),
+                            EdgeInsetsDirectional.fromSTEB(8.0, 8.0, 8.0, 8.0),
                         child: ClipRRect(
                           borderRadius: BorderRadius.circular(0.0),
                           child: Image.asset(
@@ -114,78 +104,32 @@ class _LeaveReviewDialogWidgetState extends State<LeaveReviewDialogWidget> {
               ),
               Divider(
                 thickness: 1.0,
+                endIndent: 8.0,
                 color: FlutterFlowTheme.of(context).alternate,
               ),
-              Align(
-                alignment: AlignmentDirectional(0.0, -1.0),
-                child: Padding(
-                  padding: EdgeInsetsDirectional.fromSTEB(0.0, 15.0, 0.0, 0.0),
-                  child: ClipRRect(
-                    borderRadius: BorderRadius.circular(99.0),
-                    child: CachedNetworkImage(
-                      fadeInDuration: Duration(milliseconds: 0),
-                      fadeOutDuration: Duration(milliseconds: 0),
-                      imageUrl:
-                          '${FFAppConstants.baseImageUrl}${widget.profilePhotoUrl}',
-                      width: 70.0,
-                      height: 70.0,
-                      fit: BoxFit.cover,
-                      errorWidget: (context, error, stackTrace) => Image.asset(
-                        'assets/images/error_image.png',
-                        width: 70.0,
-                        height: 70.0,
-                        fit: BoxFit.cover,
+              Padding(
+                padding: EdgeInsetsDirectional.fromSTEB(0.0, 16.0, 0.0, 0.0),
+                child: Text(
+                  'New Email',
+                  textAlign: TextAlign.center,
+                  style: FlutterFlowTheme.of(context).bodyMedium.override(
+                        fontFamily: 'Inter',
+                        color: Color(0xFF24272E),
+                        fontSize: 15.0,
+                        letterSpacing: 0.0,
                       ),
-                    ),
-                  ),
-                ),
-              ),
-              Align(
-                alignment: AlignmentDirectional(0.0, 0.0),
-                child: Padding(
-                  padding: EdgeInsetsDirectional.fromSTEB(0.0, 16.0, 0.0, 0.0),
-                  child: Text(
-                    'How was your experience interacting\nwith Darience?',
-                    textAlign: TextAlign.center,
-                    style: FlutterFlowTheme.of(context).bodyMedium.override(
-                          fontFamily: 'Inter',
-                          color: Color(0xFF24272E),
-                          fontSize: 15.0,
-                          letterSpacing: 0.0,
-                        ),
-                  ),
-                ),
-              ),
-              Align(
-                alignment: AlignmentDirectional(0.0, -1.0),
-                child: Padding(
-                  padding: EdgeInsetsDirectional.fromSTEB(0.0, 20.0, 0.0, 0.0),
-                  child: RatingBar.builder(
-                    onRatingUpdate: (newValue) =>
-                        safeSetState(() => _model.ratingBarValue = newValue),
-                    itemBuilder: (context, index) => Icon(
-                      Icons.star_rounded,
-                      color: Color(0xFFFFB133),
-                    ),
-                    direction: Axis.horizontal,
-                    initialRating: _model.ratingBarValue ??= 3.0,
-                    unratedColor: Color(0xFFD7D7D7),
-                    itemCount: 5,
-                    itemSize: 45.0,
-                    glowColor: Color(0xFFFFB133),
-                  ),
                 ),
               ),
               Form(
                 key: _model.formKey,
-                autovalidateMode: AutovalidateMode.disabled,
+                autovalidateMode: AutovalidateMode.always,
                 child: Padding(
-                  padding: EdgeInsetsDirectional.fromSTEB(0.0, 22.0, 0.0, 20.0),
+                  padding: EdgeInsetsDirectional.fromSTEB(0.0, 2.0, 0.0, 0.0),
                   child: Container(
                     width: double.infinity,
                     child: TextFormField(
-                      controller: _model.textController,
-                      focusNode: _model.textFieldFocusNode,
+                      controller: _model.dialogEmailTextController,
+                      focusNode: _model.dialogEmailFocusNode,
                       autofocus: false,
                       obscureText: false,
                       decoration: InputDecoration(
@@ -197,7 +141,7 @@ class _LeaveReviewDialogWidgetState extends State<LeaveReviewDialogWidget> {
                                   fontSize: 14.0,
                                   letterSpacing: 0.0,
                                 ),
-                        hintText: 'Write description',
+                        hintText: 'Enter your new email',
                         hintStyle: FlutterFlowTheme.of(context)
                             .labelMedium
                             .override(
@@ -260,53 +204,36 @@ class _LeaveReviewDialogWidgetState extends State<LeaveReviewDialogWidget> {
                             fontSize: 14.0,
                             letterSpacing: 0.0,
                           ),
-                      maxLines: 8,
-                      maxLength: 300,
+                      maxLength: 30,
                       maxLengthEnforcement: MaxLengthEnforcement.enforced,
                       buildCounter: (context,
                               {required currentLength,
                               required isFocused,
                               maxLength}) =>
                           null,
-                      keyboardType: TextInputType.multiline,
+                      keyboardType: TextInputType.emailAddress,
                       cursorColor: FlutterFlowTheme.of(context).primaryText,
-                      validator:
-                          _model.textControllerValidator.asValidator(context),
+                      validator: _model.dialogEmailTextControllerValidator
+                          .asValidator(context),
                     ),
                   ),
                 ),
               ),
-              wrapWithModel(
-                model: _model.baseButtonComponentModel,
-                updateCallback: () => safeSetState(() {}),
-                child: BaseButtonComponentWidget(
-                  title: 'Submit',
-                  isLoading: false,
-                  removeScaffoldPadding: true,
-                  passOnTapCallback: () async {
-                    var _shouldSetState = false;
-                    if (_model.formKey.currentState == null ||
-                        !_model.formKey.currentState!.validate()) {
-                      return;
-                    }
-                    if (_model.ratingBarValue! < 1.0) {
-                      ScaffoldMessenger.of(context).clearSnackBars();
-                      ScaffoldMessenger.of(context).showSnackBar(
-                        SnackBar(
-                          content: Text(
-                            'Please select at least 1 star rating',
-                            style: TextStyle(
-                              color: FlutterFlowTheme.of(context).primaryText,
-                            ),
-                          ),
-                          duration: Duration(milliseconds: 4000),
-                          backgroundColor:
-                              FlutterFlowTheme.of(context).secondary,
-                        ),
-                      );
-                      if (_shouldSetState) safeSetState(() {});
-                      return;
-                    } else {
+              Padding(
+                padding: EdgeInsetsDirectional.fromSTEB(0.0, 20.0, 0.0, 0.0),
+                child: wrapWithModel(
+                  model: _model.baseButtonComponentModel,
+                  updateCallback: () => safeSetState(() {}),
+                  child: BaseButtonComponentWidget(
+                    title: 'Done',
+                    isLoading: false,
+                    removeScaffoldPadding: true,
+                    passOnTapCallback: () async {
+                      var _shouldSetState = false;
+                      if (_model.formKey.currentState == null ||
+                          !_model.formKey.currentState!.validate()) {
+                        return;
+                      }
                       unawaited(
                         () async {
                           await actions.showBaseLoader(
@@ -314,47 +241,49 @@ class _LeaveReviewDialogWidgetState extends State<LeaveReviewDialogWidget> {
                           );
                         }(),
                       );
-                      _model.givenReviewResponse =
-                          await HandyFindersAPIsGroup.giveReviewCall.call(
-                        authToken: FFAppState().authToken,
-                        otherUserId: widget.otherUserId,
-                        requestId: widget.requestId,
-                        rating: _model.ratingBarValue?.toString(),
-                        review: _model.textController.text,
+                      _model.sendOtpResponse =
+                          await HandyFindersAPIsGroup.sendOTPCall.call(
+                        email: _model.dialogEmailTextController.text,
+                        userEmailId: FFAppState().userId,
+                        isUpdatingEmail: 1,
                       );
 
                       _shouldSetState = true;
-                      if (HandyFindersAPIsGroup.giveReviewCall.apiStatus(
-                        (_model.givenReviewResponse?.jsonBody ?? ''),
+                      context.safePop();
+                      Navigator.pop(context);
+                      if (HandyFindersAPIsGroup.sendOTPCall.apiStatus(
+                        (_model.sendOtpResponse?.jsonBody ?? ''),
                       )!) {
-                        context.safePop();
-                        Navigator.pop(context);
-                        ScaffoldMessenger.of(context).clearSnackBars();
-                        ScaffoldMessenger.of(context).showSnackBar(
-                          SnackBar(
-                            content: Text(
-                              HandyFindersAPIsGroup.giveReviewCall.apiMessage(
-                                (_model.givenReviewResponse?.jsonBody ?? ''),
-                              )!,
-                              style: TextStyle(
-                                color: FlutterFlowTheme.of(context).primaryText,
-                              ),
+                        context.pushNamed(
+                          VerifyEmailOtpWidget.routeName,
+                          queryParameters: {
+                            'email': serializeParam(
+                              _model.dialogEmailTextController.text,
+                              ParamType.String,
                             ),
-                            duration: Duration(milliseconds: 4000),
-                            backgroundColor:
-                                FlutterFlowTheme.of(context).secondary,
-                          ),
+                            'isForgettingPassword': serializeParam(
+                              false,
+                              ParamType.bool,
+                            ),
+                            'isUpdatingEmail': serializeParam(
+                              1,
+                              ParamType.int,
+                            ),
+                            'password': serializeParam(
+                              '',
+                              ParamType.String,
+                            ),
+                          }.withoutNulls,
                         );
+
                         if (_shouldSetState) safeSetState(() {});
                         return;
                       } else {
-                        context.safePop();
-                        ScaffoldMessenger.of(context).clearSnackBars();
                         ScaffoldMessenger.of(context).showSnackBar(
                           SnackBar(
                             content: Text(
-                              HandyFindersAPIsGroup.giveReviewCall.apiMessage(
-                                (_model.givenReviewResponse?.jsonBody ?? ''),
+                              HandyFindersAPIsGroup.sendOTPCall.apiMessage(
+                                (_model.sendOtpResponse?.jsonBody ?? ''),
                               )!,
                               style: TextStyle(
                                 color: FlutterFlowTheme.of(context).primaryText,
@@ -368,10 +297,10 @@ class _LeaveReviewDialogWidgetState extends State<LeaveReviewDialogWidget> {
                         if (_shouldSetState) safeSetState(() {});
                         return;
                       }
-                    }
 
-                    if (_shouldSetState) safeSetState(() {});
-                  },
+                      if (_shouldSetState) safeSetState(() {});
+                    },
+                  ),
                 ),
               ),
             ],

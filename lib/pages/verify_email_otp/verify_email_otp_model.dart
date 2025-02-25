@@ -6,12 +6,11 @@ import '/components/logo_component_widget.dart';
 import '/components/onboarding_heading_text_widget.dart';
 import '/flutter_flow/flutter_flow_timer.dart';
 import '/flutter_flow/flutter_flow_util.dart';
-import '/index.dart';
-import 'o_t_p_verify_widget.dart' show OTPVerifyWidget;
 import 'package:stop_watch_timer/stop_watch_timer.dart';
+import 'verify_email_otp_widget.dart' show VerifyEmailOtpWidget;
 import 'package:flutter/material.dart';
 
-class OTPVerifyModel extends FlutterFlowModel<OTPVerifyWidget> {
+class VerifyEmailOtpModel extends FlutterFlowModel<VerifyEmailOtpWidget> {
   ///  Local state fields for this page.
 
   bool isLoading = false;
@@ -43,7 +42,7 @@ class OTPVerifyModel extends FlutterFlowModel<OTPVerifyWidget> {
 
   // Stores action output result for [Backend Call - API (Send OTP)] action in Container widget.
   ApiCallResponse? resendOtpStatus;
-  // Stores action output result for [Backend Call - API (CheckUser)] action in Container widget.
+  // Stores action output result for [Backend Call - API (Send OTP)] action in Container widget.
   ApiCallResponse? resendStatus;
   // State field(s) for Timer widget.
   final timerInitialTimeMs = 60000;
@@ -59,12 +58,8 @@ class OTPVerifyModel extends FlutterFlowModel<OTPVerifyWidget> {
 
   // Model for BaseButtonComponent component.
   late BaseButtonComponentModel baseButtonComponentModel;
-  // Stores action output result for [Custom Action - getDeviceUniqueId] action in BaseButtonComponent widget.
-  String? deviceId;
-  // Stores action output result for [Backend Call - API (SignUp)] action in BaseButtonComponent widget.
-  ApiCallResponse? signUpApiStatus;
-  // Stores action output result for [Backend Call - API (VerifyOtp)] action in BaseButtonComponent widget.
-  ApiCallResponse? apiStatus;
+  // Stores action output result for [Backend Call - API (Verify Email OTP)] action in BaseButtonComponent widget.
+  ApiCallResponse? verifyEmailResponse;
 
   @override
   void initState(BuildContext context) {

@@ -65,28 +65,29 @@ class _PostRequestForumWidgetState extends State<PostRequestForumWidget> {
       );
 
       context.safePop();
+      _model.pageData = widget.jsonData;
       if (widget.isUpdating) {
         safeSetState(() {
           _model.textController1?.text = getJsonField(
-            widget.jsonData,
+            _model.pageData,
             r'''$.title''',
           ).toString().toString();
         });
         safeSetState(() {
           _model.textController2?.text = getJsonField(
-            widget.jsonData,
+            _model.pageData,
             r'''$.description''',
           ).toString().toString();
         });
         safeSetState(() {
           _model.categoryDropDownValueController?.value = getJsonField(
-            widget.jsonData,
+            _model.pageData,
             r'''$.category_id''',
           ).toString().toString();
         });
         safeSetState(() {
           _model.textController3?.text = getJsonField(
-            widget.jsonData,
+            _model.pageData,
             r'''$.cost''',
           ).toString().toString();
         });
@@ -693,7 +694,7 @@ class _PostRequestForumWidgetState extends State<PostRequestForumWidget> {
                               ),
                               Padding(
                                 padding: EdgeInsetsDirectional.fromSTEB(
-                                    0.0, 8.0, 0.0, 120.0),
+                                    0.0, 20.0, 0.0, 120.0),
                                 child: Row(
                                   mainAxisSize: MainAxisSize.max,
                                   mainAxisAlignment:
@@ -775,7 +776,7 @@ class _PostRequestForumWidgetState extends State<PostRequestForumWidget> {
                                             ],
                                           );
                                         } else if (getJsonField(
-                                              widget.jsonData,
+                                              _model.pageData,
                                               r'''$.images[0].image''',
                                             ) !=
                                             null) {
@@ -788,7 +789,7 @@ class _PostRequestForumWidgetState extends State<PostRequestForumWidget> {
                                                     BorderRadius.circular(8.0),
                                                 child: Image.network(
                                                   '${FFAppConstants.baseImageUrl}${getJsonField(
-                                                    widget.jsonData,
+                                                    _model.pageData,
                                                     r'''$.images[0].image''',
                                                   ).toString()}',
                                                   width: 60.0,
@@ -799,51 +800,29 @@ class _PostRequestForumWidgetState extends State<PostRequestForumWidget> {
                                               Align(
                                                 alignment: AlignmentDirectional(
                                                     1.0, -1.0),
-                                                child: InkWell(
-                                                  splashColor:
-                                                      Colors.transparent,
-                                                  focusColor:
-                                                      Colors.transparent,
-                                                  hoverColor:
-                                                      Colors.transparent,
-                                                  highlightColor:
-                                                      Colors.transparent,
-                                                  onTap: () async {
-                                                    safeSetState(() {
-                                                      _model.isDataUploading1 =
-                                                          false;
-                                                      _model.uploadedLocalFile1 =
-                                                          FFUploadedFile(
-                                                              bytes: Uint8List
-                                                                  .fromList(
-                                                                      []));
-                                                    });
-                                                  },
-                                                  child: Container(
-                                                    width: 33.0,
-                                                    height: 33.0,
-                                                    decoration: BoxDecoration(
-                                                      color:
-                                                          FlutterFlowTheme.of(
-                                                                  context)
-                                                              .error,
-                                                      shape: BoxShape.circle,
-                                                    ),
+                                                child: Container(
+                                                  width: 33.0,
+                                                  height: 33.0,
+                                                  decoration: BoxDecoration(
+                                                    color: FlutterFlowTheme.of(
+                                                            context)
+                                                        .error,
+                                                    shape: BoxShape.circle,
+                                                  ),
+                                                  alignment:
+                                                      AlignmentDirectional(
+                                                          0.0, 0.0),
+                                                  child: Align(
                                                     alignment:
                                                         AlignmentDirectional(
                                                             0.0, 0.0),
-                                                    child: Align(
-                                                      alignment:
-                                                          AlignmentDirectional(
-                                                              0.0, 0.0),
-                                                      child: Icon(
-                                                        Icons.close_rounded,
-                                                        color:
-                                                            FlutterFlowTheme.of(
-                                                                    context)
-                                                                .info,
-                                                        size: 26.0,
-                                                      ),
+                                                    child: Icon(
+                                                      Icons.close_rounded,
+                                                      color:
+                                                          FlutterFlowTheme.of(
+                                                                  context)
+                                                              .info,
+                                                      size: 26.0,
                                                     ),
                                                   ),
                                                 ),
@@ -860,7 +839,7 @@ class _PostRequestForumWidgetState extends State<PostRequestForumWidget> {
                                               final selectedMedia =
                                                   await selectMediaWithSourceBottomSheet(
                                                 context: context,
-                                                imageQuality: 40,
+                                                imageQuality: 25,
                                                 allowPhoto: true,
                                                 pickerFontFamily: 'Inter',
                                               );
@@ -1008,6 +987,84 @@ class _PostRequestForumWidgetState extends State<PostRequestForumWidget> {
                                               ),
                                             ],
                                           );
+                                        } else if (getJsonField(
+                                              _model.pageData,
+                                              r'''$.images[1].image''',
+                                            ) !=
+                                            null) {
+                                          return Stack(
+                                            alignment:
+                                                AlignmentDirectional(2.0, -2.0),
+                                            children: [
+                                              ClipRRect(
+                                                borderRadius:
+                                                    BorderRadius.circular(8.0),
+                                                child: Image.network(
+                                                  '${FFAppConstants.baseImageUrl}${getJsonField(
+                                                    _model.pageData,
+                                                    r'''$.images[1].image''',
+                                                  ).toString()}',
+                                                  width: 60.0,
+                                                  height: 60.0,
+                                                  fit: BoxFit.cover,
+                                                ),
+                                              ),
+                                              Align(
+                                                alignment: AlignmentDirectional(
+                                                    1.0, -1.0),
+                                                child: InkWell(
+                                                  splashColor:
+                                                      Colors.transparent,
+                                                  focusColor:
+                                                      Colors.transparent,
+                                                  hoverColor:
+                                                      Colors.transparent,
+                                                  highlightColor:
+                                                      Colors.transparent,
+                                                  onTap: () async {
+                                                    _model.returnedValue =
+                                                        await actions
+                                                            .removeImagesFromList(
+                                                      _model.pageData!,
+                                                      1,
+                                                    );
+                                                    _model.pageData =
+                                                        _model.returnedValue;
+                                                    safeSetState(() {});
+
+                                                    safeSetState(() {});
+                                                  },
+                                                  child: Container(
+                                                    width: 33.0,
+                                                    height: 33.0,
+                                                    decoration: BoxDecoration(
+                                                      color:
+                                                          FlutterFlowTheme.of(
+                                                                  context)
+                                                              .error,
+                                                      shape: BoxShape.circle,
+                                                    ),
+                                                    alignment:
+                                                        AlignmentDirectional(
+                                                            0.0, 0.0),
+                                                    child: Align(
+                                                      alignment:
+                                                          AlignmentDirectional(
+                                                              0.0, 0.0),
+                                                      child: Icon(
+                                                        Icons.close_rounded,
+                                                        color:
+                                                            FlutterFlowTheme.of(
+                                                                    context)
+                                                                .info,
+                                                        size: 26.0,
+                                                      ),
+                                                    ),
+                                                  ),
+                                                ),
+                                              ),
+                                            ],
+                                          );
                                         } else {
                                           return InkWell(
                                             splashColor: Colors.transparent,
@@ -1018,7 +1075,7 @@ class _PostRequestForumWidgetState extends State<PostRequestForumWidget> {
                                               final selectedMedia =
                                                   await selectMediaWithSourceBottomSheet(
                                                 context: context,
-                                                imageQuality: 40,
+                                                imageQuality: 25,
                                                 allowPhoto: true,
                                                 pickerFontFamily: 'Inter',
                                               );
@@ -1166,6 +1223,60 @@ class _PostRequestForumWidgetState extends State<PostRequestForumWidget> {
                                               ),
                                             ],
                                           );
+                                        } else if (getJsonField(
+                                              _model.pageData,
+                                              r'''$.images[2].image''',
+                                            ) !=
+                                            null) {
+                                          return Stack(
+                                            alignment:
+                                                AlignmentDirectional(2.0, -2.0),
+                                            children: [
+                                              ClipRRect(
+                                                borderRadius:
+                                                    BorderRadius.circular(8.0),
+                                                child: Image.network(
+                                                  '${FFAppConstants.baseImageUrl}${getJsonField(
+                                                    _model.pageData,
+                                                    r'''$.images[2].image''',
+                                                  ).toString()}',
+                                                  width: 60.0,
+                                                  height: 60.0,
+                                                  fit: BoxFit.cover,
+                                                ),
+                                              ),
+                                              Align(
+                                                alignment: AlignmentDirectional(
+                                                    1.0, -1.0),
+                                                child: Container(
+                                                  width: 33.0,
+                                                  height: 33.0,
+                                                  decoration: BoxDecoration(
+                                                    color: FlutterFlowTheme.of(
+                                                            context)
+                                                        .error,
+                                                    shape: BoxShape.circle,
+                                                  ),
+                                                  alignment:
+                                                      AlignmentDirectional(
+                                                          0.0, 0.0),
+                                                  child: Align(
+                                                    alignment:
+                                                        AlignmentDirectional(
+                                                            0.0, 0.0),
+                                                    child: Icon(
+                                                      Icons.close_rounded,
+                                                      color:
+                                                          FlutterFlowTheme.of(
+                                                                  context)
+                                                              .info,
+                                                      size: 26.0,
+                                                    ),
+                                                  ),
+                                                ),
+                                              ),
+                                            ],
+                                          );
                                         } else {
                                           return InkWell(
                                             splashColor: Colors.transparent,
@@ -1176,7 +1287,7 @@ class _PostRequestForumWidgetState extends State<PostRequestForumWidget> {
                                               final selectedMedia =
                                                   await selectMediaWithSourceBottomSheet(
                                                 context: context,
-                                                imageQuality: 40,
+                                                imageQuality: 25,
                                                 allowPhoto: true,
                                                 pickerFontFamily: 'Inter',
                                               );
@@ -1324,6 +1435,60 @@ class _PostRequestForumWidgetState extends State<PostRequestForumWidget> {
                                               ),
                                             ],
                                           );
+                                        } else if (getJsonField(
+                                              _model.pageData,
+                                              r'''$.images[3].image''',
+                                            ) !=
+                                            null) {
+                                          return Stack(
+                                            alignment:
+                                                AlignmentDirectional(2.0, -2.0),
+                                            children: [
+                                              ClipRRect(
+                                                borderRadius:
+                                                    BorderRadius.circular(8.0),
+                                                child: Image.network(
+                                                  '${FFAppConstants.baseImageUrl}${getJsonField(
+                                                    _model.pageData,
+                                                    r'''$.images[3].image''',
+                                                  ).toString()}',
+                                                  width: 60.0,
+                                                  height: 60.0,
+                                                  fit: BoxFit.cover,
+                                                ),
+                                              ),
+                                              Align(
+                                                alignment: AlignmentDirectional(
+                                                    1.0, -1.0),
+                                                child: Container(
+                                                  width: 33.0,
+                                                  height: 33.0,
+                                                  decoration: BoxDecoration(
+                                                    color: FlutterFlowTheme.of(
+                                                            context)
+                                                        .error,
+                                                    shape: BoxShape.circle,
+                                                  ),
+                                                  alignment:
+                                                      AlignmentDirectional(
+                                                          0.0, 0.0),
+                                                  child: Align(
+                                                    alignment:
+                                                        AlignmentDirectional(
+                                                            0.0, 0.0),
+                                                    child: Icon(
+                                                      Icons.close_rounded,
+                                                      color:
+                                                          FlutterFlowTheme.of(
+                                                                  context)
+                                                              .info,
+                                                      size: 26.0,
+                                                    ),
+                                                  ),
+                                                ),
+                                              ),
+                                            ],
+                                          );
                                         } else {
                                           return InkWell(
                                             splashColor: Colors.transparent,
@@ -1334,7 +1499,7 @@ class _PostRequestForumWidgetState extends State<PostRequestForumWidget> {
                                               final selectedMedia =
                                                   await selectMediaWithSourceBottomSheet(
                                                 context: context,
-                                                imageQuality: 40,
+                                                imageQuality: 25,
                                                 allowPhoto: true,
                                                 pickerFontFamily: 'Inter',
                                               );
@@ -1482,6 +1647,60 @@ class _PostRequestForumWidgetState extends State<PostRequestForumWidget> {
                                               ),
                                             ],
                                           );
+                                        } else if (getJsonField(
+                                              _model.pageData,
+                                              r'''$.images[4].image''',
+                                            ) !=
+                                            null) {
+                                          return Stack(
+                                            alignment:
+                                                AlignmentDirectional(2.0, -2.0),
+                                            children: [
+                                              ClipRRect(
+                                                borderRadius:
+                                                    BorderRadius.circular(8.0),
+                                                child: Image.network(
+                                                  '${FFAppConstants.baseImageUrl}${getJsonField(
+                                                    _model.pageData,
+                                                    r'''$.images[4].image''',
+                                                  ).toString()}',
+                                                  width: 60.0,
+                                                  height: 60.0,
+                                                  fit: BoxFit.cover,
+                                                ),
+                                              ),
+                                              Align(
+                                                alignment: AlignmentDirectional(
+                                                    1.0, -1.0),
+                                                child: Container(
+                                                  width: 33.0,
+                                                  height: 33.0,
+                                                  decoration: BoxDecoration(
+                                                    color: FlutterFlowTheme.of(
+                                                            context)
+                                                        .error,
+                                                    shape: BoxShape.circle,
+                                                  ),
+                                                  alignment:
+                                                      AlignmentDirectional(
+                                                          0.0, 0.0),
+                                                  child: Align(
+                                                    alignment:
+                                                        AlignmentDirectional(
+                                                            0.0, 0.0),
+                                                    child: Icon(
+                                                      Icons.close_rounded,
+                                                      color:
+                                                          FlutterFlowTheme.of(
+                                                                  context)
+                                                              .info,
+                                                      size: 26.0,
+                                                    ),
+                                                  ),
+                                                ),
+                                              ),
+                                            ],
+                                          );
                                         } else {
                                           return InkWell(
                                             splashColor: Colors.transparent,
@@ -1492,7 +1711,7 @@ class _PostRequestForumWidgetState extends State<PostRequestForumWidget> {
                                               final selectedMedia =
                                                   await selectMediaWithSourceBottomSheet(
                                                 context: context,
-                                                imageQuality: 40,
+                                                imageQuality: 25,
                                                 allowPhoto: true,
                                                 pickerFontFamily: 'Inter',
                                               );

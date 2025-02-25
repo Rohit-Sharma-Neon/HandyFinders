@@ -20,12 +20,13 @@ class HandyFindersAPIsGroup {
   static LoginCall loginCall = LoginCall();
   static ForgotPasswordCall forgotPasswordCall = ForgotPasswordCall();
   static VerifyOtpCall verifyOtpCall = VerifyOtpCall();
+  static VerifyEmailOTPCall verifyEmailOTPCall = VerifyEmailOTPCall();
   static ResetPasswordCall resetPasswordCall = ResetPasswordCall();
   static CheckUserCall checkUserCall = CheckUserCall();
   static SignUpCall signUpCall = SignUpCall();
   static CreateUpdateProfileCall createUpdateProfileCall =
       CreateUpdateProfileCall();
-  static ResendOTPCall resendOTPCall = ResendOTPCall();
+  static SendOTPCall sendOTPCall = SendOTPCall();
   static LogoutCall logoutCall = LogoutCall();
   static GetProfileCall getProfileCall = GetProfileCall();
   static DeleteAccountCall deleteAccountCall = DeleteAccountCall();
@@ -212,6 +213,48 @@ class VerifyOtpCall {
       params: {
         'email': email,
         'otp': otp,
+      },
+      bodyType: BodyType.MULTIPART,
+      returnBody: true,
+      encodeBodyUtf8: false,
+      decodeUtf8: false,
+      cache: false,
+      isStreamingApi: false,
+      alwaysAllowBody: false,
+    );
+  }
+
+  bool? apiSuccess(dynamic response) => castToType<bool>(getJsonField(
+        response,
+        r'''$.status''',
+      ));
+  String? apiMessage(dynamic response) => castToType<String>(getJsonField(
+        response,
+        r'''$.message''',
+      ));
+}
+
+class VerifyEmailOTPCall {
+  Future<ApiCallResponse> call({
+    String? email = '',
+    String? otp = '',
+    int? isUpdatingEmail,
+    String? userEmailId = '',
+  }) async {
+    final baseUrl = HandyFindersAPIsGroup.getBaseUrl();
+
+    return ApiManager.instance.makeApiCall(
+      callName: 'Verify Email OTP',
+      apiUrl: '${baseUrl}verify-otp',
+      callType: ApiCallType.POST,
+      headers: {
+        'authtoken': 'handy_finders_access_token',
+      },
+      params: {
+        'email': email,
+        'otp': otp,
+        'is_updating_email': isUpdatingEmail,
+        'user_email_id': userEmailId,
       },
       bodyType: BodyType.MULTIPART,
       returnBody: true,
@@ -436,22 +479,27 @@ class CreateUpdateProfileCall {
       ));
 }
 
-class ResendOTPCall {
+class SendOTPCall {
   Future<ApiCallResponse> call({
     String? email = '',
+    String? userEmailId = '',
+    int? isUpdatingEmail,
   }) async {
     final baseUrl = HandyFindersAPIsGroup.getBaseUrl();
 
     return ApiManager.instance.makeApiCall(
-      callName: 'Resend OTP',
+      callName: 'Send OTP',
       apiUrl: '${baseUrl}send-otp',
       callType: ApiCallType.POST,
       headers: {
         'authtoken': 'handy_finders_access_token',
+        'Authorization': 'Bearer',
       },
       params: {
         'email': email,
         'is_resend': "1",
+        'is_updating_email': isUpdatingEmail,
+        'user_email_id': userEmailId,
       },
       bodyType: BodyType.MULTIPART,
       returnBody: true,
@@ -581,6 +629,11 @@ class GetProfileCall {
   int? apiNotificationStatus(dynamic response) => castToType<int>(getJsonField(
         response,
         r'''$.data.notification_status''',
+      ));
+  double? apiUserOverallRatting(dynamic response) =>
+      castToType<double>(getJsonField(
+        response,
+        r'''$.data.overall_rating''',
       ));
 }
 
@@ -937,6 +990,7 @@ class HomePostListCall {
     String? longitude = '',
     String? search = '',
     String? categoryName = '',
+    int? page,
   }) async {
     final baseUrl = HandyFindersAPIsGroup.getBaseUrl();
 
@@ -953,6 +1007,7 @@ class HomePostListCall {
         'longitude': longitude,
         'search': search,
         'category_name': categoryName,
+        'page': page,
       },
       bodyType: BodyType.MULTIPART,
       returnBody: true,

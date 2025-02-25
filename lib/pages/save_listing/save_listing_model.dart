@@ -67,6 +67,8 @@ class SaveListingModel extends FlutterFlowModel<SaveListingWidget> {
   late BaseLoaderComponentModel baseLoaderComponentModel1;
   // Stores action output result for [Backend Call - API (User Saved Listing)] action in Column widget.
   ApiCallResponse? refreshItemListingResponse;
+  // Stores action output result for [Backend Call - API (Bookmark Item)] action in Container widget.
+  ApiCallResponse? unbookmarkResponse;
   // Model for BaseButtonComponent component.
   late BaseButtonComponentModel baseButtonComponentModel1;
   // Stores action output result for [Backend Call - API (User Saved Listing)] action in BaseButtonComponent widget.
@@ -77,6 +79,8 @@ class SaveListingModel extends FlutterFlowModel<SaveListingWidget> {
   late BaseLoaderComponentModel baseLoaderComponentModel2;
   // Stores action output result for [Backend Call - API (User Listing)] action in Column widget.
   ApiCallResponse? refreshedServiceApiResponse;
+  // Stores action output result for [Backend Call - API (Bookmark Item)] action in Container widget.
+  ApiCallResponse? unbookmarkServiceResponse;
   // Model for BaseButtonComponent component.
   late BaseButtonComponentModel baseButtonComponentModel2;
   // Stores action output result for [Backend Call - API (User Listing)] action in BaseButtonComponent widget.

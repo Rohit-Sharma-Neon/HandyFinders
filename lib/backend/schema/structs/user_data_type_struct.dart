@@ -12,11 +12,13 @@ class UserDataTypeStruct extends BaseStruct {
     String? lastName,
     String? userProfilePhotoUrl,
     double? userRatings,
+    bool? notificationStatus,
   })  : _username = username,
         _firstName = firstName,
         _lastName = lastName,
         _userProfilePhotoUrl = userProfilePhotoUrl,
-        _userRatings = userRatings;
+        _userRatings = userRatings,
+        _notificationStatus = notificationStatus;
 
   // "username" field.
   String? _username;
@@ -56,6 +58,13 @@ class UserDataTypeStruct extends BaseStruct {
 
   bool hasUserRatings() => _userRatings != null;
 
+  // "notificationStatus" field.
+  bool? _notificationStatus;
+  bool get notificationStatus => _notificationStatus ?? false;
+  set notificationStatus(bool? val) => _notificationStatus = val;
+
+  bool hasNotificationStatus() => _notificationStatus != null;
+
   static UserDataTypeStruct fromMap(Map<String, dynamic> data) =>
       UserDataTypeStruct(
         username: data['username'] as String?,
@@ -63,6 +72,7 @@ class UserDataTypeStruct extends BaseStruct {
         lastName: data['lastName'] as String?,
         userProfilePhotoUrl: data['userProfilePhotoUrl'] as String?,
         userRatings: castToType<double>(data['userRatings']),
+        notificationStatus: data['notificationStatus'] as bool?,
       );
 
   static UserDataTypeStruct? maybeFromMap(dynamic data) => data is Map
@@ -75,6 +85,7 @@ class UserDataTypeStruct extends BaseStruct {
         'lastName': _lastName,
         'userProfilePhotoUrl': _userProfilePhotoUrl,
         'userRatings': _userRatings,
+        'notificationStatus': _notificationStatus,
       }.withoutNulls;
 
   @override
@@ -98,6 +109,10 @@ class UserDataTypeStruct extends BaseStruct {
         'userRatings': serializeParam(
           _userRatings,
           ParamType.double,
+        ),
+        'notificationStatus': serializeParam(
+          _notificationStatus,
+          ParamType.bool,
         ),
       }.withoutNulls;
 
@@ -128,6 +143,11 @@ class UserDataTypeStruct extends BaseStruct {
           ParamType.double,
           false,
         ),
+        notificationStatus: deserializeParam(
+          data['notificationStatus'],
+          ParamType.bool,
+          false,
+        ),
       );
 
   @override
@@ -140,12 +160,19 @@ class UserDataTypeStruct extends BaseStruct {
         firstName == other.firstName &&
         lastName == other.lastName &&
         userProfilePhotoUrl == other.userProfilePhotoUrl &&
-        userRatings == other.userRatings;
+        userRatings == other.userRatings &&
+        notificationStatus == other.notificationStatus;
   }
 
   @override
-  int get hashCode => const ListEquality()
-      .hash([username, firstName, lastName, userProfilePhotoUrl, userRatings]);
+  int get hashCode => const ListEquality().hash([
+        username,
+        firstName,
+        lastName,
+        userProfilePhotoUrl,
+        userRatings,
+        notificationStatus
+      ]);
 }
 
 UserDataTypeStruct createUserDataTypeStruct({
@@ -154,6 +181,7 @@ UserDataTypeStruct createUserDataTypeStruct({
   String? lastName,
   String? userProfilePhotoUrl,
   double? userRatings,
+  bool? notificationStatus,
 }) =>
     UserDataTypeStruct(
       username: username,
@@ -161,4 +189,5 @@ UserDataTypeStruct createUserDataTypeStruct({
       lastName: lastName,
       userProfilePhotoUrl: userProfilePhotoUrl,
       userRatings: userRatings,
+      notificationStatus: notificationStatus,
     );

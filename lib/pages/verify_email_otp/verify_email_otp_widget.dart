@@ -9,46 +9,59 @@ import '/flutter_flow/flutter_flow_timer.dart';
 import '/flutter_flow/flutter_flow_util.dart';
 import 'dart:async';
 import '/custom_code/actions/index.dart' as actions;
-import '/index.dart';
 import 'package:pin_code_fields/pin_code_fields.dart';
 import 'package:stop_watch_timer/stop_watch_timer.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/scheduler.dart';
 import 'package:provider/provider.dart';
-import 'o_t_p_verify_model.dart';
-export 'o_t_p_verify_model.dart';
+import 'verify_email_otp_model.dart';
+export 'verify_email_otp_model.dart';
 
-class OTPVerifyWidget extends StatefulWidget {
-  const OTPVerifyWidget({
+class VerifyEmailOtpWidget extends StatefulWidget {
+  const VerifyEmailOtpWidget({
     super.key,
     required this.email,
     bool? isForgettingPassword,
     this.password,
+    this.isUpdatingEmail,
   }) : this.isForgettingPassword = isForgettingPassword ?? false;
 
   final String? email;
   final bool isForgettingPassword;
   final String? password;
+  final int? isUpdatingEmail;
 
-  static String routeName = 'OTPVerify';
-  static String routePath = '/oTPVerify';
+  static String routeName = 'VerifyEmailOtp';
+  static String routePath = '/verifyEmailOtp';
 
   @override
-  State<OTPVerifyWidget> createState() => _OTPVerifyWidgetState();
+  State<VerifyEmailOtpWidget> createState() => _VerifyEmailOtpWidgetState();
 }
 
-class _OTPVerifyWidgetState extends State<OTPVerifyWidget> {
-  late OTPVerifyModel _model;
+class _VerifyEmailOtpWidgetState extends State<VerifyEmailOtpWidget> {
+  late VerifyEmailOtpModel _model;
 
   final scaffoldKey = GlobalKey<ScaffoldState>();
 
   @override
   void initState() {
     super.initState();
-    _model = createModel(context, () => OTPVerifyModel());
+    _model = createModel(context, () => VerifyEmailOtpModel());
 
     // On page load action.
     SchedulerBinding.instance.addPostFrameCallback((_) async {
+      ScaffoldMessenger.of(context).showSnackBar(
+        SnackBar(
+          content: Text(
+            widget.email!,
+            style: TextStyle(
+              color: FlutterFlowTheme.of(context).primaryText,
+            ),
+          ),
+          duration: Duration(milliseconds: 4000),
+          backgroundColor: FlutterFlowTheme.of(context).secondary,
+        ),
+      );
       _model.timerController.onStartTimer();
     });
 
@@ -352,14 +365,16 @@ class _OTPVerifyWidgetState extends State<OTPVerifyWidget> {
                                         safeSetState(() {});
                                         _model.resendStatus =
                                             await HandyFindersAPIsGroup
-                                                .checkUserCall
+                                                .sendOTPCall
                                                 .call(
                                           email: widget.email,
+                                          userEmailId: FFAppState().userId,
+                                          isUpdatingEmail: 1,
                                         );
 
                                         _shouldSetState = true;
-                                        if (HandyFindersAPIsGroup.checkUserCall
-                                            .apiSuccess(
+                                        if (HandyFindersAPIsGroup.sendOTPCall
+                                            .apiStatus(
                                           (_model.resendStatus?.jsonBody ?? ''),
                                         )!) {
                                           ScaffoldMessenger.of(context)
@@ -369,7 +384,7 @@ class _OTPVerifyWidgetState extends State<OTPVerifyWidget> {
                                             SnackBar(
                                               content: Text(
                                                 HandyFindersAPIsGroup
-                                                    .checkUserCall
+                                                    .sendOTPCall
                                                     .apiMessage(
                                                   (_model.resendStatus
                                                           ?.jsonBody ??
@@ -399,7 +414,7 @@ class _OTPVerifyWidgetState extends State<OTPVerifyWidget> {
                                             SnackBar(
                                               content: Text(
                                                 HandyFindersAPIsGroup
-                                                    .checkUserCall
+                                                    .sendOTPCall
                                                     .apiMessage(
                                                   (_model.resendStatus
                                                           ?.jsonBody ??
@@ -546,6 +561,8 @@ class _OTPVerifyWidgetState extends State<OTPVerifyWidget> {
                   updateCallback: () => safeSetState(() {}),
                   child: BaseButtonComponentWidget(
                     title: 'Verify',
+                    isLoading: false,
+                    removeScaffoldPadding: false,
                     passOnTapCallback: () async {
                       var _shouldSetState = false;
                       if (_model.formKey.currentState == null ||
@@ -559,238 +576,57 @@ class _OTPVerifyWidgetState extends State<OTPVerifyWidget> {
                           );
                         }(),
                       );
-                      if (!widget.isForgettingPassword) {
-                        _model.deviceId = await actions.getDeviceUniqueId();
-                        _shouldSetState = true;
-                        FFAppState().deviceUniqueId =
-                            _model.deviceId != null && _model.deviceId != ''
-                                ? _model.deviceId!
-                                : '';
-                        _model.signUpApiStatus =
-                            await HandyFindersAPIsGroup.signUpCall.call(
-                          email: widget.email,
-                          password: widget.password,
-                          deviceType: isAndroid == true ? 'ANDROID' : 'IOS',
-                          deviceToken: FFAppState().deviceToken,
-                          deviceUniqueid: _model.deviceId,
-                          otp: _model.pinCodeController!.text,
-                          isdontAskon: '1',
-                        );
+                      _model.verifyEmailResponse =
+                          await HandyFindersAPIsGroup.verifyEmailOTPCall.call(
+                        email: widget.email,
+                        otp: _model.pinCodeController!.text,
+                        isUpdatingEmail: 1,
+                        userEmailId: FFAppState().userId,
+                      );
 
-                        _shouldSetState = true;
+                      _shouldSetState = true;
+                      context.safePop();
+                      if (HandyFindersAPIsGroup.verifyEmailOTPCall.apiSuccess(
+                        (_model.verifyEmailResponse?.jsonBody ?? ''),
+                      )!) {
                         context.safePop();
-                        if ((_model.signUpApiStatus?.statusCode ?? 200) ==
-                            FFAppConstants.apiStatus201) {
-                          ScaffoldMessenger.of(context).clearSnackBars();
-                          ScaffoldMessenger.of(context).showSnackBar(
-                            SnackBar(
-                              content: Text(
-                                HandyFindersAPIsGroup.signUpCall.apiMessage(
-                                  (_model.signUpApiStatus?.jsonBody ?? ''),
-                                )!,
-                                style: TextStyle(
-                                  color:
-                                      FlutterFlowTheme.of(context).primaryText,
-                                ),
+                        ScaffoldMessenger.of(context).showSnackBar(
+                          SnackBar(
+                            content: Text(
+                              HandyFindersAPIsGroup.verifyEmailOTPCall
+                                  .apiMessage(
+                                (_model.verifyEmailResponse?.jsonBody ?? ''),
+                              )!,
+                              style: TextStyle(
+                                color: FlutterFlowTheme.of(context).primaryText,
                               ),
-                              duration: Duration(milliseconds: 4000),
-                              backgroundColor:
-                                  FlutterFlowTheme.of(context).secondary,
                             ),
-                          );
-                          FFAppState().userEmail = '';
-                          FFAppState().userName = '';
-                          FFAppState().userProfileImageUrl = '';
-                          FFAppState().deviceToken = 'dummydevicetoken';
-                          FFAppState().deviceUniqueId = 'dummyuniqueid';
-                          FFAppState().userMobile = '';
-                          FFAppState().userDob = '';
-                          FFAppState().userCountryCode = '';
-
-                          context.goNamed(
-                            LoginWidget.routeName,
-                            queryParameters: {
-                              'showBackButton': serializeParam(
-                                false,
-                                ParamType.bool,
-                              ),
-                            }.withoutNulls,
-                          );
-
-                          if (_shouldSetState) safeSetState(() {});
-                          return;
-                        } else if (HandyFindersAPIsGroup.signUpCall.apiStatus(
-                          (_model.signUpApiStatus?.jsonBody ?? ''),
-                        )!) {
-                          ScaffoldMessenger.of(context).clearSnackBars();
-                          ScaffoldMessenger.of(context).showSnackBar(
-                            SnackBar(
-                              content: Text(
-                                HandyFindersAPIsGroup.signUpCall.apiMessage(
-                                  (_model.signUpApiStatus?.jsonBody ?? ''),
-                                )!,
-                                style: TextStyle(
-                                  color: FlutterFlowTheme.of(context).info,
-                                ),
-                              ),
-                              duration: Duration(milliseconds: 4000),
-                              backgroundColor:
-                                  FlutterFlowTheme.of(context).successSnackBar,
-                            ),
-                          );
-                          if (Navigator.of(context).canPop()) {
-                            context.pop();
-                          }
-                          context.pushNamed(
-                            CreateUpdateProfileWidget.routeName,
-                            queryParameters: {
-                              'isUpdating': serializeParam(
-                                false,
-                                ParamType.bool,
-                              ),
-                              'authToken': serializeParam(
-                                HandyFindersAPIsGroup.signUpCall.authToken(
-                                  (_model.signUpApiStatus?.jsonBody ?? ''),
-                                ),
-                                ParamType.String,
-                              ),
-                              'userEmail': serializeParam(
-                                widget.email,
-                                ParamType.String,
-                              ),
-                              'hideBackButton': serializeParam(
-                                true,
-                                ParamType.bool,
-                              ),
-                            }.withoutNulls,
-                          );
-
-                          if (_shouldSetState) safeSetState(() {});
-                          return;
-                        } else {
-                          ScaffoldMessenger.of(context).clearSnackBars();
-                          ScaffoldMessenger.of(context).showSnackBar(
-                            SnackBar(
-                              content: Text(
-                                HandyFindersAPIsGroup.signUpCall.apiMessage(
-                                  (_model.signUpApiStatus?.jsonBody ?? ''),
-                                )!,
-                                style: TextStyle(
-                                  color: FlutterFlowTheme.of(context).info,
-                                ),
-                              ),
-                              duration: Duration(milliseconds: 4000),
-                              backgroundColor:
-                                  FlutterFlowTheme.of(context).errorSnackBar,
-                            ),
-                          );
-                          if (_shouldSetState) safeSetState(() {});
-                          return;
-                        }
+                            duration: Duration(milliseconds: 4000),
+                            backgroundColor:
+                                FlutterFlowTheme.of(context).secondary,
+                          ),
+                        );
+                        if (_shouldSetState) safeSetState(() {});
+                        return;
                       } else {
-                        _model.apiStatus =
-                            await HandyFindersAPIsGroup.verifyOtpCall.call(
-                          email: widget.email,
-                          otp: _model.pinCodeController!.text,
+                        ScaffoldMessenger.of(context).showSnackBar(
+                          SnackBar(
+                            content: Text(
+                              HandyFindersAPIsGroup.verifyEmailOTPCall
+                                  .apiMessage(
+                                (_model.verifyEmailResponse?.jsonBody ?? ''),
+                              )!,
+                              style: TextStyle(
+                                color: FlutterFlowTheme.of(context).primaryText,
+                              ),
+                            ),
+                            duration: Duration(milliseconds: 4000),
+                            backgroundColor:
+                                FlutterFlowTheme.of(context).secondary,
+                          ),
                         );
-
-                        _shouldSetState = true;
-                        context.safePop();
-                        if ((_model.apiStatus?.statusCode ?? 200) ==
-                            FFAppConstants.apiStatus201) {
-                          ScaffoldMessenger.of(context).clearSnackBars();
-                          ScaffoldMessenger.of(context).showSnackBar(
-                            SnackBar(
-                              content: Text(
-                                HandyFindersAPIsGroup.verifyOtpCall.apiMessage(
-                                  (_model.apiStatus?.jsonBody ?? ''),
-                                )!,
-                                style: TextStyle(
-                                  color:
-                                      FlutterFlowTheme.of(context).primaryText,
-                                ),
-                              ),
-                              duration: Duration(milliseconds: 4000),
-                              backgroundColor:
-                                  FlutterFlowTheme.of(context).secondary,
-                            ),
-                          );
-                          FFAppState().userEmail = '';
-                          FFAppState().userName = '';
-                          FFAppState().userProfileImageUrl = '';
-                          FFAppState().deviceToken = 'dummydevicetoken';
-                          FFAppState().deviceUniqueId = 'dummyuniqueid';
-                          FFAppState().userMobile = '';
-                          FFAppState().userDob = '';
-                          FFAppState().userCountryCode = '';
-
-                          context.goNamed(
-                            LoginWidget.routeName,
-                            queryParameters: {
-                              'showBackButton': serializeParam(
-                                false,
-                                ParamType.bool,
-                              ),
-                            }.withoutNulls,
-                          );
-
-                          if (_shouldSetState) safeSetState(() {});
-                          return;
-                        } else if (HandyFindersAPIsGroup.verifyOtpCall
-                            .apiSuccess(
-                          (_model.apiStatus?.jsonBody ?? ''),
-                        )!) {
-                          ScaffoldMessenger.of(context).clearSnackBars();
-                          ScaffoldMessenger.of(context).showSnackBar(
-                            SnackBar(
-                              content: Text(
-                                HandyFindersAPIsGroup.verifyOtpCall.apiMessage(
-                                  (_model.apiStatus?.jsonBody ?? ''),
-                                )!,
-                                style: TextStyle(
-                                  color:
-                                      FlutterFlowTheme.of(context).primaryText,
-                                ),
-                              ),
-                              duration: Duration(milliseconds: 4000),
-                              backgroundColor:
-                                  FlutterFlowTheme.of(context).secondary,
-                            ),
-                          );
-
-                          context.pushNamed(
-                            ResetPasswordWidget.routeName,
-                            queryParameters: {
-                              'email': serializeParam(
-                                widget.email,
-                                ParamType.String,
-                              ),
-                            }.withoutNulls,
-                          );
-
-                          if (_shouldSetState) safeSetState(() {});
-                          return;
-                        } else {
-                          ScaffoldMessenger.of(context).clearSnackBars();
-                          ScaffoldMessenger.of(context).showSnackBar(
-                            SnackBar(
-                              content: Text(
-                                HandyFindersAPIsGroup.verifyOtpCall.apiMessage(
-                                  (_model.apiStatus?.jsonBody ?? ''),
-                                )!,
-                                style: TextStyle(
-                                  color:
-                                      FlutterFlowTheme.of(context).primaryText,
-                                ),
-                              ),
-                              duration: Duration(milliseconds: 4000),
-                              backgroundColor:
-                                  FlutterFlowTheme.of(context).secondary,
-                            ),
-                          );
-                          if (_shouldSetState) safeSetState(() {});
-                          return;
-                        }
+                        if (_shouldSetState) safeSetState(() {});
+                        return;
                       }
 
                       if (_shouldSetState) safeSetState(() {});

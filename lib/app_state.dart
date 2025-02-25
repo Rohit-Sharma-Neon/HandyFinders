@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import '/backend/schema/structs/index.dart';
 import 'package:shared_preferences/shared_preferences.dart';
+import 'flutter_flow/flutter_flow_util.dart';
+import 'dart:convert';
 
 class FFAppState extends ChangeNotifier {
   static FFAppState _instance = FFAppState._internal();
@@ -73,6 +75,18 @@ class FFAppState extends ChangeNotifier {
     });
     _safeInit(() {
       _userLastName = prefs.getString('ff_userLastName') ?? _userLastName;
+    });
+    _safeInit(() {
+      if (prefs.containsKey('ff_UserLatestLatLongState')) {
+        try {
+          final serializedData =
+              prefs.getString('ff_UserLatestLatLongState') ?? '{}';
+          _UserLatestLatLongState = UserLatestLatLongStruct.fromSerializableMap(
+              jsonDecode(serializedData));
+        } catch (e) {
+          print("Can't decode persisted data type. Error: $e.");
+        }
+      }
     });
   }
 
@@ -584,6 +598,46 @@ class FFAppState extends ChangeNotifier {
   void updateForSaleAppStateVariablesStruct(
       Function(ForSaleVariablesStruct) updateFn) {
     updateFn(_ForSaleAppStateVariables);
+  }
+
+  ProfileTabVariablesStruct _profileTabVariablesState =
+      ProfileTabVariablesStruct();
+  ProfileTabVariablesStruct get profileTabVariablesState =>
+      _profileTabVariablesState;
+  set profileTabVariablesState(ProfileTabVariablesStruct value) {
+    _profileTabVariablesState = value;
+  }
+
+  void updateProfileTabVariablesStateStruct(
+      Function(ProfileTabVariablesStruct) updateFn) {
+    updateFn(_profileTabVariablesState);
+  }
+
+  UserLatestLatLongStruct _UserLatestLatLongState = UserLatestLatLongStruct();
+  UserLatestLatLongStruct get UserLatestLatLongState => _UserLatestLatLongState;
+  set UserLatestLatLongState(UserLatestLatLongStruct value) {
+    _UserLatestLatLongState = value;
+    prefs.setString('ff_UserLatestLatLongState', value.serialize());
+  }
+
+  void updateUserLatestLatLongStateStruct(
+      Function(UserLatestLatLongStruct) updateFn) {
+    updateFn(_UserLatestLatLongState);
+    prefs.setString(
+        'ff_UserLatestLatLongState', _UserLatestLatLongState.serialize());
+  }
+
+  HomeTabPaginationVariablesStruct _homeTabPaginationState =
+      HomeTabPaginationVariablesStruct();
+  HomeTabPaginationVariablesStruct get homeTabPaginationState =>
+      _homeTabPaginationState;
+  set homeTabPaginationState(HomeTabPaginationVariablesStruct value) {
+    _homeTabPaginationState = value;
+  }
+
+  void updateHomeTabPaginationStateStruct(
+      Function(HomeTabPaginationVariablesStruct) updateFn) {
+    updateFn(_homeTabPaginationState);
   }
 }
 

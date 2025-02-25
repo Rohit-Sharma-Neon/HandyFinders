@@ -809,8 +809,11 @@ class _RequestTabWidgetState extends State<RequestTabWidget>
                                                                               ),
                                                                             ),
                                                                           ),
-                                                                          if (_model.selectedTabIndex ==
-                                                                              0)
+                                                                          if (getJsonField(
+                                                                                primaryTabListItem,
+                                                                                r'''$.cost''',
+                                                                              ) !=
+                                                                              null)
                                                                             Padding(
                                                                               padding: EdgeInsetsDirectional.fromSTEB(11.0, 0.0, 0.0, 0.0),
                                                                               child: RichText(
@@ -873,24 +876,36 @@ class _RequestTabWidgetState extends State<RequestTabWidget>
                                                                                               child: EditRemoveMenuPopUpWidget(
                                                                                                 onEdit: () async {
                                                                                                   Navigator.pop(context);
+                                                                                                  if ((String type) {
+                                                                                                    return type.toLowerCase() == "request";
+                                                                                                  }(getJsonField(
+                                                                                                    primaryTabListItem,
+                                                                                                    r'''$.type''',
+                                                                                                  ).toString())) {
+                                                                                                    context.pushNamed(
+                                                                                                      PostRequestForumWidget.routeName,
+                                                                                                      queryParameters: {
+                                                                                                        'isUpdating': serializeParam(
+                                                                                                          true,
+                                                                                                          ParamType.bool,
+                                                                                                        ),
+                                                                                                        'jsonData': serializeParam(
+                                                                                                          primaryTabListItem,
+                                                                                                          ParamType.JSON,
+                                                                                                        ),
+                                                                                                        'itemIndex': serializeParam(
+                                                                                                          primaryTabListIndex,
+                                                                                                          ParamType.int,
+                                                                                                        ),
+                                                                                                      }.withoutNulls,
+                                                                                                    );
 
-                                                                                                  context.pushNamed(
-                                                                                                    PostRequestForumWidget.routeName,
-                                                                                                    queryParameters: {
-                                                                                                      'isUpdating': serializeParam(
-                                                                                                        true,
-                                                                                                        ParamType.bool,
-                                                                                                      ),
-                                                                                                      'jsonData': serializeParam(
-                                                                                                        primaryTabListItem,
-                                                                                                        ParamType.JSON,
-                                                                                                      ),
-                                                                                                      'itemIndex': serializeParam(
-                                                                                                        primaryTabListIndex,
-                                                                                                        ParamType.int,
-                                                                                                      ),
-                                                                                                    }.withoutNulls,
-                                                                                                  );
+                                                                                                    return;
+                                                                                                  } else {
+                                                                                                    context.pushNamed(PostTipAdviceWidget.routeName);
+
+                                                                                                    return;
+                                                                                                  }
                                                                                                 },
                                                                                                 onRemove: () async {
                                                                                                   Navigator.pop(context);
@@ -1690,32 +1705,17 @@ class _RequestTabWidgetState extends State<RequestTabWidget>
                                         return Align(
                                           alignment:
                                               AlignmentDirectional(0.0, 0.0),
-                                          child: Padding(
-                                            padding:
-                                                EdgeInsetsDirectional.fromSTEB(
-                                                    0.0,
-                                                    valueOrDefault<double>(
-                                                      MediaQuery.sizeOf(context)
-                                                              .height *
-                                                          0.33,
-                                                      0.0,
-                                                    ),
-                                                    0.0,
-                                                    0.0),
-                                            child: Text(
-                                              'No Request Found!',
-                                              style:
-                                                  FlutterFlowTheme.of(context)
-                                                      .bodyMedium
-                                                      .override(
-                                                        fontFamily: 'Comfortaa',
-                                                        color:
-                                                            FlutterFlowTheme.of(
-                                                                    context)
-                                                                .hintTextColor,
-                                                        letterSpacing: 0.0,
-                                                      ),
-                                            ),
+                                          child: Text(
+                                            'No Request Found!',
+                                            style: FlutterFlowTheme.of(context)
+                                                .bodyMedium
+                                                .override(
+                                                  fontFamily: 'Comfortaa',
+                                                  color: FlutterFlowTheme.of(
+                                                          context)
+                                                      .hintTextColor,
+                                                  letterSpacing: 0.0,
+                                                ),
                                           ),
                                         );
                                       }
@@ -2088,7 +2088,7 @@ class _RequestTabWidgetState extends State<RequestTabWidget>
                                                                                   fadeOutDuration: Duration(milliseconds: 0),
                                                                                   imageUrl: '${FFAppConstants.baseImageUrl}${getJsonField(
                                                                                     secondaryTabListItem,
-                                                                                    r'''$.user_detail.profile_picture''',
+                                                                                    r'''$.complete_user_detail.profile_picture''',
                                                                                   ).toString()}',
                                                                                   width: 42.0,
                                                                                   height: 42.0,
@@ -2107,7 +2107,7 @@ class _RequestTabWidgetState extends State<RequestTabWidget>
                                                                                   child: Text(
                                                                                     getJsonField(
                                                                                       secondaryTabListItem,
-                                                                                      r'''$.user_detail.user_name''',
+                                                                                      r'''$.complete_user_detail.user_name''',
                                                                                     ).toString(),
                                                                                     style: FlutterFlowTheme.of(context).bodyMedium.override(
                                                                                           fontFamily: 'Inter',
@@ -2159,8 +2159,11 @@ class _RequestTabWidgetState extends State<RequestTabWidget>
                                                                                 ),
                                                                               ),
                                                                             ),
-                                                                            if (_model.selectedTabIndex ==
-                                                                                0)
+                                                                            if (getJsonField(
+                                                                                  secondaryTabListItem,
+                                                                                  r'''$.cost''',
+                                                                                ) !=
+                                                                                null)
                                                                               Padding(
                                                                                 padding: EdgeInsetsDirectional.fromSTEB(11.0, 0.0, 0.0, 0.0),
                                                                                 child: RichText(
@@ -2787,8 +2790,18 @@ class _RequestTabWidgetState extends State<RequestTabWidget>
                                                                                           FocusManager.instance.primaryFocus?.unfocus();
                                                                                         },
                                                                                         child: LeaveReviewDialogWidget(
-                                                                                          otherUserId: 1,
-                                                                                          requestId: 1,
+                                                                                          otherUserId: getJsonField(
+                                                                                            secondaryTabListItem,
+                                                                                            r'''$.complete_user_detail.id''',
+                                                                                          ),
+                                                                                          requestId: getJsonField(
+                                                                                            secondaryTabListItem,
+                                                                                            r'''$.id''',
+                                                                                          ),
+                                                                                          profilePhotoUrl: getJsonField(
+                                                                                            secondaryTabListItem,
+                                                                                            r'''$.complete_user_detail.profile_picture''',
+                                                                                          ).toString(),
                                                                                         ),
                                                                                       ),
                                                                                     ),
@@ -3013,32 +3026,17 @@ class _RequestTabWidgetState extends State<RequestTabWidget>
                                         return Align(
                                           alignment:
                                               AlignmentDirectional(0.0, 0.0),
-                                          child: Padding(
-                                            padding:
-                                                EdgeInsetsDirectional.fromSTEB(
-                                                    0.0,
-                                                    valueOrDefault<double>(
-                                                      MediaQuery.sizeOf(context)
-                                                              .height *
-                                                          0.35,
-                                                      0.0,
-                                                    ),
-                                                    0.0,
-                                                    0.0),
-                                            child: Text(
-                                              'No Completed Request Found!',
-                                              style:
-                                                  FlutterFlowTheme.of(context)
-                                                      .bodyMedium
-                                                      .override(
-                                                        fontFamily: 'Comfortaa',
-                                                        color:
-                                                            FlutterFlowTheme.of(
-                                                                    context)
-                                                                .hintTextColor,
-                                                        letterSpacing: 0.0,
-                                                      ),
-                                            ),
+                                          child: Text(
+                                            'No Completed Request Found!',
+                                            style: FlutterFlowTheme.of(context)
+                                                .bodyMedium
+                                                .override(
+                                                  fontFamily: 'Comfortaa',
+                                                  color: FlutterFlowTheme.of(
+                                                          context)
+                                                      .hintTextColor,
+                                                  letterSpacing: 0.0,
+                                                ),
                                           ),
                                         );
                                       }

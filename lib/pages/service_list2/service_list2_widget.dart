@@ -46,6 +46,7 @@ class _ServiceList2WidgetState extends State<ServiceList2Widget> {
           await HandyFindersAPIsGroup.allSaleServiceListCall.call(
         authToken: FFAppState().authToken,
         page: _model.currentPageIndex,
+        type: widget.type,
       );
 
       _model.isFetchingApi = false;
@@ -149,6 +150,7 @@ class _ServiceList2WidgetState extends State<ServiceList2Widget> {
                                   .call(
                             authToken: FFAppState().authToken,
                             page: _model.currentPageIndex,
+                            type: widget.type,
                           );
 
                           if (HandyFindersAPIsGroup.allSaleServiceListCall
@@ -233,11 +235,14 @@ class _ServiceList2WidgetState extends State<ServiceList2Widget> {
                                                   .routeName,
                                               queryParameters: {
                                                 'listingType': serializeParam(
-                                                  'Item',
+                                                  'Service',
                                                   ParamType.String,
                                                 ),
                                                 'id': serializeParam(
-                                                  0,
+                                                  getJsonField(
+                                                    newestItemsItem,
+                                                    r'''$.id''',
+                                                  ),
                                                   ParamType.int,
                                                 ),
                                               }.withoutNulls,
@@ -371,89 +376,154 @@ class _ServiceList2WidgetState extends State<ServiceList2Widget> {
                                                                 ),
                                                       ),
                                                     ),
-                                                    Padding(
-                                                      padding:
-                                                          EdgeInsetsDirectional
-                                                              .fromSTEB(
-                                                                  8.0,
-                                                                  5.0,
-                                                                  8.0,
-                                                                  8.0),
-                                                      child: RichText(
-                                                        textScaler:
-                                                            MediaQuery.of(
-                                                                    context)
-                                                                .textScaler,
-                                                        text: TextSpan(
-                                                          children: [
-                                                            TextSpan(
-                                                              text: '\$',
-                                                              style: FlutterFlowTheme
-                                                                      .of(context)
-                                                                  .bodyMedium
-                                                                  .override(
-                                                                    fontFamily:
-                                                                        'Inter',
-                                                                    color: FlutterFlowTheme.of(
+                                                    Builder(
+                                                      builder: (context) {
+                                                        if (getJsonField(
+                                                              newestItemsItem,
+                                                              r'''$.is_free''',
+                                                            ) ==
+                                                            0) {
+                                                          return Padding(
+                                                            padding:
+                                                                EdgeInsetsDirectional
+                                                                    .fromSTEB(
+                                                                        8.0,
+                                                                        5.0,
+                                                                        8.0,
+                                                                        8.0),
+                                                            child: RichText(
+                                                              textScaler:
+                                                                  MediaQuery.of(
+                                                                          context)
+                                                                      .textScaler,
+                                                              text: TextSpan(
+                                                                children: [
+                                                                  TextSpan(
+                                                                    text: '\$',
+                                                                    style: FlutterFlowTheme.of(
                                                                             context)
-                                                                        .primary,
-                                                                    fontSize:
-                                                                        14.0,
-                                                                    letterSpacing:
-                                                                        0.0,
-                                                                    fontWeight:
-                                                                        FontWeight
-                                                                            .w600,
-                                                                    decoration:
-                                                                        TextDecoration
-                                                                            .lineThrough,
+                                                                        .bodyMedium
+                                                                        .override(
+                                                                          fontFamily:
+                                                                              'Inter',
+                                                                          color:
+                                                                              FlutterFlowTheme.of(context).primary,
+                                                                          fontSize:
+                                                                              14.0,
+                                                                          letterSpacing:
+                                                                              0.0,
+                                                                          fontWeight:
+                                                                              FontWeight.w600,
+                                                                          decoration:
+                                                                              TextDecoration.lineThrough,
+                                                                        ),
                                                                   ),
-                                                            ),
-                                                            TextSpan(
-                                                              text:
-                                                                  getJsonField(
-                                                                newestItemsItem,
-                                                                r'''$.price''',
-                                                              ).toString(),
-                                                              style: TextStyle(
-                                                                decoration:
-                                                                    TextDecoration
-                                                                        .lineThrough,
-                                                              ),
-                                                            ),
-                                                            TextSpan(
-                                                              text: ' \$',
-                                                              style:
-                                                                  TextStyle(),
-                                                            ),
-                                                            TextSpan(
-                                                              text:
-                                                                  getJsonField(
-                                                                newestItemsItem,
-                                                                r'''$.sale_price''',
-                                                              ).toString(),
-                                                              style:
-                                                                  TextStyle(),
-                                                            )
-                                                          ],
-                                                          style: FlutterFlowTheme
-                                                                  .of(context)
-                                                              .bodyMedium
-                                                              .override(
-                                                                fontFamily:
-                                                                    'Inter',
-                                                                color: FlutterFlowTheme.of(
+                                                                  TextSpan(
+                                                                    text:
+                                                                        getJsonField(
+                                                                      newestItemsItem,
+                                                                      r'''$.price''',
+                                                                    ).toString(),
+                                                                    style:
+                                                                        TextStyle(
+                                                                      decoration:
+                                                                          TextDecoration
+                                                                              .lineThrough,
+                                                                    ),
+                                                                  ),
+                                                                  TextSpan(
+                                                                    text: ' \$',
+                                                                    style:
+                                                                        TextStyle(),
+                                                                  ),
+                                                                  TextSpan(
+                                                                    text:
+                                                                        getJsonField(
+                                                                      newestItemsItem,
+                                                                      r'''$.sale_price''',
+                                                                    ).toString(),
+                                                                    style:
+                                                                        TextStyle(),
+                                                                  )
+                                                                ],
+                                                                style: FlutterFlowTheme.of(
                                                                         context)
-                                                                    .primary,
-                                                                fontSize: 14.0,
-                                                                letterSpacing:
-                                                                    0.0,
-                                                                fontWeight:
-                                                                    FontWeight
-                                                                        .w600,
+                                                                    .bodyMedium
+                                                                    .override(
+                                                                      fontFamily:
+                                                                          'Inter',
+                                                                      color: FlutterFlowTheme.of(
+                                                                              context)
+                                                                          .primary,
+                                                                      fontSize:
+                                                                          14.0,
+                                                                      letterSpacing:
+                                                                          0.0,
+                                                                      fontWeight:
+                                                                          FontWeight
+                                                                              .w600,
+                                                                    ),
                                                               ),
-                                                        ),
-                                                      ),
+                                                            ),
+                                                          );
+                                                        } else {
+                                                          return Padding(
+                                                            padding:
+                                                                EdgeInsetsDirectional
+                                                                    .fromSTEB(
+                                                                        8.0,
+                                                                        5.0,
+                                                                        8.0,
+                                                                        8.0),
+                                                            child: RichText(
+                                                              textScaler:
+                                                                  MediaQuery.of(
+                                                                          context)
+                                                                      .textScaler,
+                                                              text: TextSpan(
+                                                                children: [
+                                                                  TextSpan(
+                                                                    text:
+                                                                        'Free',
+                                                                    style: FlutterFlowTheme.of(
+                                                                            context)
+                                                                        .bodyMedium
+                                                                        .override(
+                                                                          fontFamily:
+                                                                              'Inter',
+                                                                          color:
+                                                                              FlutterFlowTheme.of(context).primary,
+                                                                          fontSize:
+                                                                              14.0,
+                                                                          letterSpacing:
+                                                                              0.0,
+                                                                          fontWeight:
+                                                                              FontWeight.w600,
+                                                                        ),
+                                                                  )
+                                                                ],
+                                                                style: FlutterFlowTheme.of(
+                                                                        context)
+                                                                    .bodyMedium
+                                                                    .override(
+                                                                      fontFamily:
+                                                                          'Inter',
+                                                                      color: FlutterFlowTheme.of(
+                                                                              context)
+                                                                          .primary,
+                                                                      fontSize:
+                                                                          14.0,
+                                                                      letterSpacing:
+                                                                          0.0,
+                                                                      fontWeight:
+                                                                          FontWeight
+                                                                              .w600,
+                                                                    ),
+                                                              ),
+                                                            ),
+                                                          );
+                                                        }
+                                                      },
                                                     ),
                                                   ],
                                                 ),
@@ -759,6 +829,7 @@ class _ServiceList2WidgetState extends State<ServiceList2Widget> {
                                                     .call(
                                               authToken: FFAppState().authToken,
                                               page: _model.currentPageIndex,
+                                              type: widget.type,
                                             );
 
                                             _shouldSetState = true;

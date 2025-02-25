@@ -719,6 +719,7 @@ class _YourPostWidgetState extends State<YourPostWidget>
                                                                                                 child: CustomConfirmationDialogWidget(
                                                                                                   title: 'Are you sure you want to remove this comment ?',
                                                                                                   onYesTap: () async {
+                                                                                                    var _shouldSetState = false;
                                                                                                     context.safePop();
                                                                                                     unawaited(
                                                                                                       () async {
@@ -735,6 +736,7 @@ class _YourPostWidgetState extends State<YourPostWidget>
                                                                                                       ).toString(),
                                                                                                     );
 
+                                                                                                    _shouldSetState = true;
                                                                                                     context.safePop();
                                                                                                     if (HandyFindersAPIsGroup.removeRequestCall.apiStatus(
                                                                                                       (_model.removePostResponse?.jsonBody ?? ''),
@@ -756,6 +758,7 @@ class _YourPostWidgetState extends State<YourPostWidget>
                                                                                                       );
                                                                                                       FFAppState().removeAtIndexFromYourPostForumList(localPostListIndex);
                                                                                                       safeSetState(() {});
+                                                                                                      return;
                                                                                                     } else {
                                                                                                       ScaffoldMessenger.of(context).clearSnackBars();
                                                                                                       ScaffoldMessenger.of(context).showSnackBar(
@@ -772,6 +775,7 @@ class _YourPostWidgetState extends State<YourPostWidget>
                                                                                                           backgroundColor: FlutterFlowTheme.of(context).secondary,
                                                                                                         ),
                                                                                                       );
+                                                                                                      return;
                                                                                                     }
                                                                                                   },
                                                                                                 ),

@@ -9,6 +9,7 @@ import '/pages/report_menu_pop_up/report_menu_pop_up_widget.dart';
 import 'dart:async';
 import '/custom_code/actions/index.dart' as actions;
 import '/custom_code/widgets/index.dart' as custom_widgets;
+import '/flutter_flow/custom_functions.dart' as functions;
 import 'package:aligned_dialog/aligned_dialog.dart';
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
@@ -68,6 +69,27 @@ class _ReviewAndRatingsWidgetState extends State<ReviewAndRatingsWidget> {
           ),
           0,
         );
+        _model.fiveStarPercentage = getJsonField(
+          (_model.initialApiResponse?.jsonBody ?? ''),
+          r'''$.data1.starbreakdown.five''',
+        );
+        _model.fourStarPercentage = getJsonField(
+          (_model.initialApiResponse?.jsonBody ?? ''),
+          r'''$.data1.starbreakdown.four''',
+        );
+        _model.threeStarPercentage = getJsonField(
+          (_model.initialApiResponse?.jsonBody ?? ''),
+          r'''$.data1.starbreakdown.three''',
+        );
+        _model.twoStarPercentage = getJsonField(
+          (_model.initialApiResponse?.jsonBody ?? ''),
+          r'''$.data1.starbreakdown.two''',
+        );
+        _model.oneStarPercentage = getJsonField(
+          (_model.initialApiResponse?.jsonBody ?? ''),
+          r'''$.data1.starbreakdown.one''',
+        );
+        _model.currentPageIndex = 2;
         safeSetState(() {});
         return;
       } else {
@@ -289,7 +311,8 @@ class _ReviewAndRatingsWidgetState extends State<ReviewAndRatingsWidget> {
                                             ),
                                             Expanded(
                                               child: LinearPercentIndicator(
-                                                percent: 0.0,
+                                                percent:
+                                                    _model.fiveStarPercentage,
                                                 lineHeight: 6.0,
                                                 animation: true,
                                                 animateFromLastPercent: true,
@@ -328,7 +351,8 @@ class _ReviewAndRatingsWidgetState extends State<ReviewAndRatingsWidget> {
                                             ),
                                             Expanded(
                                               child: LinearPercentIndicator(
-                                                percent: 0.0,
+                                                percent:
+                                                    _model.fourStarPercentage,
                                                 lineHeight: 6.0,
                                                 animation: true,
                                                 animateFromLastPercent: true,
@@ -367,7 +391,8 @@ class _ReviewAndRatingsWidgetState extends State<ReviewAndRatingsWidget> {
                                             ),
                                             Expanded(
                                               child: LinearPercentIndicator(
-                                                percent: 0.0,
+                                                percent:
+                                                    _model.threeStarPercentage,
                                                 lineHeight: 6.0,
                                                 animation: true,
                                                 animateFromLastPercent: true,
@@ -406,7 +431,8 @@ class _ReviewAndRatingsWidgetState extends State<ReviewAndRatingsWidget> {
                                             ),
                                             Expanded(
                                               child: LinearPercentIndicator(
-                                                percent: 0.0,
+                                                percent:
+                                                    _model.twoStarPercentage,
                                                 lineHeight: 6.0,
                                                 animation: true,
                                                 animateFromLastPercent: true,
@@ -445,7 +471,8 @@ class _ReviewAndRatingsWidgetState extends State<ReviewAndRatingsWidget> {
                                             ),
                                             Expanded(
                                               child: LinearPercentIndicator(
-                                                percent: 0.0,
+                                                percent:
+                                                    _model.oneStarPercentage,
                                                 lineHeight: 6.0,
                                                 animation: true,
                                                 animateFromLastPercent: true,
@@ -479,7 +506,7 @@ class _ReviewAndRatingsWidgetState extends State<ReviewAndRatingsWidget> {
                                         .userReviewDetailCall
                                         .call(
                                   authToken: FFAppState().authToken,
-                                  userId: '43',
+                                  userId: FFAppState().userId,
                                   page: 1,
                                 );
 
@@ -507,6 +534,31 @@ class _ReviewAndRatingsWidgetState extends State<ReviewAndRatingsWidget> {
                                           ''),
                                     ),
                                     0,
+                                  );
+                                  _model.fiveStarPercentage = getJsonField(
+                                    (_model.refreshedReviewResponse?.jsonBody ??
+                                        ''),
+                                    r'''$.data1.starbreakdown.five''',
+                                  );
+                                  _model.fourStarPercentage = getJsonField(
+                                    (_model.refreshedReviewResponse?.jsonBody ??
+                                        ''),
+                                    r'''$.data1.starbreakdown.four''',
+                                  );
+                                  _model.threeStarPercentage = getJsonField(
+                                    (_model.refreshedReviewResponse?.jsonBody ??
+                                        ''),
+                                    r'''$.data1.starbreakdown.three''',
+                                  );
+                                  _model.twoStarPercentage = getJsonField(
+                                    (_model.refreshedReviewResponse?.jsonBody ??
+                                        ''),
+                                    r'''$.data1.starbreakdown.two''',
+                                  );
+                                  _model.oneStarPercentage = getJsonField(
+                                    (_model.refreshedReviewResponse?.jsonBody ??
+                                        ''),
+                                    r'''$.data1.starbreakdown.one''',
                                   );
                                   safeSetState(() {});
                                   return;
@@ -664,9 +716,14 @@ class _ReviewAndRatingsWidgetState extends State<ReviewAndRatingsWidget> {
                                                                           direction:
                                                                               Axis.horizontal,
                                                                           rating:
-                                                                              getJsonField(
-                                                                            reviewsItem,
-                                                                            r'''$.rating''',
+                                                                              valueOrDefault<double>(
+                                                                            (getJsonField(
+                                                                                      reviewsItem,
+                                                                                      r'''$.rating''',
+                                                                                    ) ??
+                                                                                    0)
+                                                                                .toDouble(),
+                                                                            0.0,
                                                                           ),
                                                                           unratedColor:
                                                                               Color(0xFFD7D7D7),
@@ -1053,10 +1110,11 @@ class _ReviewAndRatingsWidgetState extends State<ReviewAndRatingsWidget> {
                                                                       0.0,
                                                                       0.0),
                                                           child: Text(
-                                                            getJsonField(
+                                                            functions.getTimeAgo(
+                                                                getJsonField(
                                                               reviewsItem,
                                                               r'''$.service_detail.updated_at''',
-                                                            ).toString(),
+                                                            ).toString()),
                                                             style: FlutterFlowTheme
                                                                     .of(context)
                                                                 .bodyMedium

@@ -52,3 +52,5 @@ export '/pages/add_update_listing/add_update_listing_widget.dart'
 export '/pages/save_listing/save_listing_widget.dart' show SaveListingWidget;
 export '/pages/request_tab/request_tab_widget.dart' show RequestTabWidget;
 export '/pages/service_list2/service_list2_widget.dart' show ServiceList2Widget;
+export '/pages/verify_email_otp/verify_email_otp_widget.dart'
+    show VerifyEmailOtpWidget;

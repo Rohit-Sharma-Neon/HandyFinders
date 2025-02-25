@@ -348,6 +348,28 @@ GoRouter createRouter(AppStateNotifier appStateNotifier) => GoRouter(
               ParamType.String,
             ),
           ),
+        ),
+        FFRoute(
+          name: VerifyEmailOtpWidget.routeName,
+          path: VerifyEmailOtpWidget.routePath,
+          builder: (context, params) => VerifyEmailOtpWidget(
+            email: params.getParam(
+              'email',
+              ParamType.String,
+            ),
+            isForgettingPassword: params.getParam(
+              'isForgettingPassword',
+              ParamType.bool,
+            ),
+            password: params.getParam(
+              'password',
+              ParamType.String,
+            ),
+            isUpdatingEmail: params.getParam(
+              'isUpdatingEmail',
+              ParamType.int,
+            ),
+          ),
         )
       ].map((r) => r.toRoute(appStateNotifier)).toList(),
     );

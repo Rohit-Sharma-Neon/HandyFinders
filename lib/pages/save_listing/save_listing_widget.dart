@@ -605,37 +605,137 @@ class _SaveListingWidgetState extends State<SaveListingWidget>
                                                                             15.0,
                                                                             0.0),
                                                                     child:
-                                                                        Container(
-                                                                      width:
-                                                                          35.0,
-                                                                      height:
-                                                                          35.0,
-                                                                      decoration:
-                                                                          BoxDecoration(
-                                                                        color: Color(
-                                                                            0x80000000),
-                                                                        shape: BoxShape
-                                                                            .circle,
-                                                                      ),
+                                                                        InkWell(
+                                                                      splashColor:
+                                                                          Colors
+                                                                              .transparent,
+                                                                      focusColor:
+                                                                          Colors
+                                                                              .transparent,
+                                                                      hoverColor:
+                                                                          Colors
+                                                                              .transparent,
+                                                                      highlightColor:
+                                                                          Colors
+                                                                              .transparent,
+                                                                      onTap:
+                                                                          () async {
+                                                                        var _shouldSetState =
+                                                                            false;
+                                                                        unawaited(
+                                                                          () async {
+                                                                            await actions.showBaseLoader(
+                                                                              context,
+                                                                            );
+                                                                          }(),
+                                                                        );
+                                                                        _model.unbookmarkResponse = await HandyFindersAPIsGroup
+                                                                            .bookmarkItemCall
+                                                                            .call(
+                                                                          authToken:
+                                                                              FFAppState().authToken,
+                                                                          itemId:
+                                                                              getJsonField(
+                                                                            localItemListingItem,
+                                                                            r'''$.item_id''',
+                                                                          ).toString(),
+                                                                          statusKey:
+                                                                              0,
+                                                                        );
+
+                                                                        _shouldSetState =
+                                                                            true;
+                                                                        context
+                                                                            .safePop();
+                                                                        if (HandyFindersAPIsGroup
+                                                                            .bookmarkItemCall
+                                                                            .apiStatus(
+                                                                          (_model.unbookmarkResponse?.jsonBody ??
+                                                                              ''),
+                                                                        )!) {
+                                                                          ScaffoldMessenger.of(context)
+                                                                              .clearSnackBars();
+                                                                          ScaffoldMessenger.of(context)
+                                                                              .showSnackBar(
+                                                                            SnackBar(
+                                                                              content: Text(
+                                                                                HandyFindersAPIsGroup.bookmarkItemCall.apiMessage(
+                                                                                  (_model.unbookmarkResponse?.jsonBody ?? ''),
+                                                                                )!,
+                                                                                style: TextStyle(
+                                                                                  color: FlutterFlowTheme.of(context).primaryText,
+                                                                                ),
+                                                                              ),
+                                                                              duration: Duration(milliseconds: 3000),
+                                                                              backgroundColor: FlutterFlowTheme.of(context).secondary,
+                                                                            ),
+                                                                          );
+                                                                          _model
+                                                                              .removeAtIndexFromItemsListJson(localItemListingIndex);
+                                                                          safeSetState(
+                                                                              () {});
+                                                                          if (_shouldSetState)
+                                                                            safeSetState(() {});
+                                                                          return;
+                                                                        } else {
+                                                                          ScaffoldMessenger.of(context)
+                                                                              .clearSnackBars();
+                                                                          ScaffoldMessenger.of(context)
+                                                                              .showSnackBar(
+                                                                            SnackBar(
+                                                                              content: Text(
+                                                                                HandyFindersAPIsGroup.bookmarkItemCall.apiMessage(
+                                                                                  (_model.unbookmarkResponse?.jsonBody ?? ''),
+                                                                                )!,
+                                                                                style: TextStyle(
+                                                                                  color: FlutterFlowTheme.of(context).primaryText,
+                                                                                ),
+                                                                              ),
+                                                                              duration: Duration(milliseconds: 3000),
+                                                                              backgroundColor: FlutterFlowTheme.of(context).secondary,
+                                                                            ),
+                                                                          );
+                                                                          if (_shouldSetState)
+                                                                            safeSetState(() {});
+                                                                          return;
+                                                                        }
+
+                                                                        if (_shouldSetState)
+                                                                          safeSetState(
+                                                                              () {});
+                                                                      },
                                                                       child:
-                                                                          Builder(
-                                                                        builder:
-                                                                            (context) {
-                                                                          if (FFAppState()
-                                                                              .IsRememberMe) {
-                                                                            return Icon(
-                                                                              Icons.bookmark_rounded,
-                                                                              color: FlutterFlowTheme.of(context).secondaryBackground,
-                                                                              size: 22.0,
-                                                                            );
-                                                                          } else {
-                                                                            return Icon(
-                                                                              Icons.bookmark_border_rounded,
-                                                                              color: FlutterFlowTheme.of(context).secondaryBackground,
-                                                                              size: 22.0,
-                                                                            );
-                                                                          }
-                                                                        },
+                                                                          Container(
+                                                                        width:
+                                                                            35.0,
+                                                                        height:
+                                                                            35.0,
+                                                                        decoration:
+                                                                            BoxDecoration(
+                                                                          color:
+                                                                              Color(0x80000000),
+                                                                          shape:
+                                                                              BoxShape.circle,
+                                                                        ),
+                                                                        child:
+                                                                            Builder(
+                                                                          builder:
+                                                                              (context) {
+                                                                            if (FFAppState().IsRememberMe) {
+                                                                              return Icon(
+                                                                                Icons.bookmark_rounded,
+                                                                                color: FlutterFlowTheme.of(context).secondaryBackground,
+                                                                                size: 22.0,
+                                                                              );
+                                                                            } else {
+                                                                              return Icon(
+                                                                                Icons.bookmark_border_rounded,
+                                                                                color: FlutterFlowTheme.of(context).secondaryBackground,
+                                                                                size: 22.0,
+                                                                              );
+                                                                            }
+                                                                          },
+                                                                        ),
                                                                       ),
                                                                     ),
                                                                   ),
@@ -1323,37 +1423,137 @@ class _SaveListingWidgetState extends State<SaveListingWidget>
                                                                             15.0,
                                                                             0.0),
                                                                     child:
-                                                                        Container(
-                                                                      width:
-                                                                          35.0,
-                                                                      height:
-                                                                          35.0,
-                                                                      decoration:
-                                                                          BoxDecoration(
-                                                                        color: Color(
-                                                                            0x80000000),
-                                                                        shape: BoxShape
-                                                                            .circle,
-                                                                      ),
+                                                                        InkWell(
+                                                                      splashColor:
+                                                                          Colors
+                                                                              .transparent,
+                                                                      focusColor:
+                                                                          Colors
+                                                                              .transparent,
+                                                                      hoverColor:
+                                                                          Colors
+                                                                              .transparent,
+                                                                      highlightColor:
+                                                                          Colors
+                                                                              .transparent,
+                                                                      onTap:
+                                                                          () async {
+                                                                        var _shouldSetState =
+                                                                            false;
+                                                                        unawaited(
+                                                                          () async {
+                                                                            await actions.showBaseLoader(
+                                                                              context,
+                                                                            );
+                                                                          }(),
+                                                                        );
+                                                                        _model.unbookmarkServiceResponse = await HandyFindersAPIsGroup
+                                                                            .bookmarkItemCall
+                                                                            .call(
+                                                                          authToken:
+                                                                              FFAppState().authToken,
+                                                                          itemId:
+                                                                              getJsonField(
+                                                                            localServiceListingItem,
+                                                                            r'''$.item_id''',
+                                                                          ).toString(),
+                                                                          statusKey:
+                                                                              0,
+                                                                        );
+
+                                                                        _shouldSetState =
+                                                                            true;
+                                                                        context
+                                                                            .safePop();
+                                                                        if (HandyFindersAPIsGroup
+                                                                            .bookmarkItemCall
+                                                                            .apiStatus(
+                                                                          (_model.unbookmarkServiceResponse?.jsonBody ??
+                                                                              ''),
+                                                                        )!) {
+                                                                          ScaffoldMessenger.of(context)
+                                                                              .clearSnackBars();
+                                                                          ScaffoldMessenger.of(context)
+                                                                              .showSnackBar(
+                                                                            SnackBar(
+                                                                              content: Text(
+                                                                                HandyFindersAPIsGroup.bookmarkItemCall.apiMessage(
+                                                                                  (_model.unbookmarkServiceResponse?.jsonBody ?? ''),
+                                                                                )!,
+                                                                                style: TextStyle(
+                                                                                  color: FlutterFlowTheme.of(context).primaryText,
+                                                                                ),
+                                                                              ),
+                                                                              duration: Duration(milliseconds: 3000),
+                                                                              backgroundColor: FlutterFlowTheme.of(context).secondary,
+                                                                            ),
+                                                                          );
+                                                                          _model
+                                                                              .removeAtIndexFromServicesListJson(localServiceListingIndex);
+                                                                          safeSetState(
+                                                                              () {});
+                                                                          if (_shouldSetState)
+                                                                            safeSetState(() {});
+                                                                          return;
+                                                                        } else {
+                                                                          ScaffoldMessenger.of(context)
+                                                                              .clearSnackBars();
+                                                                          ScaffoldMessenger.of(context)
+                                                                              .showSnackBar(
+                                                                            SnackBar(
+                                                                              content: Text(
+                                                                                HandyFindersAPIsGroup.bookmarkItemCall.apiMessage(
+                                                                                  (_model.unbookmarkServiceResponse?.jsonBody ?? ''),
+                                                                                )!,
+                                                                                style: TextStyle(
+                                                                                  color: FlutterFlowTheme.of(context).primaryText,
+                                                                                ),
+                                                                              ),
+                                                                              duration: Duration(milliseconds: 3000),
+                                                                              backgroundColor: FlutterFlowTheme.of(context).secondary,
+                                                                            ),
+                                                                          );
+                                                                          if (_shouldSetState)
+                                                                            safeSetState(() {});
+                                                                          return;
+                                                                        }
+
+                                                                        if (_shouldSetState)
+                                                                          safeSetState(
+                                                                              () {});
+                                                                      },
                                                                       child:
-                                                                          Builder(
-                                                                        builder:
-                                                                            (context) {
-                                                                          if (FFAppState()
-                                                                              .IsRememberMe) {
-                                                                            return Icon(
-                                                                              Icons.bookmark_rounded,
-                                                                              color: FlutterFlowTheme.of(context).secondaryBackground,
-                                                                              size: 22.0,
-                                                                            );
-                                                                          } else {
-                                                                            return Icon(
-                                                                              Icons.bookmark_border_rounded,
-                                                                              color: FlutterFlowTheme.of(context).secondaryBackground,
-                                                                              size: 22.0,
-                                                                            );
-                                                                          }
-                                                                        },
+                                                                          Container(
+                                                                        width:
+                                                                            35.0,
+                                                                        height:
+                                                                            35.0,
+                                                                        decoration:
+                                                                            BoxDecoration(
+                                                                          color:
+                                                                              Color(0x80000000),
+                                                                          shape:
+                                                                              BoxShape.circle,
+                                                                        ),
+                                                                        child:
+                                                                            Builder(
+                                                                          builder:
+                                                                              (context) {
+                                                                            if (FFAppState().IsRememberMe) {
+                                                                              return Icon(
+                                                                                Icons.bookmark_rounded,
+                                                                                color: FlutterFlowTheme.of(context).secondaryBackground,
+                                                                                size: 22.0,
+                                                                              );
+                                                                            } else {
+                                                                              return Icon(
+                                                                                Icons.bookmark_border_rounded,
+                                                                                color: FlutterFlowTheme.of(context).secondaryBackground,
+                                                                                size: 22.0,
+                                                                              );
+                                                                            }
+                                                                          },
+                                                                        ),
                                                                       ),
                                                                     ),
                                                                   ),

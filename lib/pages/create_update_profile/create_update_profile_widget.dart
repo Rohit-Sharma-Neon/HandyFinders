@@ -3,6 +3,7 @@ import '/components/base_button_component_widget.dart';
 import '/components/gradient_background_widget.dart';
 import '/components/ic_back_title_widget.dart';
 import '/components/text_field_label_text_widget.dart';
+import '/components/update_email_dialog_widget.dart';
 import '/flutter_flow/flutter_flow_drop_down.dart';
 import '/flutter_flow/flutter_flow_theme.dart';
 import '/flutter_flow/flutter_flow_util.dart';
@@ -20,6 +21,7 @@ import 'package:flutter_svg/flutter_svg.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:lottie/lottie.dart';
 import 'package:provider/provider.dart';
+import 'package:webviewx_plus/webviewx_plus.dart';
 import 'create_update_profile_model.dart';
 export 'create_update_profile_model.dart';
 
@@ -1535,158 +1537,241 @@ class _CreateUpdateProfileWidgetState extends State<CreateUpdateProfileWidget> {
                                         ),
                                       ),
                                     ),
-                                  if (widget.isUpdating)
-                                    Padding(
-                                      padding: EdgeInsetsDirectional.fromSTEB(
-                                          0.0, 2.0, 0.0, 0.0),
-                                      child: Container(
-                                        width: double.infinity,
-                                        child: TextFormField(
-                                          controller: _model
-                                              .userEmailFieldTextController,
-                                          focusNode:
-                                              _model.userEmailFieldFocusNode,
-                                          autofocus: false,
-                                          readOnly: FFAppState().userEmail != ''
-                                              ? true
-                                              : false,
-                                          obscureText: false,
-                                          decoration: InputDecoration(
-                                            isDense: true,
-                                            labelStyle:
-                                                FlutterFlowTheme.of(context)
-                                                    .labelMedium
-                                                    .override(
-                                                      fontFamily: 'Inter',
-                                                      color: Color(0xFF717171),
-                                                      fontSize: 14.0,
-                                                      letterSpacing: 0.0,
-                                                    ),
-                                            hintText: HandyFindersAPIsGroup
-                                                            .getProfileCall
-                                                            .apiEmail(
-                                                          (_model.getProfileApiStatus
-                                                                  ?.jsonBody ??
-                                                              ''),
-                                                        ) !=
-                                                        null &&
-                                                    HandyFindersAPIsGroup
-                                                            .getProfileCall
-                                                            .apiEmail(
-                                                          (_model.getProfileApiStatus
-                                                                  ?.jsonBody ??
-                                                              ''),
-                                                        ) !=
-                                                        ''
-                                                ? HandyFindersAPIsGroup
-                                                    .getProfileCall
-                                                    .apiEmail(
-                                                    (_model.getProfileApiStatus
-                                                            ?.jsonBody ??
-                                                        ''),
-                                                  )
-                                                : 'Email',
-                                            hintStyle:
-                                                FlutterFlowTheme.of(context)
-                                                    .labelMedium
-                                                    .override(
-                                                      fontFamily: 'Inter',
-                                                      color:
-                                                          FlutterFlowTheme.of(
-                                                                  context)
+                                  Stack(
+                                    alignment: AlignmentDirectional(1.0, 0.0),
+                                    children: [
+                                      if (widget.isUpdating)
+                                        Padding(
+                                          padding:
+                                              EdgeInsetsDirectional.fromSTEB(
+                                                  0.0, 2.0, 0.0, 0.0),
+                                          child: Container(
+                                            width: double.infinity,
+                                            child: TextFormField(
+                                              controller: _model
+                                                  .userEmailFieldTextController,
+                                              focusNode: _model
+                                                  .userEmailFieldFocusNode,
+                                              autofocus: false,
+                                              readOnly: FFAppState().userEmail !=
+                                                          ''
+                                                  ? true
+                                                  : false,
+                                              obscureText: false,
+                                              decoration: InputDecoration(
+                                                isDense: true,
+                                                labelStyle:
+                                                    FlutterFlowTheme.of(context)
+                                                        .labelMedium
+                                                        .override(
+                                                          fontFamily: 'Inter',
+                                                          color:
+                                                              Color(0xFF717171),
+                                                          fontSize: 14.0,
+                                                          letterSpacing: 0.0,
+                                                        ),
+                                                hintText: HandyFindersAPIsGroup
+                                                                .getProfileCall
+                                                                .apiEmail(
+                                                              (_model.getProfileApiStatus
+                                                                      ?.jsonBody ??
+                                                                  ''),
+                                                            ) !=
+                                                            null &&
+                                                        HandyFindersAPIsGroup
+                                                                .getProfileCall
+                                                                .apiEmail(
+                                                              (_model.getProfileApiStatus
+                                                                      ?.jsonBody ??
+                                                                  ''),
+                                                            ) !=
+                                                            ''
+                                                    ? HandyFindersAPIsGroup
+                                                        .getProfileCall
+                                                        .apiEmail(
+                                                        (_model.getProfileApiStatus
+                                                                ?.jsonBody ??
+                                                            ''),
+                                                      )
+                                                    : 'Email',
+                                                hintStyle:
+                                                    FlutterFlowTheme.of(context)
+                                                        .labelMedium
+                                                        .override(
+                                                          fontFamily: 'Inter',
+                                                          color: FlutterFlowTheme
+                                                                  .of(context)
                                                               .hintTextColor,
-                                                      fontSize: 14.0,
-                                                      letterSpacing: 0.0,
-                                                    ),
-                                            enabledBorder: OutlineInputBorder(
-                                              borderSide: BorderSide(
-                                                color: Color(0x00000000),
-                                                width: 1.0,
-                                              ),
-                                              borderRadius:
-                                                  BorderRadius.circular(
-                                                      valueOrDefault<double>(
-                                                FFAppConstants
-                                                    .primaryBorderRadius,
-                                                0.0,
-                                              )),
-                                            ),
-                                            focusedBorder: OutlineInputBorder(
-                                              borderSide: BorderSide(
-                                                color: Color(0x00000000),
-                                                width: 1.0,
-                                              ),
-                                              borderRadius:
-                                                  BorderRadius.circular(
-                                                      valueOrDefault<double>(
-                                                FFAppConstants
-                                                    .primaryBorderRadius,
-                                                0.0,
-                                              )),
-                                            ),
-                                            errorBorder: OutlineInputBorder(
-                                              borderSide: BorderSide(
-                                                color:
-                                                    FlutterFlowTheme.of(context)
+                                                          fontSize: 14.0,
+                                                          letterSpacing: 0.0,
+                                                        ),
+                                                enabledBorder:
+                                                    OutlineInputBorder(
+                                                  borderSide: BorderSide(
+                                                    color: Color(0x00000000),
+                                                    width: 1.0,
+                                                  ),
+                                                  borderRadius:
+                                                      BorderRadius.circular(
+                                                          valueOrDefault<
+                                                              double>(
+                                                    FFAppConstants
+                                                        .primaryBorderRadius,
+                                                    0.0,
+                                                  )),
+                                                ),
+                                                focusedBorder:
+                                                    OutlineInputBorder(
+                                                  borderSide: BorderSide(
+                                                    color: Color(0x00000000),
+                                                    width: 1.0,
+                                                  ),
+                                                  borderRadius:
+                                                      BorderRadius.circular(
+                                                          valueOrDefault<
+                                                              double>(
+                                                    FFAppConstants
+                                                        .primaryBorderRadius,
+                                                    0.0,
+                                                  )),
+                                                ),
+                                                errorBorder: OutlineInputBorder(
+                                                  borderSide: BorderSide(
+                                                    color: FlutterFlowTheme.of(
+                                                            context)
                                                         .error,
-                                                width: 1.0,
-                                              ),
-                                              borderRadius:
-                                                  BorderRadius.circular(
-                                                      valueOrDefault<double>(
-                                                FFAppConstants
-                                                    .primaryBorderRadius,
-                                                0.0,
-                                              )),
-                                            ),
-                                            focusedErrorBorder:
-                                                OutlineInputBorder(
-                                              borderSide: BorderSide(
-                                                color:
-                                                    FlutterFlowTheme.of(context)
+                                                    width: 1.0,
+                                                  ),
+                                                  borderRadius:
+                                                      BorderRadius.circular(
+                                                          valueOrDefault<
+                                                              double>(
+                                                    FFAppConstants
+                                                        .primaryBorderRadius,
+                                                    0.0,
+                                                  )),
+                                                ),
+                                                focusedErrorBorder:
+                                                    OutlineInputBorder(
+                                                  borderSide: BorderSide(
+                                                    color: FlutterFlowTheme.of(
+                                                            context)
                                                         .error,
-                                                width: 1.0,
+                                                    width: 1.0,
+                                                  ),
+                                                  borderRadius:
+                                                      BorderRadius.circular(
+                                                          valueOrDefault<
+                                                              double>(
+                                                    FFAppConstants
+                                                        .primaryBorderRadius,
+                                                    0.0,
+                                                  )),
+                                                ),
+                                                filled: true,
+                                                fillColor: Color(0xFFEAEAEA),
+                                                contentPadding:
+                                                    EdgeInsetsDirectional
+                                                        .fromSTEB(20.0, 23.0,
+                                                            0.0, 23.0),
                                               ),
-                                              borderRadius:
-                                                  BorderRadius.circular(
-                                                      valueOrDefault<double>(
-                                                FFAppConstants
-                                                    .primaryBorderRadius,
-                                                0.0,
-                                              )),
+                                              style:
+                                                  FlutterFlowTheme.of(context)
+                                                      .bodyMedium
+                                                      .override(
+                                                        fontFamily: 'Inter',
+                                                        fontSize: 14.0,
+                                                        letterSpacing: 0.0,
+                                                      ),
+                                              maxLength: 30,
+                                              maxLengthEnforcement:
+                                                  MaxLengthEnforcement.enforced,
+                                              buildCounter: (context,
+                                                      {required currentLength,
+                                                      required isFocused,
+                                                      maxLength}) =>
+                                                  null,
+                                              keyboardType:
+                                                  TextInputType.emailAddress,
+                                              cursorColor:
+                                                  FlutterFlowTheme.of(context)
+                                                      .primaryText,
+                                              validator: _model
+                                                  .userEmailFieldTextControllerValidator
+                                                  .asValidator(context),
                                             ),
-                                            filled: true,
-                                            fillColor: Color(0xFFEAEAEA),
-                                            contentPadding:
-                                                EdgeInsetsDirectional.fromSTEB(
-                                                    20.0, 23.0, 0.0, 23.0),
                                           ),
-                                          style: FlutterFlowTheme.of(context)
-                                              .bodyMedium
-                                              .override(
-                                                fontFamily: 'Inter',
-                                                fontSize: 14.0,
-                                                letterSpacing: 0.0,
-                                              ),
-                                          maxLength: 30,
-                                          maxLengthEnforcement:
-                                              MaxLengthEnforcement.enforced,
-                                          buildCounter: (context,
-                                                  {required currentLength,
-                                                  required isFocused,
-                                                  maxLength}) =>
-                                              null,
-                                          keyboardType:
-                                              TextInputType.emailAddress,
-                                          cursorColor:
-                                              FlutterFlowTheme.of(context)
-                                                  .primaryText,
-                                          validator: _model
-                                              .userEmailFieldTextControllerValidator
-                                              .asValidator(context),
                                         ),
-                                      ),
-                                    ),
+                                      if (widget.isUpdating)
+                                        Builder(
+                                          builder: (context) => InkWell(
+                                            splashColor: Colors.transparent,
+                                            focusColor: Colors.transparent,
+                                            hoverColor: Colors.transparent,
+                                            highlightColor: Colors.transparent,
+                                            onTap: () async {
+                                              await showDialog(
+                                                context: context,
+                                                builder: (dialogContext) {
+                                                  return Dialog(
+                                                    elevation: 0,
+                                                    insetPadding:
+                                                        EdgeInsets.zero,
+                                                    backgroundColor:
+                                                        Colors.transparent,
+                                                    alignment:
+                                                        AlignmentDirectional(
+                                                                0.0, 0.0)
+                                                            .resolve(
+                                                                Directionality.of(
+                                                                    context)),
+                                                    child: WebViewAware(
+                                                      child: GestureDetector(
+                                                        onTap: () {
+                                                          FocusScope.of(
+                                                                  dialogContext)
+                                                              .unfocus();
+                                                          FocusManager.instance
+                                                              .primaryFocus
+                                                              ?.unfocus();
+                                                        },
+                                                        child:
+                                                            UpdateEmailDialogWidget(),
+                                                      ),
+                                                    ),
+                                                  );
+                                                },
+                                              );
+                                            },
+                                            child: Container(
+                                              decoration: BoxDecoration(
+                                                color: Color(0x02FFFFFF),
+                                              ),
+                                              child: Padding(
+                                                padding: EdgeInsetsDirectional
+                                                    .fromSTEB(
+                                                        10.0, 5.0, 10.0, 5.0),
+                                                child: Text(
+                                                  'Update',
+                                                  style: FlutterFlowTheme.of(
+                                                          context)
+                                                      .bodyMedium
+                                                      .override(
+                                                        fontFamily: 'Inter',
+                                                        color:
+                                                            FlutterFlowTheme.of(
+                                                                    context)
+                                                                .primary,
+                                                        fontSize: 13.0,
+                                                        letterSpacing: 0.0,
+                                                      ),
+                                                ),
+                                              ),
+                                            ),
+                                          ),
+                                        ),
+                                    ],
+                                  ),
                                   Padding(
                                     padding: EdgeInsetsDirectional.fromSTEB(
                                         0.0, 0.0, 0.0, 110.0),
@@ -2021,7 +2106,6 @@ class _CreateUpdateProfileWidgetState extends State<CreateUpdateProfileWidget> {
                                           r'''$.data.profile_picture''',
                                         ).toString()
                                       : '';
-                              FFAppState().IsRememberMe = true;
                               FFAppState().authToken = widget.authToken!;
                               FFAppState().isProfileCreated = 1;
                               FFAppState().userId = getJsonField(

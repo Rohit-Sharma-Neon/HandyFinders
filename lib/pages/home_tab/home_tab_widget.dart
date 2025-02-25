@@ -1,4 +1,6 @@
 import '/backend/api_requests/api_calls.dart';
+import '/backend/schema/structs/index.dart';
+import '/components/base_button_component_widget.dart';
 import '/components/base_loader_component_widget.dart';
 import '/components/comments_bottom_sheet_widget.dart';
 import '/components/filter_bottom_sheet_widget.dart';
@@ -61,6 +63,7 @@ class _HomeTabWidgetState extends State<HomeTabWidget> {
         authToken: FFAppState().authToken,
         latitude: '28.7041',
         longitude: '77.1025',
+        page: 1,
       );
 
       _model.getNotificationCountResponse =
@@ -88,6 +91,12 @@ class _HomeTabWidgetState extends State<HomeTabWidget> {
           (_model.getNotificationCountResponse?.jsonBody ?? ''),
         ),
         0,
+      );
+      FFAppState().homeTabPaginationState = HomeTabPaginationVariablesStruct(
+        apiLastPageNumber: HandyFindersAPIsGroup.homePostListCall.apiLastPage(
+          (_model.initialHomeRequestListResponse?.jsonBody ?? ''),
+        ),
+        currentPageIndex: 2,
       );
       safeSetState(() {});
       return;
@@ -185,8 +194,8 @@ class _HomeTabWidgetState extends State<HomeTabWidget> {
                         child: ClipRRect(
                           borderRadius: BorderRadius.circular(99.0),
                           child: CachedNetworkImage(
-                            fadeInDuration: Duration(milliseconds: 500),
-                            fadeOutDuration: Duration(milliseconds: 500),
+                            fadeInDuration: Duration(milliseconds: 0),
+                            fadeOutDuration: Duration(milliseconds: 0),
                             imageUrl:
                                 '${FFAppConstants.baseImageUrl}${FFAppState().userProfileImageUrl}',
                             width: 55.0,
@@ -395,6 +404,7 @@ class _HomeTabWidgetState extends State<HomeTabWidget> {
                                           latitude: '28.7041',
                                           longitude: '77.1025',
                                           search: _model.textController.text,
+                                          page: 1,
                                         );
 
                                         _shouldSetState = true;
@@ -417,6 +427,18 @@ class _HomeTabWidgetState extends State<HomeTabWidget> {
                                                   )!
                                                   .toList()
                                                   .cast<dynamic>();
+                                          FFAppState().homeTabPaginationState =
+                                              HomeTabPaginationVariablesStruct(
+                                            apiLastPageNumber:
+                                                HandyFindersAPIsGroup
+                                                    .homePostListCall
+                                                    .apiLastPage(
+                                              (_model.postSearchResult
+                                                      ?.jsonBody ??
+                                                  ''),
+                                            ),
+                                            currentPageIndex: 2,
+                                          );
                                           safeSetState(() {});
                                           if (_shouldSetState)
                                             safeSetState(() {});
@@ -620,6 +642,7 @@ class _HomeTabWidgetState extends State<HomeTabWidget> {
                               latitude: '28.7041',
                               longitude: '77.1025',
                               search: _model.textController.text,
+                              page: 1,
                             );
 
                             _model.refreshedNotificationCountResponse =
@@ -657,6 +680,17 @@ class _HomeTabWidgetState extends State<HomeTabWidget> {
                                     ''),
                               ),
                               0,
+                            );
+                            FFAppState().homeTabPaginationState =
+                                HomeTabPaginationVariablesStruct(
+                              apiLastPageNumber: HandyFindersAPIsGroup
+                                  .homePostListCall
+                                  .apiLastPage(
+                                (_model.refreshedHomeRequestListResponse
+                                        ?.jsonBody ??
+                                    ''),
+                              ),
+                              currentPageIndex: 2,
                             );
                             safeSetState(() {});
                           },
@@ -827,6 +861,13 @@ class _HomeTabWidgetState extends State<HomeTabWidget> {
                                                             r'''$.image''',
                                                           ).toString()}',
                                                           fit: BoxFit.fill,
+                                                          errorWidget: (context,
+                                                                  error,
+                                                                  stackTrace) =>
+                                                              Image.asset(
+                                                            'assets/images/error_image.png',
+                                                            fit: BoxFit.fill,
+                                                          ),
                                                         ),
                                                       ),
                                                     ),
@@ -979,9 +1020,9 @@ class _HomeTabWidgetState extends State<HomeTabWidget> {
                                                                         child:
                                                                             CachedNetworkImage(
                                                                           fadeInDuration:
-                                                                              Duration(milliseconds: 500),
+                                                                              Duration(milliseconds: 0),
                                                                           fadeOutDuration:
-                                                                              Duration(milliseconds: 500),
+                                                                              Duration(milliseconds: 0),
                                                                           imageUrl:
                                                                               '${FFAppConstants.baseImageUrl}${getJsonField(
                                                                             homePostListItem,
@@ -2144,6 +2185,177 @@ class _HomeTabWidgetState extends State<HomeTabWidget> {
                                     }
                                   },
                                 ),
+                                if (FFAppState()
+                                        .homeTabPaginationState
+                                        .currentPageIndex >
+                                    1)
+                                  Builder(
+                                    builder: (context) {
+                                      if (FFAppState()
+                                              .homeTabPaginationState
+                                              .currentPageIndex <=
+                                          FFAppState()
+                                              .homeTabPaginationState
+                                              .apiLastPageNumber) {
+                                        return Padding(
+                                          padding:
+                                              EdgeInsetsDirectional.fromSTEB(
+                                                  0.0, 0.0, 0.0, 5.0),
+                                          child: wrapWithModel(
+                                            model:
+                                                _model.baseButtonComponentModel,
+                                            updateCallback: () =>
+                                                safeSetState(() {}),
+                                            child: BaseButtonComponentWidget(
+                                              title: 'Load More',
+                                              buttonColor: Color(0x00FFFFFF),
+                                              textColor: Color(0xFF6E6E6E),
+                                              isLoading: FFAppState()
+                                                  .homeTabPaginationState
+                                                  .isLoadingMore,
+                                              removeScaffoldPadding: true,
+                                              passOnTapCallback: () async {
+                                                var _shouldSetState = false;
+                                                if (FFAppState()
+                                                        .homeTabPaginationState
+                                                        .currentPageIndex <=
+                                                    FFAppState()
+                                                        .homeTabPaginationState
+                                                        .apiLastPageNumber) {
+                                                  FFAppState()
+                                                      .updateHomeTabPaginationStateStruct(
+                                                    (e) =>
+                                                        e..isLoadingMore = true,
+                                                  );
+                                                  safeSetState(() {});
+                                                  _model.loadMoreResponse =
+                                                      await HandyFindersAPIsGroup
+                                                          .homePostListCall
+                                                          .call(
+                                                    authToken:
+                                                        FFAppState().authToken,
+                                                    latitude: '28.7041',
+                                                    longitude: '77.1025',
+                                                    search: _model
+                                                        .textController.text,
+                                                    page: FFAppState()
+                                                        .homeTabPaginationState
+                                                        .currentPageIndex,
+                                                  );
+
+                                                  _shouldSetState = true;
+                                                  if (HandyFindersAPIsGroup
+                                                      .homePostListCall
+                                                      .apiStatus(
+                                                    (_model.loadMoreResponse
+                                                            ?.jsonBody ??
+                                                        ''),
+                                                  )!) {
+                                                    _model.returnedPrimaryList =
+                                                        await actions
+                                                            .addJsonList(
+                                                      FFAppState()
+                                                          .homeTabPostList
+                                                          .toList(),
+                                                      HandyFindersAPIsGroup
+                                                          .homePostListCall
+                                                          .apiList(
+                                                            (_model.loadMoreResponse
+                                                                    ?.jsonBody ??
+                                                                ''),
+                                                          )!
+                                                          .toList(),
+                                                    );
+                                                    _shouldSetState = true;
+                                                    FFAppState()
+                                                        .updateHomeTabPaginationStateStruct(
+                                                      (e) => e
+                                                        ..isLoadingMore = false
+                                                        ..currentPageIndex =
+                                                            FFAppState()
+                                                                    .homeTabPaginationState
+                                                                    .currentPageIndex +
+                                                                1,
+                                                    );
+                                                    FFAppState()
+                                                            .homeTabPostList =
+                                                        _model
+                                                            .returnedPrimaryList!
+                                                            .toList()
+                                                            .cast<dynamic>();
+                                                    safeSetState(() {});
+                                                    if (_shouldSetState)
+                                                      safeSetState(() {});
+                                                    return;
+                                                  } else {
+                                                    ScaffoldMessenger.of(
+                                                            context)
+                                                        .clearSnackBars();
+                                                    ScaffoldMessenger.of(
+                                                            context)
+                                                        .showSnackBar(
+                                                      SnackBar(
+                                                        content: Text(
+                                                          HandyFindersAPIsGroup
+                                                              .homePostListCall
+                                                              .apiMessage(
+                                                            (_model.loadMoreResponse
+                                                                    ?.jsonBody ??
+                                                                ''),
+                                                          )!,
+                                                          style: TextStyle(
+                                                            color: FlutterFlowTheme
+                                                                    .of(context)
+                                                                .primaryText,
+                                                          ),
+                                                        ),
+                                                        duration: Duration(
+                                                            milliseconds: 4000),
+                                                        backgroundColor:
+                                                            FlutterFlowTheme.of(
+                                                                    context)
+                                                                .secondary,
+                                                      ),
+                                                    );
+                                                    if (_shouldSetState)
+                                                      safeSetState(() {});
+                                                    return;
+                                                  }
+                                                } else {
+                                                  if (_shouldSetState)
+                                                    safeSetState(() {});
+                                                  return;
+                                                }
+
+                                                if (_shouldSetState)
+                                                  safeSetState(() {});
+                                              },
+                                            ),
+                                          ),
+                                        );
+                                      } else {
+                                        return Padding(
+                                          padding:
+                                              EdgeInsetsDirectional.fromSTEB(
+                                                  0.0, 25.0, 0.0, 25.0),
+                                          child: Text(
+                                            'No More Data!',
+                                            style: FlutterFlowTheme.of(context)
+                                                .bodyMedium
+                                                .override(
+                                                  fontFamily: 'Comfortaa',
+                                                  color: FlutterFlowTheme.of(
+                                                          context)
+                                                      .hintTextColor,
+                                                  fontSize: 13.0,
+                                                  letterSpacing: 0.0,
+                                                  fontWeight: FontWeight.normal,
+                                                ),
+                                          ),
+                                        );
+                                      }
+                                    },
+                                  ),
                               ],
                             ),
                           ),
