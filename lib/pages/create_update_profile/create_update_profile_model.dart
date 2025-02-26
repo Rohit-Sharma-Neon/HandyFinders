@@ -84,6 +84,8 @@ class CreateUpdateProfileModel
 
   // Model for TextFieldLabelText component.
   late TextFieldLabelTextModel textFieldLabelTextModel4;
+  // Stores action output result for [Custom Action - countryCodePicker] action in Row widget.
+  String? selectedCountryCode;
   // State field(s) for DropDown widget.
   String? dropDownValue;
   FormFieldController<String>? dropDownValueController;

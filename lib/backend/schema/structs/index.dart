@@ -1,8 +1,8 @@
 export '/backend/schema/util/schema_util.dart';
 
 export 'for_sale_variables_struct.dart';
+export 'user_current_location_details_struct.dart';
 export 'user_data_type_struct.dart';
-export 'user_latest_lat_long_struct.dart';
 export 'categories_list_data_struct.dart';
 export 'categories_response_struct.dart';
 export 'drop_down_struct.dart';

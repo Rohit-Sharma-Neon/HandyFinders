@@ -1,4 +1,5 @@
 import '/backend/api_requests/api_calls.dart';
+import '/backend/schema/structs/index.dart';
 import '/components/base_button_component_widget.dart';
 import '/components/gradient_background_widget.dart';
 import '/components/ic_back_title_widget.dart';
@@ -20,6 +21,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter/scheduler.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_svg/flutter_svg.dart';
+import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:lottie/lottie.dart';
 import 'package:provider/provider.dart';
@@ -1204,6 +1206,68 @@ class _CreateUpdateProfileWidgetState extends State<CreateUpdateProfileWidget> {
                                       mainAxisAlignment:
                                           MainAxisAlignment.center,
                                       children: [
+                                        InkWell(
+                                          splashColor: Colors.transparent,
+                                          focusColor: Colors.transparent,
+                                          hoverColor: Colors.transparent,
+                                          highlightColor: Colors.transparent,
+                                          onTap: () async {
+                                            _model.selectedCountryCode =
+                                                await actions.countryCodePicker(
+                                              context,
+                                            );
+
+                                            safeSetState(() {});
+                                            ScaffoldMessenger.of(context)
+                                                .clearSnackBars();
+                                            ScaffoldMessenger.of(context)
+                                                .showSnackBar(
+                                              SnackBar(
+                                                content: Text(
+                                                  _model.selectedCountryCode!,
+                                                  style: TextStyle(
+                                                    color: FlutterFlowTheme.of(
+                                                            context)
+                                                        .primaryText,
+                                                  ),
+                                                ),
+                                                duration: Duration(
+                                                    milliseconds: 4000),
+                                                backgroundColor:
+                                                    FlutterFlowTheme.of(context)
+                                                        .secondary,
+                                              ),
+                                            );
+
+                                            safeSetState(() {});
+                                          },
+                                          child: Row(
+                                            mainAxisSize: MainAxisSize.max,
+                                            children: [
+                                              Text(
+                                                valueOrDefault<String>(
+                                                  _model.selectedCountryCode,
+                                                  '+1',
+                                                ),
+                                                style:
+                                                    FlutterFlowTheme.of(context)
+                                                        .bodyMedium
+                                                        .override(
+                                                          fontFamily:
+                                                              'Comfortaa',
+                                                          letterSpacing: 0.0,
+                                                        ),
+                                              ),
+                                              FaIcon(
+                                                FontAwesomeIcons.chevronDown,
+                                                color:
+                                                    FlutterFlowTheme.of(context)
+                                                        .secondaryText,
+                                                size: 15.0,
+                                              ),
+                                            ],
+                                          ),
+                                        ),
                                         FlutterFlowDropDown<String>(
                                           controller:
                                               _model.dropDownValueController ??=
@@ -1776,13 +1840,14 @@ class _CreateUpdateProfileWidgetState extends State<CreateUpdateProfileWidget> {
                                   ),
                                   Padding(
                                     padding: EdgeInsetsDirectional.fromSTEB(
-                                        0.0, 16.0, 0.0, 0.0),
+                                        0.0, 20.0, 0.0, 110.0),
                                     child: FlutterFlowPlacePicker(
                                       iOSGoogleMapsApiKey:
                                           'AIzaSyB7DU4gdodMaDKbytJJE_VlhK9Vv68mlvk',
                                       androidGoogleMapsApiKey:
                                           'AIzaSyB7DU4gdodMaDKbytJJE_VlhK9Vv68mlvk',
-                                      webGoogleMapsApiKey: '',
+                                      webGoogleMapsApiKey:
+                                          'AIzaSyB7DU4gdodMaDKbytJJE_VlhK9Vv68mlvk',
                                       onSelect: (place) async {
                                         safeSetState(() =>
                                             _model.placePickerValue = place);
@@ -2038,7 +2103,7 @@ class _CreateUpdateProfileWidgetState extends State<CreateUpdateProfileWidget> {
                                         .primaryText,
                                   ),
                                 ),
-                                duration: Duration(milliseconds: 4000),
+                                duration: Duration(milliseconds: 3000),
                                 backgroundColor:
                                     FlutterFlowTheme.of(context).secondary,
                               ),
@@ -2166,6 +2231,21 @@ class _CreateUpdateProfileWidgetState extends State<CreateUpdateProfileWidget> {
                                   _model.firstNameFieldTextController.text;
                               FFAppState().userLastName =
                                   _model.lastNameFieldTextController.text;
+                              FFAppState().UserCurrentLocationState =
+                                  UserCurrentLocationDetailsStruct(
+                                fullAddress: _model.placePickerValue.address,
+                                city: _model.placePickerValue.city,
+                                state: _model.placePickerValue.state,
+                                country: _model.placePickerValue.country,
+                                zipCode: _model.placePickerValue.zipCode,
+                                lat: (String latlong) {
+                                  return latlong.split(',')[0];
+                                }(_model.placePickerValue.latLng.toString()),
+                                long: (String latlong) {
+                                  return latlong.split(',')[1];
+                                }(_model.placePickerValue.latLng.toString()),
+                                locationName: _model.placePickerValue.name,
+                              );
                               safeSetState(() {});
 
                               context.goNamed(AllowLocationWidget.routeName);

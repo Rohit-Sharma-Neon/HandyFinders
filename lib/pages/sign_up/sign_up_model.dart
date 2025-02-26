@@ -98,8 +98,6 @@ class SignUpModel extends FlutterFlowModel<SignUpWidget> {
     return null;
   }
 
-  // State field(s) for PlacePicker widget.
-  FFPlace placePickerValue = FFPlace();
   // State field(s) for Checkbox widget.
   bool? checkboxValue;
   // Model for BaseButtonComponent component.

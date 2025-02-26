@@ -77,12 +77,13 @@ class FFAppState extends ChangeNotifier {
       _userLastName = prefs.getString('ff_userLastName') ?? _userLastName;
     });
     _safeInit(() {
-      if (prefs.containsKey('ff_UserLatestLatLongState')) {
+      if (prefs.containsKey('ff_UserCurrentLocationState')) {
         try {
           final serializedData =
-              prefs.getString('ff_UserLatestLatLongState') ?? '{}';
-          _UserLatestLatLongState = UserLatestLatLongStruct.fromSerializableMap(
-              jsonDecode(serializedData));
+              prefs.getString('ff_UserCurrentLocationState') ?? '{}';
+          _UserCurrentLocationState =
+              UserCurrentLocationDetailsStruct.fromSerializableMap(
+                  jsonDecode(serializedData));
         } catch (e) {
           print("Can't decode persisted data type. Error: $e.");
         }
@@ -613,18 +614,20 @@ class FFAppState extends ChangeNotifier {
     updateFn(_profileTabVariablesState);
   }
 
-  UserLatestLatLongStruct _UserLatestLatLongState = UserLatestLatLongStruct();
-  UserLatestLatLongStruct get UserLatestLatLongState => _UserLatestLatLongState;
-  set UserLatestLatLongState(UserLatestLatLongStruct value) {
-    _UserLatestLatLongState = value;
-    prefs.setString('ff_UserLatestLatLongState', value.serialize());
+  UserCurrentLocationDetailsStruct _UserCurrentLocationState =
+      UserCurrentLocationDetailsStruct();
+  UserCurrentLocationDetailsStruct get UserCurrentLocationState =>
+      _UserCurrentLocationState;
+  set UserCurrentLocationState(UserCurrentLocationDetailsStruct value) {
+    _UserCurrentLocationState = value;
+    prefs.setString('ff_UserCurrentLocationState', value.serialize());
   }
 
-  void updateUserLatestLatLongStateStruct(
-      Function(UserLatestLatLongStruct) updateFn) {
-    updateFn(_UserLatestLatLongState);
+  void updateUserCurrentLocationStateStruct(
+      Function(UserCurrentLocationDetailsStruct) updateFn) {
+    updateFn(_UserCurrentLocationState);
     prefs.setString(
-        'ff_UserLatestLatLongState', _UserLatestLatLongState.serialize());
+        'ff_UserCurrentLocationState', _UserCurrentLocationState.serialize());
   }
 
   HomeTabPaginationVariablesStruct _homeTabPaginationState =

@@ -61,8 +61,8 @@ class _HomeTabWidgetState extends State<HomeTabWidget> {
       _model.initialHomeRequestListResponse =
           await HandyFindersAPIsGroup.homePostListCall.call(
         authToken: FFAppState().authToken,
-        latitude: '28.7041',
-        longitude: '77.1025',
+        latitude: FFAppState().UserCurrentLocationState.lat,
+        longitude: FFAppState().UserCurrentLocationState.long,
         page: 1,
       );
 
@@ -254,14 +254,39 @@ class _HomeTabWidgetState extends State<HomeTabWidget> {
                                 ),
                                 maxLines: 1,
                               ),
-                              Text(
-                                'New York, US ',
-                                style: FlutterFlowTheme.of(context)
-                                    .bodyMedium
-                                    .override(
-                                      fontFamily: 'Comfortaa',
-                                      letterSpacing: 0.0,
+                              RichText(
+                                textScaler: MediaQuery.of(context).textScaler,
+                                text: TextSpan(
+                                  children: [
+                                    TextSpan(
+                                      text: FFAppState()
+                                          .UserCurrentLocationState
+                                          .locationName,
+                                      style: FlutterFlowTheme.of(context)
+                                          .bodyMedium
+                                          .override(
+                                            fontFamily: 'Comfortaa',
+                                            letterSpacing: 0.0,
+                                          ),
                                     ),
+                                    TextSpan(
+                                      text: ', ',
+                                      style: TextStyle(),
+                                    ),
+                                    TextSpan(
+                                      text: FFAppState()
+                                          .UserCurrentLocationState
+                                          .city,
+                                      style: TextStyle(),
+                                    )
+                                  ],
+                                  style: FlutterFlowTheme.of(context)
+                                      .bodyMedium
+                                      .override(
+                                        fontFamily: 'Comfortaa',
+                                        letterSpacing: 0.0,
+                                      ),
+                                ),
                               ),
                             ],
                           ),
@@ -639,8 +664,10 @@ class _HomeTabWidgetState extends State<HomeTabWidget> {
                                 await HandyFindersAPIsGroup.homePostListCall
                                     .call(
                               authToken: FFAppState().authToken,
-                              latitude: '28.7041',
-                              longitude: '77.1025',
+                              latitude:
+                                  FFAppState().UserCurrentLocationState.lat,
+                              longitude:
+                                  FFAppState().UserCurrentLocationState.long,
                               search: _model.textController.text,
                               page: 1,
                             );
@@ -2249,8 +2276,12 @@ class _HomeTabWidgetState extends State<HomeTabWidget> {
                                                           .call(
                                                     authToken:
                                                         FFAppState().authToken,
-                                                    latitude: '28.7041',
-                                                    longitude: '77.1025',
+                                                    latitude: FFAppState()
+                                                        .UserCurrentLocationState
+                                                        .lat,
+                                                    longitude: FFAppState()
+                                                        .UserCurrentLocationState
+                                                        .long,
                                                     search: _model
                                                         .textController.text,
                                                     page: FFAppState()

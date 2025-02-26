@@ -1646,8 +1646,8 @@ class _ProfileTabWidgetState extends State<ProfileTabWidget> {
                                                               .profileTabVariablesState =
                                                           ProfileTabVariablesStruct();
                                                       FFAppState()
-                                                              .UserLatestLatLongState =
-                                                          UserLatestLatLongStruct();
+                                                              .UserCurrentLocationState =
+                                                          UserCurrentLocationDetailsStruct();
                                                       FFAppState()
                                                               .ForSaleAppStateVariables =
                                                           ForSaleVariablesStruct();
@@ -1793,8 +1793,8 @@ class _ProfileTabWidgetState extends State<ProfileTabWidget> {
                                                               .profileTabVariablesState =
                                                           ProfileTabVariablesStruct();
                                                       FFAppState()
-                                                              .UserLatestLatLongState =
-                                                          UserLatestLatLongStruct();
+                                                              .UserCurrentLocationState =
+                                                          UserCurrentLocationDetailsStruct();
                                                       FFAppState()
                                                               .ForSaleAppStateVariables =
                                                           ForSaleVariablesStruct();
