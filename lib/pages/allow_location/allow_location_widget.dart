@@ -6,7 +6,9 @@ import '/flutter_flow/flutter_flow_util.dart';
 import '/flutter_flow/permissions_util.dart';
 import '/index.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/scheduler.dart';
 import 'package:flutter_svg/flutter_svg.dart';
+import 'package:provider/provider.dart';
 import 'allow_location_model.dart';
 export 'allow_location_model.dart';
 
@@ -29,6 +31,14 @@ class _AllowLocationWidgetState extends State<AllowLocationWidget> {
   void initState() {
     super.initState();
     _model = createModel(context, () => AllowLocationModel());
+
+    // On page load action.
+    SchedulerBinding.instance.addPostFrameCallback((_) async {
+      FFAppState().rememberMeEmail = '';
+      FFAppState().rememberMePassword = '';
+      FFAppState().IsRememberMe = false;
+      safeSetState(() {});
+    });
   }
 
   @override
@@ -40,6 +50,8 @@ class _AllowLocationWidgetState extends State<AllowLocationWidget> {
 
   @override
   Widget build(BuildContext context) {
+    context.watch<FFAppState>();
+
     return GestureDetector(
       onTap: () {
         FocusScope.of(context).unfocus();

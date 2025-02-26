@@ -27,11 +27,14 @@ class PostRequestForumWidget extends StatefulWidget {
     bool? isUpdating,
     this.jsonData,
     this.itemIndex,
-  }) : this.isUpdating = isUpdating ?? false;
+    bool? isUpdatingRequestBottomTab,
+  })  : this.isUpdating = isUpdating ?? false,
+        this.isUpdatingRequestBottomTab = isUpdatingRequestBottomTab ?? false;
 
   final bool isUpdating;
   final dynamic jsonData;
   final int? itemIndex;
+  final bool isUpdatingRequestBottomTab;
 
   static String routeName = 'PostRequestForum';
   static String routePath = '/postRequestForum';
@@ -1875,17 +1878,33 @@ class _PostRequestForumWidgetState extends State<PostRequestForumWidget> {
                           (_model.addRequestTipResponse?.jsonBody ?? ''),
                         )!) {
                           if (widget.isUpdating) {
-                            FFAppState().updateYourPostForumListAtIndex(
-                              widget.itemIndex!,
-                              (_) => getJsonField(
-                                (_model.addRequestTipResponse?.jsonBody ?? ''),
-                                r'''$.data1''',
-                              ),
-                            );
-                            FFAppState().update(() {});
-                            context.safePop();
-                            if (_shouldSetState) safeSetState(() {});
-                            return;
+                            if (widget.isUpdatingRequestBottomTab) {
+                              FFAppState().updateRequestTabCurrentListAtIndex(
+                                widget.itemIndex!,
+                                (_) => getJsonField(
+                                  (_model.addRequestTipResponse?.jsonBody ??
+                                      ''),
+                                  r'''$.data1''',
+                                ),
+                              );
+                              FFAppState().update(() {});
+                              context.safePop();
+                              if (_shouldSetState) safeSetState(() {});
+                              return;
+                            } else {
+                              FFAppState().updateYourPostForumListAtIndex(
+                                widget.itemIndex!,
+                                (_) => getJsonField(
+                                  (_model.addRequestTipResponse?.jsonBody ??
+                                      ''),
+                                  r'''$.data1''',
+                                ),
+                              );
+                              FFAppState().update(() {});
+                              context.safePop();
+                              if (_shouldSetState) safeSetState(() {});
+                              return;
+                            }
                           } else {
                             context.safePop();
                             context.safePop();

@@ -99,6 +99,8 @@ class CreateUpdateProfileModel
   TextEditingController? userEmailFieldTextController;
   String? Function(BuildContext, String?)?
       userEmailFieldTextControllerValidator;
+  // State field(s) for PlacePicker widget.
+  FFPlace placePickerValue = FFPlace();
   // Model for BaseButtonComponent component.
   late BaseButtonComponentModel baseButtonComponentModel;
   // Stores action output result for [Backend Call - API (CreateUpdateProfile)] action in BaseButtonComponent widget.

@@ -1073,16 +1073,20 @@ class _HomeTabWidgetState extends State<HomeTabWidget> {
                                                                   ),
                                                                 ),
                                                               ),
-                                                              Padding(
-                                                                padding:
-                                                                    EdgeInsetsDirectional
-                                                                        .fromSTEB(
-                                                                            0.0,
-                                                                            0.0,
-                                                                            12.0,
-                                                                            0.0),
-                                                                child:
-                                                                    Container(
+                                                              if ((int userId,
+                                                                      String
+                                                                          currentUserId) {
+                                                                return userId
+                                                                        .toString() !=
+                                                                    currentUserId;
+                                                              }(
+                                                                  getJsonField(
+                                                                    homePostListItem,
+                                                                    r'''$.user_id''',
+                                                                  ),
+                                                                  FFAppState()
+                                                                      .userId))
+                                                                Container(
                                                                   width: 40.0,
                                                                   height: 40.0,
                                                                   decoration:
@@ -1113,183 +1117,194 @@ class _HomeTabWidgetState extends State<HomeTabWidget> {
                                                                     ),
                                                                   ),
                                                                 ),
-                                                              ),
-                                                              Builder(
-                                                                builder:
-                                                                    (context) =>
+                                                              if ((int userId,
+                                                                      String
+                                                                          currentUserId) {
+                                                                return userId
+                                                                        .toString() !=
+                                                                    currentUserId;
+                                                              }(
+                                                                  getJsonField(
+                                                                    homePostListItem,
+                                                                    r'''$.user_id''',
+                                                                  ),
+                                                                  FFAppState()
+                                                                      .userId))
+                                                                Builder(
+                                                                  builder:
+                                                                      (context) =>
+                                                                          Padding(
+                                                                    padding: EdgeInsetsDirectional
+                                                                        .fromSTEB(
+                                                                            12.0,
+                                                                            0.0,
+                                                                            0.0,
+                                                                            0.0),
+                                                                    child:
                                                                         InkWell(
-                                                                  splashColor:
-                                                                      Colors
-                                                                          .transparent,
-                                                                  focusColor: Colors
-                                                                      .transparent,
-                                                                  hoverColor: Colors
-                                                                      .transparent,
-                                                                  highlightColor:
-                                                                      Colors
-                                                                          .transparent,
-                                                                  onTap:
-                                                                      () async {
-                                                                    await showAlignedDialog(
-                                                                      barrierColor:
-                                                                          Color(
-                                                                              0x00FFFFFF),
-                                                                      context:
-                                                                          context,
-                                                                      isGlobal:
-                                                                          false,
-                                                                      avoidOverflow:
-                                                                          false,
-                                                                      targetAnchor: AlignmentDirectional(
-                                                                              -1.9,
-                                                                              2.5)
-                                                                          .resolve(
-                                                                              Directionality.of(context)),
-                                                                      followerAnchor: AlignmentDirectional(
-                                                                              0.0,
-                                                                              0.0)
-                                                                          .resolve(
-                                                                              Directionality.of(context)),
-                                                                      builder:
-                                                                          (dialogContext) {
-                                                                        return Material(
-                                                                          color:
-                                                                              Colors.transparent,
-                                                                          child:
-                                                                              WebViewAware(
-                                                                            child:
-                                                                                GestureDetector(
-                                                                              onTap: () {
-                                                                                FocusScope.of(dialogContext).unfocus();
-                                                                                FocusManager.instance.primaryFocus?.unfocus();
-                                                                              },
-                                                                              child: ReportMenuPopUpWidget(
-                                                                                onReport: () async {
-                                                                                  Navigator.pop(context);
-                                                                                  await showDialog(
-                                                                                    context: context,
-                                                                                    builder: (dialogContext) {
-                                                                                      return Dialog(
-                                                                                        elevation: 0,
-                                                                                        insetPadding: EdgeInsets.zero,
-                                                                                        backgroundColor: Colors.transparent,
-                                                                                        alignment: AlignmentDirectional(0.0, 0.0).resolve(Directionality.of(context)),
-                                                                                        child: WebViewAware(
-                                                                                          child: GestureDetector(
-                                                                                            onTap: () {
-                                                                                              FocusScope.of(dialogContext).unfocus();
-                                                                                              FocusManager.instance.primaryFocus?.unfocus();
-                                                                                            },
-                                                                                            child: CustomConfirmationDialogWidget(
-                                                                                              title: 'Are you sure you want to report this post ?',
-                                                                                              onYesTap: () async {
-                                                                                                var _shouldSetState = false;
-                                                                                                Navigator.pop(context);
-                                                                                                unawaited(
-                                                                                                  () async {
-                                                                                                    await actions.showBaseLoader(
-                                                                                                      context,
+                                                                      splashColor:
+                                                                          Colors
+                                                                              .transparent,
+                                                                      focusColor:
+                                                                          Colors
+                                                                              .transparent,
+                                                                      hoverColor:
+                                                                          Colors
+                                                                              .transparent,
+                                                                      highlightColor:
+                                                                          Colors
+                                                                              .transparent,
+                                                                      onTap:
+                                                                          () async {
+                                                                        await showAlignedDialog(
+                                                                          barrierColor:
+                                                                              Color(0x00FFFFFF),
+                                                                          context:
+                                                                              context,
+                                                                          isGlobal:
+                                                                              false,
+                                                                          avoidOverflow:
+                                                                              false,
+                                                                          targetAnchor:
+                                                                              AlignmentDirectional(-1.9, 2.5).resolve(Directionality.of(context)),
+                                                                          followerAnchor:
+                                                                              AlignmentDirectional(0.0, 0.0).resolve(Directionality.of(context)),
+                                                                          builder:
+                                                                              (dialogContext) {
+                                                                            return Material(
+                                                                              color: Colors.transparent,
+                                                                              child: WebViewAware(
+                                                                                child: GestureDetector(
+                                                                                  onTap: () {
+                                                                                    FocusScope.of(dialogContext).unfocus();
+                                                                                    FocusManager.instance.primaryFocus?.unfocus();
+                                                                                  },
+                                                                                  child: ReportMenuPopUpWidget(
+                                                                                    onReport: () async {
+                                                                                      Navigator.pop(context);
+                                                                                      await showDialog(
+                                                                                        context: context,
+                                                                                        builder: (dialogContext) {
+                                                                                          return Dialog(
+                                                                                            elevation: 0,
+                                                                                            insetPadding: EdgeInsets.zero,
+                                                                                            backgroundColor: Colors.transparent,
+                                                                                            alignment: AlignmentDirectional(0.0, 0.0).resolve(Directionality.of(context)),
+                                                                                            child: WebViewAware(
+                                                                                              child: GestureDetector(
+                                                                                                onTap: () {
+                                                                                                  FocusScope.of(dialogContext).unfocus();
+                                                                                                  FocusManager.instance.primaryFocus?.unfocus();
+                                                                                                },
+                                                                                                child: CustomConfirmationDialogWidget(
+                                                                                                  title: 'Are you sure you want to report this post ?',
+                                                                                                  onYesTap: () async {
+                                                                                                    var _shouldSetState = false;
+                                                                                                    Navigator.pop(context);
+                                                                                                    unawaited(
+                                                                                                      () async {
+                                                                                                        await actions.showBaseLoader(
+                                                                                                          context,
+                                                                                                        );
+                                                                                                      }(),
                                                                                                     );
-                                                                                                  }(),
-                                                                                                );
-                                                                                                _model.reportResponse = await HandyFindersAPIsGroup.reportPostCall.call(
-                                                                                                  authToken: FFAppState().authToken,
-                                                                                                  postId: getJsonField(
-                                                                                                    homePostListItem,
-                                                                                                    r'''$.id''',
-                                                                                                  ),
-                                                                                                );
+                                                                                                    _model.reportResponse = await HandyFindersAPIsGroup.reportPostCall.call(
+                                                                                                      authToken: FFAppState().authToken,
+                                                                                                      postId: getJsonField(
+                                                                                                        homePostListItem,
+                                                                                                        r'''$.id''',
+                                                                                                      ),
+                                                                                                    );
 
-                                                                                                _shouldSetState = true;
-                                                                                                context.safePop();
-                                                                                                if (HandyFindersAPIsGroup.reportPostCall.apiStatus(
-                                                                                                  (_model.reportResponse?.jsonBody ?? ''),
-                                                                                                )!) {
-                                                                                                  ScaffoldMessenger.of(context).clearSnackBars();
-                                                                                                  ScaffoldMessenger.of(context).showSnackBar(
-                                                                                                    SnackBar(
-                                                                                                      content: Text(
-                                                                                                        HandyFindersAPIsGroup.reportPostCall.apiMessage(
-                                                                                                          (_model.reportResponse?.jsonBody ?? ''),
-                                                                                                        )!,
-                                                                                                        style: TextStyle(
-                                                                                                          color: FlutterFlowTheme.of(context).primaryText,
+                                                                                                    _shouldSetState = true;
+                                                                                                    context.safePop();
+                                                                                                    if (HandyFindersAPIsGroup.reportPostCall.apiStatus(
+                                                                                                      (_model.reportResponse?.jsonBody ?? ''),
+                                                                                                    )!) {
+                                                                                                      ScaffoldMessenger.of(context).clearSnackBars();
+                                                                                                      ScaffoldMessenger.of(context).showSnackBar(
+                                                                                                        SnackBar(
+                                                                                                          content: Text(
+                                                                                                            HandyFindersAPIsGroup.reportPostCall.apiMessage(
+                                                                                                              (_model.reportResponse?.jsonBody ?? ''),
+                                                                                                            )!,
+                                                                                                            style: TextStyle(
+                                                                                                              color: FlutterFlowTheme.of(context).primaryText,
+                                                                                                            ),
+                                                                                                          ),
+                                                                                                          duration: Duration(milliseconds: 4000),
+                                                                                                          backgroundColor: FlutterFlowTheme.of(context).secondary,
                                                                                                         ),
-                                                                                                      ),
-                                                                                                      duration: Duration(milliseconds: 4000),
-                                                                                                      backgroundColor: FlutterFlowTheme.of(context).secondary,
-                                                                                                    ),
-                                                                                                  );
-                                                                                                  return;
-                                                                                                } else {
-                                                                                                  ScaffoldMessenger.of(context).clearSnackBars();
-                                                                                                  ScaffoldMessenger.of(context).showSnackBar(
-                                                                                                    SnackBar(
-                                                                                                      content: Text(
-                                                                                                        HandyFindersAPIsGroup.reportPostCall.apiMessage(
-                                                                                                          (_model.reportResponse?.jsonBody ?? ''),
-                                                                                                        )!,
-                                                                                                        style: TextStyle(
-                                                                                                          color: FlutterFlowTheme.of(context).primaryText,
+                                                                                                      );
+                                                                                                      return;
+                                                                                                    } else {
+                                                                                                      ScaffoldMessenger.of(context).clearSnackBars();
+                                                                                                      ScaffoldMessenger.of(context).showSnackBar(
+                                                                                                        SnackBar(
+                                                                                                          content: Text(
+                                                                                                            HandyFindersAPIsGroup.reportPostCall.apiMessage(
+                                                                                                              (_model.reportResponse?.jsonBody ?? ''),
+                                                                                                            )!,
+                                                                                                            style: TextStyle(
+                                                                                                              color: FlutterFlowTheme.of(context).primaryText,
+                                                                                                            ),
+                                                                                                          ),
+                                                                                                          duration: Duration(milliseconds: 4000),
+                                                                                                          backgroundColor: FlutterFlowTheme.of(context).secondary,
                                                                                                         ),
-                                                                                                      ),
-                                                                                                      duration: Duration(milliseconds: 4000),
-                                                                                                      backgroundColor: FlutterFlowTheme.of(context).secondary,
-                                                                                                    ),
-                                                                                                  );
-                                                                                                  return;
-                                                                                                }
-                                                                                              },
+                                                                                                      );
+                                                                                                      return;
+                                                                                                    }
+                                                                                                  },
+                                                                                                ),
+                                                                                              ),
                                                                                             ),
-                                                                                          ),
-                                                                                        ),
+                                                                                          );
+                                                                                        },
                                                                                       );
                                                                                     },
-                                                                                  );
-                                                                                },
+                                                                                  ),
+                                                                                ),
                                                                               ),
+                                                                            );
+                                                                          },
+                                                                        );
+
+                                                                        safeSetState(
+                                                                            () {});
+                                                                      },
+                                                                      child:
+                                                                          Container(
+                                                                        width:
+                                                                            40.0,
+                                                                        height:
+                                                                            40.0,
+                                                                        decoration:
+                                                                            BoxDecoration(
+                                                                          color:
+                                                                              Color(0xFFE2E2E2),
+                                                                          borderRadius:
+                                                                              BorderRadius.circular(99.0),
+                                                                        ),
+                                                                        child:
+                                                                            Padding(
+                                                                          padding:
+                                                                              EdgeInsets.all(11.0),
+                                                                          child:
+                                                                              ClipRRect(
+                                                                            borderRadius:
+                                                                                BorderRadius.circular(0.0),
+                                                                            child:
+                                                                                Image.asset(
+                                                                              'assets/images/ic_more.png',
+                                                                              fit: BoxFit.fitHeight,
                                                                             ),
                                                                           ),
-                                                                        );
-                                                                      },
-                                                                    );
-
-                                                                    safeSetState(
-                                                                        () {});
-                                                                  },
-                                                                  child:
-                                                                      Container(
-                                                                    width: 40.0,
-                                                                    height:
-                                                                        40.0,
-                                                                    decoration:
-                                                                        BoxDecoration(
-                                                                      color: Color(
-                                                                          0xFFE2E2E2),
-                                                                      borderRadius:
-                                                                          BorderRadius.circular(
-                                                                              99.0),
-                                                                    ),
-                                                                    child:
-                                                                        Padding(
-                                                                      padding:
-                                                                          EdgeInsets.all(
-                                                                              11.0),
-                                                                      child:
-                                                                          ClipRRect(
-                                                                        borderRadius:
-                                                                            BorderRadius.circular(0.0),
-                                                                        child: Image
-                                                                            .asset(
-                                                                          'assets/images/ic_more.png',
-                                                                          fit: BoxFit
-                                                                              .fitHeight,
                                                                         ),
                                                                       ),
                                                                     ),
                                                                   ),
                                                                 ),
-                                                              ),
                                                             ],
                                                           ),
                                                         ),

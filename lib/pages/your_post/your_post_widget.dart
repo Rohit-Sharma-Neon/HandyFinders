@@ -717,7 +717,7 @@ class _YourPostWidgetState extends State<YourPostWidget>
                                                                                                   FocusManager.instance.primaryFocus?.unfocus();
                                                                                                 },
                                                                                                 child: CustomConfirmationDialogWidget(
-                                                                                                  title: 'Are you sure you want to remove this comment ?',
+                                                                                                  title: 'Are you sure you want to remove this post ?',
                                                                                                   onYesTap: () async {
                                                                                                     var _shouldSetState = false;
                                                                                                     context.safePop();

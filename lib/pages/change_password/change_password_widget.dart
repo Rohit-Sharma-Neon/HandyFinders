@@ -75,7 +75,7 @@ class _ChangePasswordWidgetState extends State<ChangePasswordWidget> {
             ),
             Form(
               key: _model.formKey,
-              autovalidateMode: AutovalidateMode.disabled,
+              autovalidateMode: AutovalidateMode.always,
               child: Padding(
                 padding: EdgeInsetsDirectional.fromSTEB(
                     valueOrDefault<double>(

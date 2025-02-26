@@ -10,6 +10,7 @@ import '/flutter_flow/flutter_flow_theme.dart';
 import '/flutter_flow/flutter_flow_util.dart';
 import '/pages/custom_confirmation_dialog/custom_confirmation_dialog_widget.dart';
 import '/pages/edit_remove_menu_pop_up/edit_remove_menu_pop_up_widget.dart';
+import '/pages/remove_menu_pop_up/remove_menu_pop_up_widget.dart';
 import 'dart:async';
 import '/custom_code/actions/index.dart' as actions;
 import '/flutter_flow/custom_functions.dart' as functions;
@@ -649,9 +650,6 @@ class _RequestTabWidgetState extends State<RequestTabWidget>
                                                 key: Key(
                                                     'RefreshIndicator_qpbni06u'),
                                                 onRefresh: () async {
-                                                  _model.isPrimaryApiFetching =
-                                                      true;
-                                                  safeSetState(() {});
                                                   _model.refreshedPrimaryApiResponse =
                                                       await HandyFindersAPIsGroup
                                                           .requestBottomTabCall
@@ -662,9 +660,6 @@ class _RequestTabWidgetState extends State<RequestTabWidget>
                                                     page: 1,
                                                   );
 
-                                                  _model.isPrimaryApiFetching =
-                                                      false;
-                                                  safeSetState(() {});
                                                   if (HandyFindersAPIsGroup
                                                       .requestBottomTabCall
                                                       .apiStatus(
@@ -896,6 +891,10 @@ class _RequestTabWidgetState extends State<RequestTabWidget>
                                                                                                         'itemIndex': serializeParam(
                                                                                                           primaryTabListIndex,
                                                                                                           ParamType.int,
+                                                                                                        ),
+                                                                                                        'isUpdatingRequestBottomTab': serializeParam(
+                                                                                                          true,
+                                                                                                          ParamType.bool,
                                                                                                         ),
                                                                                                       }.withoutNulls,
                                                                                                     );
@@ -1917,9 +1916,6 @@ class _RequestTabWidgetState extends State<RequestTabWidget>
                                                 key: Key(
                                                     'RefreshIndicator_szrcjkuo'),
                                                 onRefresh: () async {
-                                                  _model.isSecondaryApiFetching =
-                                                      true;
-                                                  safeSetState(() {});
                                                   _model.refreshedSecondaryApiResponse =
                                                       await HandyFindersAPIsGroup
                                                           .requestBottomTabCall
@@ -1930,9 +1926,6 @@ class _RequestTabWidgetState extends State<RequestTabWidget>
                                                     page: 1,
                                                   );
 
-                                                  _model.isSecondaryApiFetching =
-                                                      false;
-                                                  safeSetState(() {});
                                                   if (HandyFindersAPIsGroup
                                                       .requestBottomTabCall
                                                       .apiStatus(
@@ -2211,7 +2204,7 @@ class _RequestTabWidgetState extends State<RequestTabWidget>
                                                                                         context: context,
                                                                                         isGlobal: false,
                                                                                         avoidOverflow: false,
-                                                                                        targetAnchor: AlignmentDirectional(-1.9, 3.8).resolve(Directionality.of(context)),
+                                                                                        targetAnchor: AlignmentDirectional(-1.9, 2.8).resolve(Directionality.of(context)),
                                                                                         followerAnchor: AlignmentDirectional(0.0, 0.0).resolve(Directionality.of(context)),
                                                                                         builder: (dialogContext) {
                                                                                           return Material(
@@ -2222,10 +2215,7 @@ class _RequestTabWidgetState extends State<RequestTabWidget>
                                                                                                   FocusScope.of(dialogContext).unfocus();
                                                                                                   FocusManager.instance.primaryFocus?.unfocus();
                                                                                                 },
-                                                                                                child: EditRemoveMenuPopUpWidget(
-                                                                                                  onEdit: () async {
-                                                                                                    Navigator.pop(context);
-                                                                                                  },
+                                                                                                child: RemoveMenuPopUpWidget(
                                                                                                   onRemove: () async {
                                                                                                     Navigator.pop(context);
                                                                                                     await showDialog(
@@ -2282,7 +2272,7 @@ class _RequestTabWidgetState extends State<RequestTabWidget>
                                                                                                                         backgroundColor: FlutterFlowTheme.of(context).secondary,
                                                                                                                       ),
                                                                                                                     );
-                                                                                                                    FFAppState().removeAtIndexFromYourTipAdviceList(secondaryTabListIndex);
+                                                                                                                    FFAppState().removeAtIndexFromRequestTabCompletedList(secondaryTabListIndex);
                                                                                                                     safeSetState(() {});
                                                                                                                     return;
                                                                                                                   } else {

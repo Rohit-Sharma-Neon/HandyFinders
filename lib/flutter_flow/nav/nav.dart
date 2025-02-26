@@ -287,6 +287,10 @@ GoRouter createRouter(AppStateNotifier appStateNotifier) => GoRouter(
               'itemIndex',
               ParamType.int,
             ),
+            isUpdatingRequestBottomTab: params.getParam(
+              'isUpdatingRequestBottomTab',
+              ParamType.bool,
+            ),
           ),
         ),
         FFRoute(

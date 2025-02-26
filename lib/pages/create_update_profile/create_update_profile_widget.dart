@@ -5,8 +5,10 @@ import '/components/ic_back_title_widget.dart';
 import '/components/text_field_label_text_widget.dart';
 import '/components/update_email_dialog_widget.dart';
 import '/flutter_flow/flutter_flow_drop_down.dart';
+import '/flutter_flow/flutter_flow_place_picker.dart';
 import '/flutter_flow/flutter_flow_theme.dart';
 import '/flutter_flow/flutter_flow_util.dart';
+import '/flutter_flow/flutter_flow_widgets.dart';
 import '/flutter_flow/form_field_controller.dart';
 import '/flutter_flow/upload_data.dart';
 import 'dart:async';
@@ -1771,6 +1773,53 @@ class _CreateUpdateProfileWidgetState extends State<CreateUpdateProfileWidget> {
                                           ),
                                         ),
                                     ],
+                                  ),
+                                  Padding(
+                                    padding: EdgeInsetsDirectional.fromSTEB(
+                                        0.0, 16.0, 0.0, 0.0),
+                                    child: FlutterFlowPlacePicker(
+                                      iOSGoogleMapsApiKey:
+                                          'AIzaSyB7DU4gdodMaDKbytJJE_VlhK9Vv68mlvk',
+                                      androidGoogleMapsApiKey:
+                                          'AIzaSyB7DU4gdodMaDKbytJJE_VlhK9Vv68mlvk',
+                                      webGoogleMapsApiKey: '',
+                                      onSelect: (place) async {
+                                        safeSetState(() =>
+                                            _model.placePickerValue = place);
+                                      },
+                                      defaultText: 'Select Address',
+                                      icon: Icon(
+                                        Icons.place,
+                                        color:
+                                            FlutterFlowTheme.of(context).info,
+                                        size: 16.0,
+                                      ),
+                                      buttonOptions: FFButtonOptions(
+                                        width: double.infinity,
+                                        height: 55.0,
+                                        color: FlutterFlowTheme.of(context)
+                                            .primary,
+                                        textStyle: FlutterFlowTheme.of(context)
+                                            .titleSmall
+                                            .override(
+                                              fontFamily: 'Comfortaa',
+                                              color:
+                                                  FlutterFlowTheme.of(context)
+                                                      .info,
+                                              letterSpacing: 0.0,
+                                            ),
+                                        elevation: 0.0,
+                                        borderSide: BorderSide(
+                                          color: Colors.transparent,
+                                          width: 1.0,
+                                        ),
+                                        borderRadius: BorderRadius.circular(
+                                            valueOrDefault<double>(
+                                          FFAppConstants.primaryBorderRadius,
+                                          0.0,
+                                        )),
+                                      ),
+                                    ),
                                   ),
                                   Padding(
                                     padding: EdgeInsetsDirectional.fromSTEB(
